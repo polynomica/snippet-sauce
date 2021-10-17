@@ -29,6 +29,7 @@ box-shadow: #808080b3 0px 3px 4px 0px;
     background-color: white;
     margin: 20px 10px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .snippet-card-thumbnail{
