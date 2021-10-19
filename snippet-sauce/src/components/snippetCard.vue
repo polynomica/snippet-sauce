@@ -45,7 +45,7 @@ export default {
   background-color: white;
   margin: 20px 10px;
   overflow: hidden;
-  cursor: pointer;
+
   transition: ease 0.4s;
   transform: scale(1);
 
@@ -54,7 +54,7 @@ export default {
     height: 50%;
     position: relative;
     overflow: hidden;
-
+    cursor: pointer;
     img {
       width: 100%;
     }
