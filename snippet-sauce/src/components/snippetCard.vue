@@ -1,5 +1,5 @@
 <template>
-  <div class="snippet-card">
+  <div key="{{key}}" class="snippet-card">
     <div class="snippet-card-thumbnail">
       <img
         src="../assets/snippetThumb.png"
@@ -23,7 +23,8 @@
 <script>
 export default {
   name: "SnippetCard",
-  porps: {
+  props: {
+    key: Number,
     snippetTitle: String,
     snippetAuthor: String,
     snippetAuthorPic: String,
