@@ -98,17 +98,13 @@
             ></button>
           </div>
           <div class="base-flex modal-body" id="modal-body">
-            <button data-bs-dismiss="modal" class="languages-button">
-              Language 1
-            </button>
-            <button data-bs-dismiss="modal" class="languages-button">
-              Language 2
-            </button>
-            <button data-bs-dismiss="modal" class="languages-button">
-              Language 3
-            </button>
-            <button data-bs-dismiss="modal" class="languages-button">
-              Language 4
+            <button
+              data-bs-dismiss="modal"
+              class="languages-button"
+              v-for="(item, index) in languages"
+              :key="index"
+            >
+              {{ item.name }}
             </button>
           </div>
           <div class="modal-footer">
@@ -131,6 +127,36 @@
 <script>
 export default {
   name: "Navbar",
+  data() {
+    return {
+      languages: [],
+    };
+  },
+  created() {
+    this.languages = [
+      { name: "JavaScript" },
+      { name: "Python" },
+      { name: "Java" },
+      { name: "Laravel" },
+      { name: "PHP" },
+      { name: "Golang" },
+      { name: "Some Language" },
+      { name: "JavaScript" },
+      { name: "Python" },
+      { name: "Java" },
+      { name: "Laravel" },
+      { name: "PHP" },
+      { name: "Golang" },
+      { name: "Some Language" },
+      { name: "JavaScript" },
+      { name: "Python" },
+      { name: "Java" },
+      { name: "Laravel" },
+      { name: "PHP" },
+      { name: "Golang" },
+      { name: "Some Language" },
+    ];
+  },
 };
 </script>
 
