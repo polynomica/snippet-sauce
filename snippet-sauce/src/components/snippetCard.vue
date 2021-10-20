@@ -39,15 +39,16 @@ export default {
 
 <style lang="scss" scoped>
 .snippet-card {
-  width: 22%;
+  width: 280px;
   box-shadow: #808080b3 0px 3px 4px 0px;
   border-radius: 8px;
   background-color: white;
   margin: 20px 10px;
   overflow: hidden;
-
   transition: ease 0.4s;
   transform: scale(1);
+  position: relative;
+  display: inline-block;
 
   .snippet-card-thumbnail {
     width: auto;
