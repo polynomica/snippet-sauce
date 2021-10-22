@@ -2,9 +2,6 @@ import React, { useRef } from "react";
 import SnippetCard from "./snippetCard";
 import snippetThumb from '../assets/snippetThumb.png'
 import authorPic from '../assets/authorPic.jpg'
-
-
-
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs/';
 
@@ -78,9 +75,14 @@ export default function SnippetDetails() {
         },
     ];
 
-    const codes = `
-     def():
-        print(")
+    const codes =
+        `
+     const scrollSlide = (direction) => {
+        const slideAmount = 350;
+        if (direction === "Next") { scrollerRef.current.scrollLeft += slideAmount; }
+        if (direction === "Prev") { scrollerRef.current.scrollLeft -= slideAmount; }
+        console.log(scrollerRef.current.scrollLeft)
+    }
          `
 
 
@@ -101,7 +103,7 @@ export default function SnippetDetails() {
                         </div>
 
 
-                        <SyntaxHighlighter language="python" style={atomOneDark}>
+                        <SyntaxHighlighter language="javascript" style={atomOneDark}>
                             {codes}
                         </SyntaxHighlighter>
 

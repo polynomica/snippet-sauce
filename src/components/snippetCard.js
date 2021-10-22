@@ -8,7 +8,7 @@ export default function SnippetCard(props) {
     const formattedTitle = props.snippetTitle.replaceAll(' ', '-');
     const snippetId = 1232432543534
 
-    const openDetails = () => history.push({ pathname: '/snippet', search: `?${formattedTitle}/`, hash: `${snippetId}` });
+    const openDetails = () => history.push({ pathname: '/snippet', search: `?${formattedTitle}/`, hash: `${snippetId}`, state: { snippetName: props.snippetTitle } });
 
     return (
         <div className="snippet-card">
