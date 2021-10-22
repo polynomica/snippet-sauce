@@ -1,7 +1,15 @@
 import React from "react";
-
+import { useHistory } from "react-router-dom";
 
 export default function SnippetCard(props) {
+
+    const history = useHistory();
+
+    const formattedTitle = props.snippetTitle.replaceAll(' ', '-');
+    const snippetId = 1232432543534
+
+    const openDetails = () => history.push({ pathname: '/snippet', search: `?${formattedTitle}/`, hash: `${snippetId}` });
+
     return (
         <div className="snippet-card">
             <div className="snippet-card-thumbnail">
@@ -18,7 +26,7 @@ export default function SnippetCard(props) {
                         <span>{props.snippetAuthor}</span>
                         <figcaption className="figure-caption">{props.snippetTime}</figcaption>
                     </div>
-                    <button type="button" className="btn btn-success">Visit</button>
+                    <button onClick={openDetails} type="button" className="btn btn-success">Visit</button>
                 </div>
             </div>
         </div>

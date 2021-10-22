@@ -152,26 +152,18 @@ body{
   width: 98%;
   margin: 15px 0px;
   padding: 15px;
-  background-color: whitesmoke;
+  background-color: white;
 
-  .snippet-page-wrapper { flex-direction: row; justify-content: space-between;}
+  .snippet-page-wrapper { flex-direction: row; justify-content: space-between;align-items: flex-start;}
   .snippet-about { justify-content: space-between; width: 70%;}
   .snippet-code-holder{
-
+    padding-top: 0px;
     .sHead{
       width: 95%;
     justify-content: space-between;
     margin-bottom: 0px;
     }
-    .badge-holder{
-      width: 95%;
-
-      span{
-        margin: 10px 5px;
-      }
-    }
-
-    
+    .badge-holder{ width: 95%; span{margin: 10px 5px;}}
 
     pre {
       border: 1px solid #ddd;
