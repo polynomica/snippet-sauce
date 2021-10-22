@@ -1,5 +1,4 @@
-# snippet-sauce
-A web app which provides you all the code snippets in all programming languages. 
+# Snippet Sauce
 
+Snippet sauce is a webapp where you can find all the language's snippet for free.
 
-Contributer - Suyash
