@@ -2,11 +2,13 @@ import React, { useRef } from "react";
 import SnippetCard from "./snippetCard";
 import snippetThumb from '../assets/snippetThumb.png'
 import authorPic from '../assets/authorPic.jpg'
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs/';
 
 export default function SnippetDetails() {
 
-    const scrollerRef = useRef(null);
 
+    const scrollerRef = useRef(null);
     const scrollSlide = (direction) => {
         const slideAmount = 350;
         if (direction === "Next") { scrollerRef.current.scrollLeft += slideAmount; }
@@ -73,13 +75,15 @@ export default function SnippetDetails() {
         },
     ];
 
-    const codes = `
-     addEventListener('load', () => {
-        const code = document.querySelector('#code');
-        const worker = new Worker('worker.js');
-        worker.onmessage = (event) => {code.innerHTML = event.data; }
-        worker.postMessage(code.textContent);
-      }); `
+    const codes =
+        `
+     const scrollSlide = (direction) => {
+        const slideAmount = 350;
+        if (direction === "Next") { scrollerRef.current.scrollLeft += slideAmount; }
+        if (direction === "Prev") { scrollerRef.current.scrollLeft -= slideAmount; }
+        console.log(scrollerRef.current.scrollLeft)
+    }
+         `
 
 
     return (
@@ -98,11 +102,11 @@ export default function SnippetDetails() {
                             <span class="badge rounded-pill bg-warning text-dark">Warning</span>
                         </div>
 
-                        <pre>
-                            <code >
-                                {codes}
-                            </code>
-                        </pre>
+
+                        <SyntaxHighlighter language="javascript" style={atomOneDark}>
+                            {codes}
+                        </SyntaxHighlighter>
+
                         <span className="desc-timestamp">Posted on - 12 Oct 2021</span>
                     </div>
 
