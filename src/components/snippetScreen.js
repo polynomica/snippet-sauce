@@ -4,6 +4,7 @@ import snippetThumb from '../assets/snippetThumb.png'
 import authorPic from '../assets/authorPic.jpg'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs/';
+import NavBar from './navBar'
 
 export default function SnippetDetails() {
 
@@ -23,6 +24,7 @@ export default function SnippetDetails() {
             snippetTime: "12 Oct 2021",
             snippetThumbnail: snippetThumb,
             authorPic: authorPic,
+            snippetId: 'jv123456'
         },
         {
             snippetTitle: "Python Djangio",
@@ -30,6 +32,7 @@ export default function SnippetDetails() {
             snippetTime: "12 Oct 2021",
             snippetThumbnail: snippetThumb,
             authorPic: authorPic,
+            snippetId: 'py123456'
         },
         {
             snippetTitle: "Laravel Php",
@@ -37,6 +40,7 @@ export default function SnippetDetails() {
             snippetTime: "12 Oct 2021",
             snippetThumbnail: snippetThumb,
             authorPic: authorPic,
+            snippetId: 'php123456'
         },
         {
             snippetTitle: "Laravel Php",
@@ -44,6 +48,7 @@ export default function SnippetDetails() {
             snippetTime: "12 Oct 2021",
             snippetThumbnail: snippetThumb,
             authorPic: authorPic,
+            snippetId: 'php123456'
         },
         {
             snippetTitle: "Java Swift",
@@ -51,6 +56,7 @@ export default function SnippetDetails() {
             snippetTime: "12 Oct 2021",
             snippetThumbnail: snippetThumb,
             authorPic: authorPic,
+            snippetId: 'jv123456'
         },
         {
             snippetTitle: "Python Djangio",
@@ -58,6 +64,7 @@ export default function SnippetDetails() {
             snippetTime: "12 Oct 2021",
             snippetThumbnail: snippetThumb,
             authorPic: authorPic,
+            snippetId: 'py123456'
         },
         {
             snippetTitle: "Laravel Php",
@@ -65,6 +72,7 @@ export default function SnippetDetails() {
             snippetTime: "12 Oct 2021",
             snippetThumbnail: snippetThumb,
             authorPic: authorPic,
+            snippetId: 'php123456'
         },
         {
             snippetTitle: "Laravel Php",
@@ -72,6 +80,7 @@ export default function SnippetDetails() {
             snippetTime: "12 Oct 2021",
             snippetThumbnail: snippetThumb,
             authorPic: authorPic,
+            snippetId: 'php123456'
         },
     ];
 
@@ -87,93 +96,82 @@ export default function SnippetDetails() {
 
 
     return (
+        <>
+            <NavBar navOptions={false} />
+            <div className="base-flex snippet-page">
+                <div className="base-flex snippet-page-wrapper">
+                    <div className="base-flex snippet-about">
+                        <div className="area-div base-flex snippet-code-holder">
+                            <h2 className="base-flex">JavaScript Snippet</h2>
+                            <span className="desc-timestamp">Posted on - 12 Oct 2021</span>
+                            <div className="base-flex badge-holder">
+                                <span class="badge rounded-pill bg-primary">Primary</span>
+                                <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+                                <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+                                <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+                            </div>
 
-        <div className="base-flex snippet-page">
-            <div className="base-flex snippet-page-wrapper">
-                <div className="base-flex snippet-about">
-                    <div className="area-div base-flex snippet-code-holder">
-                        <h2 className="base-flex sHead">JavaScript Snippet
-                            <button type="button" className="btn btn-sm btn-outline-primary">Copy</button>
-                        </h2>
-                        <div className="base-flex badge-holder">
-                            <span class="badge rounded-pill bg-primary">Primary</span>
-                            <span class="badge rounded-pill bg-warning text-dark">Warning</span>
-                            <span class="badge rounded-pill bg-warning text-dark">Warning</span>
-                            <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+                            <SyntaxHighlighter language="javascript" style={atomOneDark}>{codes}</SyntaxHighlighter>
+
+                            <div className="base-flex sHead">
+                                <button type="button" className="btn btn-sm btn-outline-primary">Copy code</button>
+                                <button type="button" className="btn btn-sm btn-outline-primary">Copy Sauce - js123595</button>
+                            </div>
                         </div>
 
-
-                        <SyntaxHighlighter language="javascript" style={atomOneDark}>
-                            {codes}
-                        </SyntaxHighlighter>
-
-                        <span className="desc-timestamp">Posted on - 12 Oct 2021</span>
+                        <div className="area-div base-flex snippet-description-holder">
+                            <h2>Snippet Description</h2>
+                            <p >
+                                This snippet is a test snippet in JavaSvript if else stuff. This
+                                snippet is a test snippet in JavaSvript if else stuff. This snippet
+                                is a test snippet in JavaSvript if else stuff. This snippet is a
+                                test snippet in JavaSvript if else stuff. This snippet is a test
+                                snippet in JavaSvript if else stuff. This snippet is a test snippet
+                                in JavaSvript if else stuff.
+                            </p>
+                        </div>
                     </div>
 
-                    <div className="area-div base-flex snippet-description-holder">
-                        <h2>Snippet Description</h2>
-                        <p >
-                            This snippet is a test snippet in JavaSvript if else stuff. This
-                            snippet is a test snippet in JavaSvript if else stuff. This snippet
-                            is a test snippet in JavaSvript if else stuff. This snippet is a
-                            test snippet in JavaSvript if else stuff. This snippet is a test
-                            snippet in JavaSvript if else stuff. This snippet is a test snippet
-                            in JavaSvript if else stuff.
-                        </p>
-                    </div>
-                </div>
-
-                <div className="area-div base-flex snippet-author-info">
-                    <h2>Snippet Author</h2>
-                    <div className="base-flex author-holder">
-                        <img src={authorPic} alt="Author Image" />
-                        <h2 className="author-name">Suyash Vashishtha</h2>
-                        <p className="lead">
-                            This is a lead paragraph. It stands out from regular paragraphs.
-                        </p>
-                        <button type="button" className="btn btn-outline-dark">
-                            Visit Github
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div className="base-flex suggested-snippet-holder">
-                <div className="area-div base-flex suggest-head">
-                    <h2>Similar Snippet</h2>
-                    <div className="slide-btn-holder">
-                        <button onClick={() => scrollSlide("Prev")} type="button" className="btn btn-dark">
-                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="15" width="15" xmlns="http://www.w3.org/2000/svg">
-                                <polyline fill="none" stroke="white" strokeWidth="2" points="7 2 17 12 7 22" transform="matrix(-1 0 0 1 24 0)"></polyline>
-                            </svg>
-                        </button>
-                        <button onClick={() => scrollSlide("Next")} type="button" className="btn btn-dark">
-                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="15" width="15" xmlns="http://www.w3.org/2000/svg">
-                                <polyline fill="none" stroke="white" strokeWidth="2" points="7 2 17 12 7 22"></polyline>
-                            </svg>
-                        </button>
+                    <div className="area-div base-flex snippet-author-info">
+                        <h2>Snippet Author</h2>
+                        <div className="base-flex author-holder">
+                            <img src={authorPic} alt="Author Image" />
+                            <h2 className="author-name">Suyash Vashishtha</h2>
+                            <p className="lead">This is a lead paragraph. It stands out from regular paragraphs.</p>
+                            <button type="button" className="btn btn-outline-dark">Visit Github</button>
+                        </div>
                     </div>
                 </div>
 
-                <div ref={scrollerRef} className="snippet-scroller-div">
-                    {snippetData.map((item, index) => (
-                        <SnippetCard
-                            key={index}
+                <div className="base-flex suggested-snippet-holder">
+                    <div className="area-div base-flex suggest-head">
+                        <h2>Similar Snippet</h2>
+                        <div className="slide-btn-holder">
+                            <button onClick={() => scrollSlide("Prev")} type="button" className="btn btn-dark">
+                                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="15" width="15" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="white" strokeWidth="2" points="7 2 17 12 7 22" transform="matrix(-1 0 0 1 24 0)"></polyline></svg>
+                            </button>
+                            <button onClick={() => scrollSlide("Next")} type="button" className="btn btn-dark">
+                                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="15" width="15" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="white" strokeWidth="2" points="7 2 17 12 7 22"></polyline></svg>
+                            </button>
+                        </div>
+                    </div>
 
-                            snippetTitle={item.snippetTitle}
-                            snippetAuthor={item.snippetAuthor}
-                            snippetTime={item.snippetTime}
-                            authorPic={item.authorPic}
-                            snippetThumbnail={item.snippetThumbnail}
-                        />
-                    ))}
-                </div>
+                    <div ref={scrollerRef} className="snippet-scroller-div">
+                        {snippetData.map((item, index) => (
+                            <SnippetCard
+                                key={index}
+                                snippetTitle={item.snippetTitle}
+                                snippetAuthor={item.snippetAuthor}
+                                snippetTime={item.snippetTime}
+                                authorPic={item.authorPic}
+                                snippetThumbnail={item.snippetThumbnail}
+                                snippetId={item.snippetId}
+                            />
+                        ))}
+                    </div>
+                </div >
             </div >
-        </div >
 
-
-
+        </>
     )
 }

@@ -1,10 +1,12 @@
 $sucess: #198754;
 
 
-body{
-    font-family: sans-serif;
-}
+// ::selection {
+//   color: $sucess;
+//   background: black;
+// }
 
+body{font-family: sans-serif;}
 .App{
   display: flex;
     flex-direction: column;
@@ -18,8 +20,8 @@ body{
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
-
 }
+
 
 
 .area-div {
@@ -35,9 +37,11 @@ body{
 
 
   nav{
-    width: 95%; 
-    margin: auto
+    width: 100%; 
+    padding: 10px 20px;
   }
+
+
 
 .languages-button {
     background-color: white;
@@ -66,6 +70,7 @@ body{
 
 .snippet-grid {
   width: 100%;
+  margin-top: 3rem;
   flex-direction: column;
   background-color: whitesmoke;
 
@@ -151,6 +156,7 @@ body{
 .snippet-page {
   width: 98%;
   margin: 15px 0px;
+  margin-top: 4rem;
   padding: 15px;
   background-color: white;
 
@@ -158,12 +164,11 @@ body{
   .snippet-about { justify-content: space-between; width: 70%;}
   .snippet-code-holder{
     padding-top: 0px;
-    .sHead{
-      width: 95%;
-    justify-content: space-between;
-    margin-bottom: 0px;
-    }
-    .badge-holder{ width: 95%; span{margin: 10px 5px;}}
+    .sHead{ width: 95%; justify-content: flex-end;margin-bottom: 0px; button{margin: 0px 5px;}}
+    span.desc-timestamp{font-size: 0.9rem;margin: 2px;color: grey;width: 90%;}
+    .badge-holder{ width: 95%;margin-top:5px; span{margin: 10px 5px;}
+  }
+ 
 
     pre {
       border: 1px solid #ddd;
@@ -172,17 +177,16 @@ body{
       font-family: monospace;
       font-size: 15px;
       line-height: 1.6;
-      margin-bottom: 1.6em;
       width: 95%;
       word-wrap: break-word;
       background-color: #272822;
       color: white;
       padding: 20px 0px;
     }
-    span { margin: 0px;}
   }
 
   .snippet-description-holder {
+    padding-top: 0px;
     p {
       width: 95%;
       border: 1px solid #ddd;
@@ -233,4 +237,22 @@ body{
     scroll-behavior: smooth;
   }
   .snippet-scroller-div::-webkit-scrollbar {width: 0;}
+}
+
+
+
+.login-screen{
+  width: 80%;
+  position: absolute;
+  top: 20%;
+  justify-content: center;
+
+  form{
+    width: 15rem;
+    h3{
+      text-align: center;
+      margin-bottom: 50px;
+    }
+  }
+
 }

@@ -1,24 +1,21 @@
-
 import './App.scss';
-import NavBar from '../src/components/navBar'
+
 import HomeScreen from '../src/components/homeScreen'
 import SnippetDetails from './components/snippetScreen';
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import LoginScreen from './components/loginScreen';
+import AdminPanel from './components/adminPanel';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <NavBar />
+
         <Switch>
           <Route path="/" exact component={() => <HomeScreen />} />
           <Route path="/snippet" exact component={() => <SnippetDetails />} />
+          <Route path="/login" exact component={() => <LoginScreen />} />
+          <Route path="/admin" exact component={() => <AdminPanel />} />
         </Switch>
       </Router>
 
@@ -27,3 +24,4 @@ function App() {
 }
 
 export default App;
+
