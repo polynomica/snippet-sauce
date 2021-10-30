@@ -3,6 +3,7 @@ import SnippetCard from "./snippetCard";
 import snippetThumb from '../assets/snippetThumb.png'
 import authorPic from '../assets/authorPic.jpg'
 import NavBar from './navBar'
+import './homeScreen.scss'
 
 export default function HomeScreen() {
 

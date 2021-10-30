@@ -5,6 +5,7 @@ import authorPic from '../assets/authorPic.jpg'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs/';
 import NavBar from './navBar'
+import './snippetScreen.scss'
 
 export default function SnippetDetails() {
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import './loginScreen.scss';
 
 export default function LoginScreen() {
 
@@ -20,7 +21,6 @@ export default function LoginScreen() {
                 <div className="mb-3">
                     <label for="exampleInputEmail1" className="form-label">Username</label>
                     <input onInputCapture={(e) => setUsername(e.target.value)} type="email" placeholder="" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-
                 </div>
                 <div className="mb-3">
                     <label for="exampleInputPassword1" className="form-label">Password</label>
