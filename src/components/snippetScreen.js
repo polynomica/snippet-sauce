@@ -3,7 +3,7 @@ import SnippetCard from "./snippetCard";
 import snippetThumb from '../assets/snippetThumb.png'
 import authorPic from '../assets/authorPic.jpg'
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs/';
+import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import NavBar from './navBar'
 import './snippetScreen.scss'
 
@@ -106,10 +106,10 @@ export default function SnippetDetails() {
                             <h2 className="base-flex">JavaScript Snippet</h2>
                             <span className="desc-timestamp">Posted on - 12 Oct 2021</span>
                             <div className="base-flex badge-holder">
-                                <span class="badge rounded-pill bg-primary">Primary</span>
-                                <span class="badge rounded-pill bg-warning text-dark">Warning</span>
-                                <span class="badge rounded-pill bg-warning text-dark">Warning</span>
-                                <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+                                <span className="badge rounded-pill bg-primary">Primary</span>
+                                <span className="badge rounded-pill bg-warning text-dark">Warning</span>
+                                <span className="badge rounded-pill bg-warning text-dark">Warning</span>
+                                <span className="badge rounded-pill bg-warning text-dark">Warning</span>
                             </div>
 
                             <SyntaxHighlighter language="javascript" style={atomOneDark}>{codes}</SyntaxHighlighter>

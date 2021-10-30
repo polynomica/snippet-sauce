@@ -1,0 +1,88 @@
+.admin-panel{
+    height: 100vh;
+    background-color: whitesmoke;
+    width: 100vw;
+    justify-content: space-between;
+
+    .side-bar{
+        width: 23%;
+        height: 100%;
+        li{ button{ width: 90%; text-align: left;margin: auto;}}
+    }
+
+    .main-section{
+        width: 75%;
+        height: 100%;
+        padding: 10px;
+        overflow: scroll;
+        
+        .panel-heading{margin-top: 20px;}
+
+        .panel-wrapper{
+            width: 97%;
+            background-color: white;
+            height: 800px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+         
+            .panel{ width: 100%;height: 100%;}
+            
+            .stat-card{
+                width: 30%;
+                height: 100px;
+                border-radius: 15px;
+                margin: 30px 10px;
+                background:linear-gradient(135deg, #13f1fc 0%,#0470dc 100%);
+                color: white;
+                box-shadow: #e9ecef 4px 4px 5px 1px;
+                border-radius: 8px;
+                justify-content: center;
+
+                .stat-holder{
+                    width: 100%;
+            
+                }
+                
+                .stat-data{
+                    flex-direction: row;
+                    align-items: center;
+                    
+                }
+
+                span.stat-number{font-size: 2.2rem; margin-right: 10px;}
+                span.stat-topic{font-size: 1.2rem;}
+            }
+
+            .issues{background:linear-gradient(135deg, #F5515F 0%,#A1051D 100%);}
+            .viewers{background:linear-gradient(135deg, #DFEC51 0%,#73AA0A 100%);}
+
+            .dashboard-panel{
+                h4{ margin: 10px;}
+                .report-holder{
+                    width: 100%;
+                    flex-direction: column;
+                    align-content: flex-start;
+                    padding-left: 10px;
+
+                    .report-tab{
+                        width: 96%;
+                        margin: 10px 0px;
+                        background-color: whitesmoke;
+                        box-shadow: #e9ecef 4px 4px 5px 1px;
+                        padding: 20px;
+                        border-radius: 15px;
+                        img{ width: 40px; height: 40px; border-radius: 50%;}
+                        .report-data{
+                            margin-left: 15px;
+                            width: 92%;
+                            .issue-title{font-size: 1.2rem; margin: 2px 0px; width: 100%;justify-content: space-between;}
+                            .issue-author{ color: grey;font-size: 0.9rem;}
+                            .badge-holder{ span{margin-right: 8px;}}
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

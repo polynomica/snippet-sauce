@@ -16,6 +16,7 @@ function App() {
           <Route path="/snippet" exact component={() => <SnippetDetails />} />
           <Route path="/login" exact component={() => <LoginScreen />} />
           <Route path="/admin" exact component={() => <AdminPanel />} />
+
         </Switch>
       </Router>
 
