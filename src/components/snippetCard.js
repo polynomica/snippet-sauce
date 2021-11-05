@@ -9,6 +9,7 @@ export default function SnippetCard(props) {
 
     const formattedTitle = props.snippetTitle.replaceAll(' ', '-');
     const snippetId = props.snippetId;
+    const imageAlt = `Snippet by ${props.snippetAuthor} ${props.snippetId}`
 
     const openDetails = () => history.push({ pathname: '/snippet', search: `?${formattedTitle}/`, hash: `${snippetId}`, state: { snippetName: props.snippetTitle } });
 
@@ -17,7 +18,7 @@ export default function SnippetCard(props) {
             <div className="snippet-card-thumbnail">
                 <img
                     src={props.snippetThumbnail}
-                    alt="Python Snippet by {Author name} {snippet sauce}"
+                    alt={imageAlt}
                 />
                 <h2 className="snippet-card-title">{props.snippetTitle}</h2>
             </div>

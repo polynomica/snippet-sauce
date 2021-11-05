@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import './navBar.scss';
 
 export default function NavBar(props) {
 
-
+    const history = useHistory();
+    const [inputSauce, setInputSauce] = React.useState('');
 
     const languages = [
         { name: "JavaScript" },
@@ -30,7 +32,13 @@ export default function NavBar(props) {
         { name: "Some Language" },
     ];
 
+    const searchSauce = (e) => {
+        if (inputSauce.length !== 6) {
+            alert("Invalid Sauce !")
+            e.preventDefault()
+        } else history.push({ pathname: '/snippet' })
 
+    }
 
 
 
@@ -38,7 +46,7 @@ export default function NavBar(props) {
         <>
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to={"/"}>Snippet Sauce</Link>
+                    <Link className="navbar-brand" to={"/"}>Snippet Sauce {inputSauce}</Link>
                     {props.navOptions === true &&
                         <>
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,8 +71,8 @@ export default function NavBar(props) {
                                     <li className="nav-item"> <a className="nav-link active" aria-current="page" rel="noopener noreferrer" target="blank" href="https://github.com/polynomica/snippet-sauce">Contribute</a></li>
                                 </ul>
                                 <form className="d-flex">
-                                    <input className="form-control me-2" type="search" placeholder="Enter Sauce" aria-label="Search" />
-                                    <button className="btn btn-primary" type="submit">Search</button>
+                                    <input onChange={(e) => setInputSauce(e.target.value)} className="form-control me-2" type="search" placeholder="Enter Sauce" aria-label="Search" />
+                                    <button onClick={(e) => searchSauce(e)} className="btn btn-primary" type="submit">Search</button>
                                 </form>
 
                             </div>
