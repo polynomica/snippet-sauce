@@ -11,10 +11,12 @@ export default function AdminPanel() {
     const history = useHistory();
     const [tabHead, setTabHead] = useState('Dashboard')
     const [selectedLang, setSelectedLang] = useState(null);
-    const [currentMode, setCurrentMode] = useState('new')
+    const [currentLangMode, setCurrentLangMode] = useState('new')
     const [createLangName, setCreateLangName] = useState('');
     const [createLangShort, setCreateLangShort] = useState('');
     const [createLangthumb, setCreateLangthumb] = useState(null);
+    const [currentSnippetMode, setCurrentSnippetMode] = useState('new');
+    const [searchFound, setSearchFound] = useState(false);
 
 
 
@@ -23,6 +25,68 @@ export default function AdminPanel() {
             .then((response) => { setRepoIssues(response.data) })
             .catch((error) => setErrorLog(error.message))
     }, []);
+
+    const SnippetDetailForm = (props) => {
+        return (
+            <div className="base-flex snippet-section ">
+                <form>
+                    <div className="mb-3">
+                        <label for="snippetTitle" className="form-label">Snippet Title</label>
+                        <input type="text" className="form-control" id="snippetTitle" aria-describedby="snippetTitle" />
+                    </div>
+
+                    <div className="mb-3">
+                        <label for="snippetTitle" className="form-label">Language and Tags</label>
+                        <br />
+                        <div className="base-flex tag-div">
+                            <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Language
+                            </button>
+                            <ul className="dropdown-menu">
+                                <li><a className="dropdown-item" href="#">Javascripr</a></li>
+                                <li><a className="dropdown-item" href="#">Python</a></li>
+                                <li><a className="dropdown-item" href="#">Java</a></li>
+                            </ul>
+                            <input type="text" className="form-control" id="snippetTags" aria-describedby="snippetTitle" />
+                        </div>
+                    </div>
+
+                    <div className="mb-3">
+                        <label for="floatingTextarea">Description</label>
+                        <textarea className="form-control" id="floatingTextarea"></textarea>
+                    </div>
+                    <div className="mb-3">
+                        <label for="floatingTextarea">Code</label>
+                        <textarea className="form-control" placeholder="print(hello)" id="floatingTextarea"></textarea>
+                    </div>
+                    <div className="mb-3">
+                        <label for="snippetSeo" className="form-label">Snippet Seo </label>
+                        <input type="text" className="form-control" id="snippetSeo" aria-describedby="snippetTitle" />
+                    </div>
+
+                    <div className="mb-3">
+                        <label for="authorname" className="form-label">Author Username</label>
+                        <input type="text" className="form-control" id="authorname" aria-describedby="snippetTitle" />
+                    </div>
+                    <div className="base-flex link-div">
+                        <div className="mb-3">
+                            <label for="snippetBlog" className="form-label">Snippet Blog </label>
+                            <input type="text" className="form-control" id="snippetBlog" aria-describedby="snippetTitle" />
+                        </div>
+                        <div className="mb-3">
+                            <label for="snippetBlog" className="form-label">Snippet Blog </label>
+                            <input type="text" className="form-control" id="snippetBlog" aria-describedby="snippetTitle" />
+                        </div>
+                    </div>
+
+                    {props.type === 'create' && <button className="btn btn-success">Create</button>}
+                    {props.type === 'update' && <button className="btn btn-primary">Update</button>}
+                    {props.type === 'delete' && <button className="btn btn-danger">Delete</button>}
+
+                </form>
+            </div>
+        )
+    }
 
 
     const DashboardPanel = () => {
@@ -69,13 +133,14 @@ export default function AdminPanel() {
     const LanguagePanel = () => {
         return (
             <div className="panel language-panel">
+                <br />
                 <ul className="nav nav-tabs">
-                    <li className="nav-item"> <button className={currentMode === 'new' ? "nav-link active" : "nav-link"} aria-current="page" onClick={() => setCurrentMode('new')}>New</button></li>
-                    <li className="nav-item"><button className={currentMode === 'update' ? "nav-link active" : "nav-link"} aria-current="page" onClick={() => setCurrentMode('update')}>Update</button></li>
+                    <li className="nav-item"> <button className={currentLangMode === 'new' ? "nav-link active" : "nav-link"} aria-current="page" onClick={() => setCurrentLangMode('new')}>New</button></li>
+                    <li className="nav-item"><button className={currentLangMode === 'update' ? "nav-link active" : "nav-link"} aria-current="page" onClick={() => setCurrentLangMode('update')}>Update</button></li>
                 </ul>
 
                 {
-                    currentMode === 'new' &&
+                    currentLangMode === 'new' &&
                     <div className="base-flex lang-new">
                         <div className="base-flex lang-forum">
                             <div className="langthumb-holder">
@@ -98,7 +163,7 @@ export default function AdminPanel() {
                 }
 
                 {
-                    currentMode === 'update' &&
+                    currentLangMode === 'update' &&
                     <div className="base-flex lang-update">
                         <div className="dropdown">
                             <button className="btn small btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -110,6 +175,7 @@ export default function AdminPanel() {
                                 <li><a onClick={(e) => setSelectedLang('Lang 3')} className="dropdown-item" href="#">lang 3</a></li>
                             </ul>
                         </div>
+
                         <div className="base-flex lang-forum">
                             <div className="langthumb-holder">
                                 <button type="submit" className="btn btn-primary btn-sm">Edit</button>
@@ -135,7 +201,45 @@ export default function AdminPanel() {
 
     const SnippetMangaerPanel = () => {
         return (
-            <div className="panel snippet-manager">Snippet Manager</div>
+            <div className="panel snippet-manager">
+                <br />
+                <ul className="nav nav-tabs">
+                    <li className="nav-item"> <button className={currentSnippetMode === 'new' ? "nav-link active" : "nav-link"} aria-current="page" onClick={() => setCurrentSnippetMode('new')}>New</button></li>
+                    <li className="nav-item"><button className={currentSnippetMode === 'update' ? "nav-link active" : "nav-link"} aria-current="page" onClick={() => setCurrentSnippetMode('update')}>Update</button></li>
+                    <li className="nav-item"><button className={currentSnippetMode === 'delete' ? "nav-link active" : "nav-link"} aria-current="page" onClick={() => setCurrentSnippetMode('delete')}>Delete</button></li>
+                </ul>
+
+                {currentSnippetMode === 'new' &&
+                    <div className="base-flex new-snippet">
+                        <br />
+                        <SnippetDetailForm type='create' />
+                    </div>
+                }
+
+                {
+                    currentSnippetMode === 'update' &&
+                    <div className="base-flex new-snippet">
+                        <form className="d-flex mb-5">
+                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                            <button onClick={() => setSearchFound(!searchFound)} className="btn btn-primary" type="submit">Search</button>
+                        </form>
+                        {searchFound && <SnippetDetailForm type='update' />}
+                    </div>
+                }
+
+                {
+                    currentSnippetMode === 'delete' &&
+                    <div className="base-flex new-snippet">
+                        <form className="d-flex mb-5">
+                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                            <button onClick={() => setSearchFound(!searchFound)} className="btn btn-primary" type="submit">Search</button>
+                        </form>
+                        {searchFound && <SnippetDetailForm type='delete' />}
+                    </div>
+                }
+
+
+            </div>
         )
     }
 
@@ -174,7 +278,7 @@ export default function AdminPanel() {
                 <div className="dropdown">
                     <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://avatars.githubusercontent.com/u/65910716?v=4" alt="" width="32" height="32" className="rounded-circle me-2" />
-                        <strong>@suyashvash</strong>
+                        @suyashvash
                     </a>
                     <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                         <li><button className="dropdown-item" onClick={() => history.push({ pathname: '/' })}>Home</button></li>

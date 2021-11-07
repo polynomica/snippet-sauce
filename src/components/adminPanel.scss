@@ -1,6 +1,6 @@
 .admin-panel{
     height: 100vh;
-    background-color: whitesmoke;
+    background-color: white;
     width: 100vw;
     justify-content: space-between;
 
@@ -20,7 +20,7 @@
 
         .panel-wrapper{
             width: 97%;
-            background-color: white;
+          
             padding-bottom: 40px;
             border-radius: 8px;
             margin-bottom: 10px;
@@ -115,6 +115,38 @@
                     }
                 }
 
+            }
+
+            .snippet-manager{
+                .new-snippet{
+                    width: 100%;
+                    margin-top: 50px;
+                    .snippet-section{
+                        flex-direction: row;
+                        width: 100%;
+                        form{
+                            width: 90%;
+                            textarea{
+                                height: 120px;
+                            }
+
+                            .tag-div{
+                                input{
+                                    width: 50%;
+                                    margin-left: 20px;
+                                }
+                            }
+
+                            .link-div{
+                                width: 100%;
+                                div{
+                                    width: 47%;
+                                    margin-right: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
         }
