@@ -134,12 +134,15 @@ export default function SnippetDetails() {
                     </div>
 
                     <div className="area-div base-flex snippet-author-info">
-                        <h2>Snippet Author</h2>
+                        <h2 className="title">Snippet Author</h2>
                         <div className="base-flex author-holder">
                             <img src={authorPic} alt="Author" />
-                            <h2 className="author-name">Suyash Vashishtha</h2>
-                            <p className="lead">This is a lead paragraph. It stands out from regular paragraphs.</p>
-                            <button type="button" className="btn btn-outline-dark">Visit Github</button>
+                            <div className="base-flex">
+                                <h2 className="author-name">Suyash Vashishtha</h2>
+                                <p className="lead">This is a lead paragraph. It stands out from regular paragraphs.</p>
+                                <button type="button" className="btn btn-outline-dark">Visit Github</button>
+                            </div>
+
                         </div>
                     </div>
                 </div>

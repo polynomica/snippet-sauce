@@ -35,15 +35,12 @@
     transition: ease 0.4s;
   }
   
-  .snippet-card-data {
-    flex-direction: column;
-    padding: 0.5rem;
-    height: 50%;
-  
     .snippet-card-about {
       width: 100%;
       justify-content: space-around;
       padding-right: 10px;
+      padding: 0.5rem;
+      height: 50%;
   
       img {
         width: 30px;
@@ -58,4 +55,24 @@
         padding-left: 0.5rem;
       }
     }
+  
+
+  @media screen and (max-width: 500px) {
+    .snippet-card{
+      width: 44%;
+      .snippet-card-about{
+        flex-direction: column;
+        button{ display: none;}
+        div{
+          overflow: hidden;
+          text-align: left;
+          width: 100%;
+          span{ font-size: 0.9rem; }
+          figcaption{font-size: 0.8rem;}
+        }
+        img{ display: none;}
+      }
+    }
   }
+
+
