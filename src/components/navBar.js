@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import './navBar.scss';
@@ -7,37 +8,47 @@ export default function NavBar(props) {
 
     const history = useHistory();
     const [inputSauce, setInputSauce] = React.useState('');
+    const [languages, setLanguages] = React.useState([]);
 
-    const languages = [
-        { name: "JavaScript" },
-        { name: "Python" },
-        { name: "Java" },
-        { name: "Laravel" },
-        { name: "PHP" },
-        { name: "Golang" },
-        { name: "Some Language" },
-        { name: "JavaScript" },
-        { name: "Python" },
-        { name: "Java" },
-        { name: "Laravel" },
-        { name: "PHP" },
-        { name: "Golang" },
-        { name: "Some Language" },
-        { name: "JavaScript" },
-        { name: "Python" },
-        { name: "Java" },
-        { name: "Laravel" },
-        { name: "PHP" },
-        { name: "Golang" },
-        { name: "Some Language" },
-    ];
+    useEffect(() => {
+        axios.get("https://snippetsauce.herokuapp.com/api/languages")
+            .then((response) => console.log(response.data.languages))
+    }, [])
+
+    // const languages = [
+    //     { name: "JavaScript" },
+    //     { name: "Python" },
+    //     { name: "Java" },
+    //     { name: "Laravel" },
+    //     { name: "PHP" },
+    //     { name: "Golang" },
+    //     { name: "Some Language" },
+    //     { name: "JavaScript" },
+    //     { name: "Python" },
+    //     { name: "Java" },
+    //     { name: "Laravel" },
+    //     { name: "PHP" },
+    //     { name: "Golang" },
+    //     { name: "Some Language" },
+    //     { name: "JavaScript" },
+    //     { name: "Python" },
+    //     { name: "Java" },
+    //     { name: "Laravel" },
+    //     { name: "PHP" },
+    //     { name: "Golang" },
+    //     { name: "Some Language" },
+    // ];
 
     const searchSauce = (e) => {
-        if (inputSauce.length !== 6) {
-            alert("Invalid Sauce !")
+        if (inputSauce.length !== 9) {
+            alert("Invalid Sauce ! ")
             e.preventDefault()
-        } else history.push({ pathname: '/snippet' })
+        } else history.push({ pathname: '/snippet', search: `?${inputSauce}/`, state: { snippetId: inputSauce } })
 
+    }
+
+    const chooseLang = (language) => {
+        history.push({ pathname: '/filter', search: `${language}` })
     }
 
 
@@ -46,7 +57,7 @@ export default function NavBar(props) {
         <>
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to={"/"}>Snippet Sauce {inputSauce}</Link>
+                    <Link className="navbar-brand" to={"/"}>Snippet Sauce</Link>
                     {props.navOptions === true &&
                         <>
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,9 +71,9 @@ export default function NavBar(props) {
                                             Languages
                                         </a>
                                         <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a className="dropdown-item" href="#">Python</a></li>
-                                            <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                                            <li><a className="dropdown-item" href="#">Laravel</a></li>
+                                            <li><button className="dropdown-item" onClick={() => chooseLang('python')}>Python</button></li>
+                                            <li><button className="dropdown-item" onClick={() => chooseLang('javascript')}>JavaScript</button></li>
+                                            <li><button className="dropdown-item" onClick={() => chooseLang('laravel')}>Laravel</button></li>
                                             <li><hr className="dropdown-divider" /></li>
                                             <li><a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Browse All</a></li>
                                         </ul>
@@ -92,15 +103,10 @@ export default function NavBar(props) {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">Browse Language</h5>
-                            <button
-                                type="button"
-                                className="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                            ></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="base-flex modal-body" id="modal-body">
-                            {languages.map((item, index) => (<button key={index} data-bs-dismiss="modal" className="languages-button">{item.name}</button>))}
+                            {languages.map((item, index) => (<button key={index} onClick={() => chooseLang(item.name)} data-bs-dismiss="modal" className="languages-button">{item.name}</button>))}
                         </div>
                         <div className="modal-footer">
                             <button

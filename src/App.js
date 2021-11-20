@@ -12,7 +12,8 @@ function App() {
       <Router>
 
         <Switch>
-          <Route path="/" exact component={() => <HomeScreen />} />
+          <Route path="/" exact component={() => <HomeScreen mode="home" />} />
+          <Route path="/filter" exact component={() => <HomeScreen mode="filterScreen" />} />
           <Route path="/snippet" exact component={() => <SnippetDetails />} />
           <Route path="/login" exact component={() => <LoginScreen />} />
           <Route path="/admin" exact component={() => <AdminPanel />} />

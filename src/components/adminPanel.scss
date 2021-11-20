@@ -109,12 +109,22 @@
             .snippet-manager{
                 .new-snippet{ width: 100%; margin-top: 50px;
                     .snippet-section{ flex-direction: row;  width: 100%;
-                        form{
+                        div{
                             width: 90%;
                             textarea{height: 120px;} 
                             .tag-div{input{ width: 50%; margin-left: 20px;}}
                             .link-div{width: 100%;  div{ width: 47%; margin-right: 20px;}}
                         }
+                    }
+                }
+
+                .delete-snippet{
+                    flex-direction: column;
+                    align-items: flex-start;
+                    div{
+                        margin-top: 20px;
+                        h5{font-size: 1rem;}
+                        button{margin: 10px;}
                     }
                 }
             }

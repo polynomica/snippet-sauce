@@ -1,118 +1,135 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SnippetCard from "./snippetCard";
-import snippetThumb from '../assets/snippetThumb.png'
-import author_pic from '../assets/authorPic.jpg'
+
 import NavBar from './navBar'
 import './homeScreen.scss'
+import { useHistory } from "react-router-dom";
 
-export default function HomeScreen() {
-
-    // const [snippetData, setSnippetData] = useState([]);
+export default function HomeScreen(props) {
+    const history = useHistory();
     const [errorLog, setErrorLog] = useState(null);
-    const baseURL = "https://18e4-2409-4041-2e9c-1a58-c131-6128-a80e-b11d.ngrok.io/api/display";
-
-    // useEffect(() => {
-    //     axios.get(baseURL)
-    //         .then((response) => { setSnippetData(response.data.data); console.log(response.data.data) })
-    //         .catch((err) => setErrorLog(err.message));
-    // }, []);
+    const [snippetData, setSnippetData] = useState([]);
 
 
+    useEffect(() => {
+        getSnippets()
+    }, [history.location.search]);
 
-    const snippetData = [
-        {
-            snippet_title: "Java Swift",
-            snippet_author: "Hetarth Shah",
-            snippet_time: "12 Oct 2021",
-            snippet_thumbnail: snippetThumb,
-            author_pic: author_pic,
-            snippet_id: 'jv123456'
-        },
-        {
-            snippet_title: "Python Djangio",
-            snippet_author: "Suyash Vashishtha",
-            snippet_time: "12 Oct 2021",
-            snippet_thumbnail: snippetThumb,
-            author_pic: author_pic,
-            snippet_id: 'py123456'
-        },
-        {
-            snippet_title: "Laravel Php",
-            snippet_author: "Hetarth Shah",
-            snippet_time: "12 Oct 2021",
-            snippet_thumbnail: snippetThumb,
-            author_pic: author_pic,
-            snippet_id: 'php123456'
-        },
-        {
-            snippet_title: "Laravel Php",
-            snippet_author: "Hetarth Shah",
-            snippet_time: "12 Oct 2021",
-            snippet_thumbnail: snippetThumb,
-            author_pic: author_pic,
-            snippet_id: 'php123456'
-        },
-        {
-            snippet_title: "Java Swift",
-            snippet_author: "Hetarth Shah",
-            snippet_time: "12 Oct 2021",
-            snippet_thumbnail: snippetThumb,
-            author_pic: author_pic,
-            snippet_id: 'jv123456'
-        },
-        {
-            snippet_title: "Python Djangio",
-            snippet_author: "Suyash Vashishtha",
-            snippet_time: "12 Oct 2021",
-            snippet_thumbnail: snippetThumb,
-            author_pic: author_pic,
-            snippet_id: 'py123456'
-        },
-        {
-            snippet_title: "Laravel Php",
-            snippet_author: "Hetarth Shah",
-            snippet_time: "12 Oct 2021",
-            snippet_thumbnail: snippetThumb,
-            author_pic: author_pic,
-            snippet_id: 'php123456'
-        },
-        {
-            snippet_title: "Laravel Php",
-            snippet_author: "Hetarth Shah",
-            snippet_time: "12 Oct 2021",
-            snippet_thumbnail: snippetThumb,
-            author_pic: author_pic,
-            snippet_id: 'php123456'
-        },
-        {
-            snippet_title: "Python Djangio",
-            snippet_author: "Suyash Vashishtha",
-            snippet_time: "12 Oct 2021",
-            snippet_thumbnail: snippetThumb,
-            author_pic: author_pic,
-            snippet_id: 'py123456'
-        },
-        {
-            snippet_title: "Laravel Php",
-            snippet_author: "Hetarth Shah",
-            snippet_time: "12 Oct 2021",
-            snippet_thumbnail: snippetThumb,
-            author_pic: author_pic,
-            snippet_id: 'php123456'
-        },
-        {
-            snippet_title: "Laravel Php",
-            snippet_author: "Hetarth Shah",
-            snippet_time: "12 Oct 2021",
-            snippet_thumbnail: snippetThumb,
-            author_pic: author_pic,
-            snippet_id: 'php123456'
-        },
+    const getSnippets = () => {
 
-    ];
+        if (props.mode === "filterScreen") {
+            axios.post("https://snippetsauce.herokuapp.com/api/filter", { language: `${history.location.search.split("?")[1]}` })
+                .then((response) => {
+                    if (response.data.status == true) {
+                        setSnippetData(response.data.snippet_data); console.log(response.data.snippet_data)
+                    } else { setErrorLog(response.data.message); console.log(response.data.message) }
+                })
+                .catch((err) => { setErrorLog(err.message); console.log(err.message) });
+        } else {
+            axios.get("https://snippetsauce.herokuapp.com/api/display")
+                .then((response) => { setSnippetData(response.data.snippet_data); console.log(response.data.snippet_data) })
+                .catch((err) => { setErrorLog(err.message); console.log(err.message) });
+        }
 
+    }
 
+    const dateFromatter = (isoDate) => {
+        var d = new Date(isoDate);
+        return d.toLocaleDateString('en-GB');;
+    }
+
+    // const snippetData = [
+    //     {
+    //         snippet_title: "Java Swift",
+    //         snippet_author: "Hetarth Shah",
+    //         snippet_timestamp: "2021-11-09T19:02:31.755634Z",
+    //         snippet_thumbnail: snippetThumb,
+    //         author_pic: author_pic,
+    //         snippet_id: 'jv123456'
+    //     },
+    //     {
+    //         snippet_title: "Python Djangio",
+    //         snippet_author: "Suyash Vashishtha",
+    //         snippet_timestamp: "2021-11-09T19:02:31.755634Z",
+    //         snippet_thumbnail: snippetThumb,
+    //         author_pic: author_pic,
+    //         snippet_id: 'py123456'
+    //     },
+    //     {
+    //         snippet_title: "Laravel Php",
+    //         snippet_author: "Hetarth Shah",
+    //         snippet_timestamp: "2021-11-09T19:02:31.755634Z",
+    //         snippet_thumbnail: snippetThumb,
+    //         author_pic: author_pic,
+    //         snippet_id: 'php123456'
+    //     },
+    //     {
+    //         snippet_title: "Laravel Php",
+    //         snippet_author: "Hetarth Shah",
+    //         snippet_timestamp: "2021-11-09T19:02:31.755634Z",
+    //         snippet_thumbnail: snippetThumb,
+    //         author_pic: author_pic,
+    //         snippet_id: 'php123456'
+    //     },
+    //     {
+    //         snippet_title: "Java Swift",
+    //         snippet_author: "Hetarth Shah",
+    //         snippet_timestamp: "2021-11-09T19:02:31.755634Z",
+    //         snippet_thumbnail: snippetThumb,
+    //         author_pic: author_pic,
+    //         snippet_id: 'jv123456'
+    //     },
+    //     {
+    //         snippet_title: "Python Djangio",
+    //         snippet_author: "Suyash Vashishtha",
+    //         snippet_timestamp: "2021-11-09T19:02:31.755634Z",
+    //         snippet_thumbnail: snippetThumb,
+    //         author_pic: author_pic,
+    //         snippet_id: 'py123456'
+    //     },
+    //     {
+    //         snippet_title: "Laravel Php",
+    //         snippet_author: "Hetarth Shah",
+    //         snippet_timestamp: "2021-11-09T19:02:31.755634Z",
+    //         snippet_thumbnail: snippetThumb,
+    //         author_pic: author_pic,
+    //         snippet_id: 'php123456'
+    //     },
+    //     {
+    //         snippet_title: "Laravel Php",
+    //         snippet_author: "Hetarth Shah",
+    //         snippet_timestamp: "2021-11-09T19:02:31.755634Z",
+    //         snippet_thumbnail: snippetThumb,
+    //         author_pic: author_pic,
+    //         snippet_id: 'php123456'
+    //     },
+    //     {
+    //         snippet_title: "Python Djangio",
+    //         snippet_author: "Suyash Vashishtha",
+    //         snippet_timestamp: "2021-11-09T19:02:31.755634Z",
+    //         snippet_thumbnail: snippetThumb,
+    //         author_pic: author_pic,
+    //         snippet_id: 'py123456'
+    //     },
+    //     {
+    //         snippet_title: "Laravel Php",
+    //         snippet_author: "Hetarth Shah",
+    //         snippet_timestamp: "2021-11-09T19:02:31.755634Z",
+    //         snippet_thumbnail: snippetThumb,
+    //         author_pic: author_pic,
+    //         snippet_id: 'php123456'
+    //     },
+    //     {
+    //         snippet_title: "Laravel Php",
+    //         snippet_author: "Hetarth Shah",
+    //         snippet_timestamp: "2021-11-09T19:02:31.755634Z",
+    //         snippet_thumbnail: snippetThumb,
+    //         author_pic: author_pic,
+    //         snippet_id: 'php123456'
+    //     },
+
+    // ];
 
     return (
         <>
@@ -126,7 +143,7 @@ export default function HomeScreen() {
                             key={index}
                             snippetTitle={item.snippet_title}
                             snippetAuthor={item.snippet_author}
-                            snippetTime={item.snippet_time}
+                            snippetTime={dateFromatter(item.snippet_timestamp)}
                             authorPic={item.author_pic}
                             snippetThumbnail={item.snippet_thumbnail}
                             snippetId={item.snippet_id}

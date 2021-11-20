@@ -11,21 +11,51 @@ $sucess: #198754;
     .snippet-about { justify-content: space-between; width: 70%;}
     .snippet-code-holder{
       padding-top: 0px;
-      .sHead{ width: 95%; justify-content: flex-end;margin-bottom: 0px; button{margin: 0px 5px;}}
-      span.desc-timestamp{font-size: 0.9rem;margin: 2px;color: grey;width: 90%;}
-      .badge-holder{ width: 95%;margin-top:5px; span{margin: 10px 5px;}}
-      pre {
+      flex-direction: column;
+      align-items: flex-start;
+      .code-terminal{
+        width: 95%;
         border: 1px solid #ddd;
         border-left: 3px solid $sucess;
+        margin: 0px;
+        background-color: black;
+        .terminal-head{
+          background-color: black;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5px;
+    
+    .copy_button{
+      border: 1px transparent;
+      color: white;
+      background: none;
+      cursor: pointer;
+      padding: 5px;
+      margin-right: 10px;
+  
+      transition: ease 0.5s;
+    }
+        }
+      }
+      .sHead{ width: 95%; justify-content: flex-end;margin-bottom: 0px; a{margin: 10px 5px;}}
+      span.desc-timestamp{font-size: 0.9rem;margin: 2px;color: grey;width: 90%;}
+      .badge-holder{ width: 95%;margin-top:5px; span{margin: 10px 5px;}justify-content: space-between;}
+      pre {
+      margin-bottom: 0px;
         page-break-inside: avoid;
         font-family: monospace;
         font-size: 15px;
         line-height: 1.6;
-        width: 95%;
+        width: 100%;
         word-wrap: break-word;
         background-color: #272822;
         color: white;
         padding: 20px 0px;
+        padding-left: 5px;
+
       }
     }
   
@@ -55,10 +85,11 @@ $sucess: #198754;
       flex-direction: column;
       margin-top: 30px;
       border: 1px solid #ddd;
-    border-left: 3px solid $sucess;
-    padding: 30px 0px;
+      border-left: 3px solid $sucess;
+      padding: 30px 0px;
   
       img {  width: 90px;  height: 90px;  border-radius: 50%;}
+      .author-detail{justify-content: center;}
       h2.author-name { font-size: 1.4rem;}
       p { font-size: 1rem;width: 80%;}
     }
