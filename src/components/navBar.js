@@ -12,8 +12,10 @@ export default function NavBar(props) {
 
     useEffect(() => {
         axios.get("https://snippetsauce.herokuapp.com/api/languages")
-            .then((response) => console.log(response.data.languages))
+            .then((response) => { languageSetter(response.data.languages) })
     }, [])
+
+
 
     // const languages = [
     //     { name: "JavaScript" },
@@ -50,6 +52,13 @@ export default function NavBar(props) {
     const chooseLang = (language) => {
         history.push({ pathname: '/filter', search: `${language}` })
     }
+
+    const languageSetter = (array) => {
+        let temp = [];
+        array.forEach(element => temp.push({ name: element }))
+        setLanguages(temp)
+    }
+
 
 
 
@@ -106,7 +115,8 @@ export default function NavBar(props) {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="base-flex modal-body" id="modal-body">
-                            {languages.map((item, index) => (<button key={index} onClick={() => chooseLang(item.name)} data-bs-dismiss="modal" className="languages-button">{item.name}</button>))}
+                            {languages.map((item, index) => <button onClick={() => chooseLang(item.name)} key={index} data-bs-dismiss="modal" className="languages-button">{item.name}</button>)}
+
                         </div>
                         <div className="modal-footer">
                             <button

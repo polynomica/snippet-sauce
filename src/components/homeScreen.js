@@ -22,14 +22,14 @@ export default function HomeScreen(props) {
             axios.post("https://snippetsauce.herokuapp.com/api/filter", { language: `${history.location.search.split("?")[1]}` })
                 .then((response) => {
                     if (response.data.status == true) {
-                        setSnippetData(response.data.snippet_data); console.log(response.data.snippet_data)
-                    } else { setErrorLog(response.data.message); console.log(response.data.message) }
+                        setSnippetData(response.data.snippet_data); setErrorLog(null)
+                    } else { setErrorLog(response.data.message); setSnippetData([]) }
                 })
-                .catch((err) => { setErrorLog(err.message); console.log(err.message) });
+                .catch((err) => { setErrorLog(err.message) });
         } else {
             axios.get("https://snippetsauce.herokuapp.com/api/display")
-                .then((response) => { setSnippetData(response.data.snippet_data); console.log(response.data.snippet_data) })
-                .catch((err) => { setErrorLog(err.message); console.log(err.message) });
+                .then((response) => { setSnippetData(response.data.snippet_data); setErrorLog(null) })
+                .catch((err) => { setErrorLog(err.message); setSnippetData([]) });
         }
 
     }

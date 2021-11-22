@@ -28,13 +28,13 @@ export default function SnippetDetails() {
 
     const getSnippetDetail = () => {
         axios.get(`https://snippetsauce.herokuapp.com/api/search/${snippetId}`)
-            .then((response) => { setSnippetBody(response.data.snippet_data); console.log(response.data.snippet_data) })
+            .then((response) => { setSnippetBody(response.data.snippet_data) })
             .catch((err) => setErrorLog(err.message));
     }
 
     const getSimilarCard = () => {
         axios.get(baseURL)
-            .then((response) => { setSimilarSnippets(response.data.snippet_data); console.log(response.data.snippet_data) })
+            .then((response) => { setSimilarSnippets(response.data.snippet_data) })
             .catch((err) => setErrorLog(err.message));
     }
 
@@ -43,7 +43,6 @@ export default function SnippetDetails() {
         const slideAmount = 350;
         if (direction === "Next") { scrollerRef.current.scrollLeft += slideAmount; }
         if (direction === "Prev") { scrollerRef.current.scrollLeft -= slideAmount; }
-        console.log(scrollerRef.current.scrollLeft)
     }
 
     const snippetData = [
@@ -144,7 +143,6 @@ export default function SnippetDetails() {
                             <div className="base-flex badge-holder">
                                 <div>
                                     <span className="badge rounded-pill bg-primary">{snippetBody.snippet_language}</span>
-                                    {/* {console.log(typeof (snippetBody.snippet_tag))} */}
                                     <span className="badge rounded-pill bg-warning text-dark">Warning</span>
                                     <span className="badge rounded-pill bg-warning text-dark">Warning</span>
                                     <span className="badge rounded-pill bg-warning text-dark">Warning</span>
