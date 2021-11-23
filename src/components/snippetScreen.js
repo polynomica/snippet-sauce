@@ -12,30 +12,35 @@ import './snippetScreen.scss'
 export default function SnippetDetails() {
 
     const history = useHistory();
-    // const snippetId = history.location.state.snippetId;
-    const snippetId = "pyt901253"
+    const snippetId = history.location.state.snippetId;
     const [snippetBody, setSnippetBody] = useState(null);
-    const baseURL = "https://snippetsauce.herokuapp.com/api/display";
     const [similarSnippets, setSimilarSnippets] = useState([]);
     const [errorLog, setErrorLog] = useState(null);
+    const userRole = "admin"
+
 
 
     useEffect(() => {
         getSnippetDetail()
         getSimilarCard()
-
     }, [])
 
     const getSnippetDetail = () => {
         axios.get(`https://snippetsauce.herokuapp.com/api/search/${snippetId}`)
-            .then((response) => { setSnippetBody(response.data.snippet_data) })
+            .then((response) => { setSnippetBody(response.data.snippet_data); console.log(response.data.snippet_data) })
             .catch((err) => setErrorLog(err.message));
     }
 
     const getSimilarCard = () => {
-        axios.get(baseURL)
+        axios.get("https://snippetsauce.herokuapp.com/api/display")
             .then((response) => { setSimilarSnippets(response.data.snippet_data) })
             .catch((err) => setErrorLog(err.message));
+    }
+
+    const tagArrayFormatter = (array) => {
+        let tagArray = [];
+        array.forEach(element => tagArray.push({ name: element }))
+        return tagArray;
     }
 
     const scrollerRef = useRef(null);
@@ -127,25 +132,41 @@ export default function SnippetDetails() {
     }
          `
 
+    const deleteSnippet = (sauce) => {
+        if (window.confirm("Are you sure you want to delete this snippet!. This cant be undone !")) {
+            const confirmation = prompt("Please enter the snippet sauce to confirm. " + sauce)
+            if (confirmation === sauce) {
+                axios.post(`https://snippetsauce.herokuapp.com/api/delete_snippet/${sauce}`)
+                    .then((response) => {
+                        if (response.data.status) { alert(response.data.message); history.push({ pathname: '/' }) } else { alert("Some error occured !") }
+                    })
+
+            } else {
+                alert("Confirmation failed !")
+            }
+
+        }
+
+    }
+
 
     return (
 
         <>
             <NavBar navOptions={false} />
-            {snippetBody !== null && <div className="base-flex snippet-page">
+
+
+            {snippetBody !== null ? <div className="base-flex snippet-page">
 
                 <div className="base-flex snippet-page-wrapper">
                     <div className="base-flex snippet-about">
                         <div className="area-div base-flex snippet-code-holder">
-                            <h2 className="base-flex">snippetBody.snippet_title asddasdsa</h2>
-
+                            <h2 className="base-flex">{snippetBody.snippet_title}</h2>
                             <span className="desc-timestamp">Posted on - {dateFromatter(snippetBody.snippet_timestamp)}</span>
                             <div className="base-flex badge-holder">
                                 <div>
                                     <span className="badge rounded-pill bg-primary">{snippetBody.snippet_language}</span>
-                                    <span className="badge rounded-pill bg-warning text-dark">Warning</span>
-                                    <span className="badge rounded-pill bg-warning text-dark">Warning</span>
-                                    <span className="badge rounded-pill bg-warning text-dark">Warning</span>
+                                    {tagArrayFormatter(snippetBody.snippet_tag).map((item, index) => (<span key={index} className="badge rounded-pill bg-warning text-dark">{item.name}</span>))}
                                 </div>
 
                                 <button type="button" onClick={() => { navigator.clipboard.writeText(snippetBody.snippet_id); alert("Sauce copied sucessfully !") }} className="btn btn-sm btn-outline-dark">Copy Sauce - {snippetBody.snippet_id}</button>
@@ -154,13 +175,13 @@ export default function SnippetDetails() {
                             <div className="code-terminal">
                                 <div className="base-flex terminal-head">
                                     <div className="head-dot-holder">
-                                        <svg stroke="currentColor" fill="#ff5f56" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <svg stroke="currentColor" fill="#ff5f56" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="12" cy="12" r="8"></circle>
                                         </svg>
-                                        <svg stroke="currentColor" fill="#ffbd2e" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <svg stroke="currentColor" fill="#ffbd2e" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="12" cy="12" r="8"></circle>
                                         </svg>
-                                        <svg stroke="currentColor" fill="#27c93f" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <svg stroke="currentColor" fill="#27c93f" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="12" cy="12" r="8"></circle>
                                         </svg>
                                     </div>
@@ -173,7 +194,7 @@ export default function SnippetDetails() {
                                         </svg>
                                     </button>
                                 </div>
-                                <SyntaxHighlighter language="javascript" style={atomOneDark}>{/* {snippetBody.snippet_code} */}{codes}</SyntaxHighlighter>
+                                <SyntaxHighlighter language="javascript" style={atomOneDark}>{snippetBody.snippet_code}</SyntaxHighlighter>
 
                             </div>
                             <div className="base-flex sHead">
@@ -187,6 +208,36 @@ export default function SnippetDetails() {
                             <h2>Snippet Description</h2>
                             <p >{snippetBody.snippet_description}</p>
                         </div>
+
+                        <div className="area-div base-flex seo-holder">
+                            <h2>Related terms</h2>
+                            <div className="base-flex seo-wrapper">
+                                {tagArrayFormatter(snippetBody.snippet_seo).map((item, index) => (<h3 key={index} className="seo-tag">{item.name}</h3>))}
+                            </div>
+                        </div>
+
+                        {userRole === "admin" &&
+                            <div className="area-div base-flex snippet-admin">
+                                <h2>Snippet Actions</h2>
+                                <span>Warning: these actions can only be performed by Admins and cant be reversed !</span>
+                                <div className="base-flex snippet-tools">
+                                    <button type="button" class="base-flex btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                        </svg>
+                                        Update Snippet</button>
+                                    <button onClick={() => deleteSnippet(snippetBody.snippet_id)} type="button" class="btn btn-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                        </svg>
+                                        Delete Snippet</button>
+                                </div>
+
+                            </div>
+                        }
+
                     </div>
 
                     <div className="area-div base-flex snippet-author-info">
@@ -198,7 +249,6 @@ export default function SnippetDetails() {
                                 <p className="lead">This is a lead paragraph. It stands out from regular paragraphs.</p>
                                 <a type="button" rel="noopener noreferrer" target="blank" href={`https://github.com/${snippetBody.snippet_author}`} className="btn btn-outline-dark">Visit Github</a>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -230,7 +280,10 @@ export default function SnippetDetails() {
                         ))}
                     </div>
                 </div >
-            </div >}
+            </div >
+                :
+                <h2>{errorLog}</h2>
+            }
 
 
         </>
