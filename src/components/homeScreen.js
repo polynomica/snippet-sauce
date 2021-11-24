@@ -21,7 +21,7 @@ export default function HomeScreen(props) {
         if (props.mode === "filterScreen") {
             axios.post("https://snippetsauce.herokuapp.com/api/filter", { language: `${history.location.search.split("?")[1]}` })
                 .then((response) => {
-                    if (response.data.status == true) {
+                    if (response.data.status === true) {
                         setSnippetData(response.data.snippet_data); setErrorLog(null)
                     } else { setErrorLog(response.data.message); setSnippetData([]) }
                 })

@@ -23,7 +23,7 @@ export default function SnippetDetails() {
     const getSnippetDetail = () => {
         axios.get(`https://snippetsauce.herokuapp.com/api/search/${snippetId}`)
             .then((response) => {
-                if (response.data.status == true) {
+                if (response.data.status === true) {
                     setSnippetBody(response.data.snippet_data);
                     setIsLoading(false);
                 } else setIsLoading(false)

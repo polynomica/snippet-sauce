@@ -8,6 +8,8 @@ export default function LanguagePanel() {
     const [languages, setLanguages] = useState([]);
     const [updateLangName, setUpdateLangName] = useState('');
     const [updateLangShort, setUpdateLangShort] = useState('')
+    const [updateLangThumb, setUpdateLangThumb] = useState('')
+
     const [selectedLang, setSelectedLang] = useState(null);
     const [currentLangMode, setCurrentLangMode] = useState('new')
     const [createLangName, setCreateLangName] = useState('');
@@ -29,7 +31,7 @@ export default function LanguagePanel() {
 
     const addLanguage = () => {
         if (createLangShort.length === 3) {
-            axios.post("https://snippetsauce.herokuapp.com/api/add_language", { language_name: createLangName.toLowerCase(), short_form: createLangShort.toLowerCase(), thumbnail: "https://miro.medium.com/max/840/1*RJMxLdTHqVBSijKmOO5MAg.jpeg" })
+            axios.post("https://snippetsauce.herokuapp.com/api/add_language", { language_name: createLangName.toLowerCase(), short_form: createLangShort.toLowerCase(), thumbnail: createLangthumb })
                 .then((response) => alert(response.data.message))
         } else { alert("Short form must be 3 words long " + createLangShort) }
     }
@@ -45,7 +47,7 @@ export default function LanguagePanel() {
     const updateLanguage = () => {
         if (selectedLang !== null) {
             const langNameReal = updateLangName;
-            const data = { language_name: updateLangName, thumbnail: 'aa', previous_language: langNameReal }
+            const data = { language_name: updateLangName, thumbnail: updateLangThumb, previous_language: langNameReal }
             axios.post(`https://snippetsauce.herokuapp.com/api/update_language/${selectedLang}`, data)
                 .then(response => alert(response.data.status ? "Language updated sucessfully !" : "Some Error occured"))
         }
@@ -63,10 +65,7 @@ export default function LanguagePanel() {
                 currentLangMode === 'new' &&
                 <div className="base-flex lang-new">
                     <div className="base-flex lang-forum">
-                        <div className="langthumb-holder">
-                            <button type="submit" className="btn btn-primary btn-sm">Edit</button>
-                            {createLangthumb === null ? <h5>Choose an image</h5> : <img src={createLangthumb} alt="..." />}
-                        </div>
+
                         <div className="base-flex lang-data">
                             <div className="mb-3">
                                 <label htmlFor="langName" className="form-label">Language Name </label>
@@ -75,6 +74,10 @@ export default function LanguagePanel() {
                             <div className="mb-3">
                                 <label htmlFor="langShortform" className="form-label">Short form</label>
                                 <input type="text" onChange={(e) => { setCreateLangShort(e.target.value) }} className="form-control" placeholder="Ex- pyt" id="langShortform" />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="lnagThumb" className="form-label">Lang Thumb URL</label>
+                                <input type="url" onChange={(e) => { setCreateLangthumb(e.target.value) }} className="form-control" id="langthumb" />
                             </div>
                             <button onClick={addLanguage} className="btn btn-primary">Create</button>
                         </div>
@@ -95,10 +98,7 @@ export default function LanguagePanel() {
                     </div>
 
                     <div className="base-flex lang-forum">
-                        <div className="langthumb-holder">
-                            <button type="submit" className="btn btn-primary btn-sm">Edit</button>
-                            <img src={snippetThumb} alt="..." />
-                        </div>
+
                         <div className="base-flex lang-data">
                             <div className="mb-3">
                                 <label htmlFor="langName" className="form-label">Language Name</label>
@@ -107,6 +107,10 @@ export default function LanguagePanel() {
                             <div className="mb-3">
                                 <label htmlFor="langShortform" className="form-label">Short form</label>
                                 <input type="text" value={updateLangShort} onChange={(e) => setUpdateLangShort(e.target.value)} className="form-control" id="langShortform" />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="lnagThumb" className="form-label">Lang Thumb URL</label>
+                                <input type="url" onChange={(e) => { setUpdateLangThumb(e.target.value) }} className="form-control" id="langthumb" />
                             </div>
                             <button type="submit" onClick={updateLanguage} className="btn btn-primary">Update</button>
                         </div>

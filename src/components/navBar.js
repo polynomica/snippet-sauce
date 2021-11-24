@@ -63,7 +63,7 @@ export default function NavBar(props) {
                                         </ul>
                                     </li>
 
-                                    <li className="nav-item"> <a className="nav-link active" aria-current="page" rel="noopener noreferrer" target="blank" href="https://github.com/polynomica/snippet-sauce">Contribute</a></li>
+                                    <li className="nav-item"> <a className="nav-link active" aria-current="page" rel="noopener noreferrer" target="blank" href="https://github.com/polynomica/service-snippetsauce">Contribute</a></li>
                                 </ul>
                                 <div className="d-flex">
                                     <input onChange={(e) => setInputSauce(e.target.value)} className="form-control me-2" type="search" placeholder="Enter Sauce" aria-label="Search" />
