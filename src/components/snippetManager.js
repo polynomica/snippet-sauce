@@ -103,7 +103,7 @@ export default function SnippetMangaerPanel() {
                         <input type="text" onChange={(e) => setSnippetBlog(e.target.value)} className="form-control" id="snippetBlog" aria-describedby="snippetTitle" />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="snippetBlog" className="form-label">Snippet Blog </label>
+                        <label htmlFor="snippetBlog" className="form-label">Snippet Demo </label>
                         <input type="text" onChange={(e) => setSnippetDemo(e.target.value)} className="form-control" id="snippetBlog" aria-describedby="snippetTitle" />
                     </div>
                 </div>

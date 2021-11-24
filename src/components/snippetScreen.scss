@@ -149,6 +149,22 @@ $sucess: #198754;
     }
     .snippet-scroller-div::-webkit-scrollbar {width: 0;}
   }
+
+  .modal{
+    .modal-dialog{
+      max-width: 50%;
+
+      .snippet-section{
+        justify-content: center;
+        .link-div{
+          width: 90%;
+        }
+        .mb-3{
+          width: 90%;
+        }
+      }
+    }
+  }
   
 
   @media screen and (max-width: 500px) {

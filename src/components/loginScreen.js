@@ -11,17 +11,14 @@ export default function LoginScreen() {
 
     const login = () => {
         axios.post('https://snippetsauce.herokuapp.com/api/admin_login', { git_username: `${userName}`, password: `${password}` })
-            .then(function (response) { console.log(response); response.data.logged_in && history.push({ pathname: '/admin' }) })
-            .catch(function (error) { console.log(error); });
-
+            .then((response) => { response.data.logged_in && history.push({ pathname: '/admin' }) })
+            .catch((error) => { console.log(error); });
     }
-
 
     return (
         <div className="base-flex login-screen">
             <div>
                 <h3>Admin Login</h3>
-
                 <div className="mb-3">
                     <label htmlFor="text" className="form-label">Username</label>
                     <input onInputCapture={(e) => setUsername(e.target.value)} type="text" placeholder="" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />

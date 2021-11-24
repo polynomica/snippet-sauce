@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import './navBar.scss';
 
 export default function NavBar(props) {
@@ -17,35 +16,11 @@ export default function NavBar(props) {
 
 
 
-    // const languages = [
-    //     { name: "JavaScript" },
-    //     { name: "Python" },
-    //     { name: "Java" },
-    //     { name: "Laravel" },
-    //     { name: "PHP" },
-    //     { name: "Golang" },
-    //     { name: "Some Language" },
-    //     { name: "JavaScript" },
-    //     { name: "Python" },
-    //     { name: "Java" },
-    //     { name: "Laravel" },
-    //     { name: "PHP" },
-    //     { name: "Golang" },
-    //     { name: "Some Language" },
-    //     { name: "JavaScript" },
-    //     { name: "Python" },
-    //     { name: "Java" },
-    //     { name: "Laravel" },
-    //     { name: "PHP" },
-    //     { name: "Golang" },
-    //     { name: "Some Language" },
-    // ];
-
     const searchSauce = (e) => {
         if (inputSauce.length !== 9) {
             alert("Invalid Sauce ! ")
             e.preventDefault()
-        } else history.push({ pathname: '/snippet', search: `?${inputSauce}/`, state: { snippetId: inputSauce } })
+        } else history.push({ pathname: '/snippet', search: `search/`, hash: `${inputSauce}`, state: { snippetId: inputSauce } });
 
     }
 
@@ -90,10 +65,10 @@ export default function NavBar(props) {
 
                                     <li className="nav-item"> <a className="nav-link active" aria-current="page" rel="noopener noreferrer" target="blank" href="https://github.com/polynomica/snippet-sauce">Contribute</a></li>
                                 </ul>
-                                <form className="d-flex">
+                                <div className="d-flex">
                                     <input onChange={(e) => setInputSauce(e.target.value)} className="form-control me-2" type="search" placeholder="Enter Sauce" aria-label="Search" />
                                     <button onClick={(e) => searchSauce(e)} className="btn btn-primary" type="submit">Search</button>
-                                </form>
+                                </div>
 
                             </div>
                         </>

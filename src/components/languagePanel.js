@@ -39,7 +39,7 @@ export default function LanguagePanel() {
     const updateDetailSetter = (language) => {
         setSelectedLang(language)
         axios.get(`https://snippetsauce.herokuapp.com/api/language_detail/${language}`)
-            .then((response) => { console.log(response.data); setUpdateLangName(response.data.language); setUpdateLangShort(response.data.short_form) })
+            .then((response) => { setUpdateLangName(response.data.language); setUpdateLangShort(response.data.short_form) })
     }
 
     const updateLanguage = () => {
