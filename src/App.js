@@ -5,8 +5,12 @@ import SnippetDetails from './components/snippetScreen';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginScreen from './components/loginScreen';
 import AdminPanel from './components/adminPanel';
+import { LoggedIn } from '../src/app/useStore'
 
 function App() {
+
+  const loggedIn = LoggedIn()
+
   return (
     <div className="App">
       <Router>
@@ -16,7 +20,7 @@ function App() {
           <Route path="/filter" exact component={() => <HomeScreen mode="filterScreen" />} />
           <Route path="/snippet" exact component={() => <SnippetDetails />} />
           <Route path="/login" exact component={() => <LoginScreen />} />
-          <Route path="/admin" exact component={() => <AdminPanel />} />
+          <Route path="/admin" exact component={() => loggedIn ? <AdminPanel /> : <LoginScreen />} />
 
         </Switch>
       </Router>

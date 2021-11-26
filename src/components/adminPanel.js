@@ -4,12 +4,17 @@ import { useHistory } from "react-router-dom";
 import LanguagePanel from "./languagePanel";
 import DashboardPanel from "./dashboardPanel";
 import SnippetMangaerPanel from "./snippetManager";
+import { UserName } from "../app/useStore";
+import { useDispatch } from "react-redux";
+import { setUserLogOutState } from "../features/userSlice";
 
 
 export default function AdminPanel() {
 
     const history = useHistory();
     const [tabHead, setTabHead] = useState('Dashboard')
+    const adminName = UserName();
+    const dispatch = useDispatch();
 
     const Panel = () => {
         switch (history.location.search) {
@@ -31,6 +36,11 @@ export default function AdminPanel() {
         history.push({ pathname: '/admin', search: tab.path })
     }
 
+    const logOut = () => {
+        dispatch(setUserLogOutState())
+        history.push({ pathname: '/' })
+    }
+
     return (
         <div className="base-flex admin-panel">
             <div className="side-bar-pc">
@@ -47,13 +57,13 @@ export default function AdminPanel() {
                     <div className="dropdown">
                         <a className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://avatars.githubusercontent.com/u/65910716?v=4" alt="" width="32" height="32" className="rounded-circle me-2" />
-                            @suyashvash
+                            @{adminName}
                         </a>
                         <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                             <li><button className="dropdown-item" onClick={() => history.push({ pathname: '/' })}>Home</button></li>
                             <li><button className="dropdown-item" onClick={() => window.open('https://github.com/polynomica/service-snippetsauce', '_blank', 'noopener,noreferrer')}>Service Repo</button></li>
                             <hr />
-                            <li><button className="dropdown-item" >Sign out</button></li>
+                            <li><button className="dropdown-item" onClick={logOut}>Sign out</button></li>
                         </ul>
                     </div>
                 </div>

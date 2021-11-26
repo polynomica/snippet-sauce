@@ -7,6 +7,9 @@ import NavBar from './navBar'
 import { useHistory } from "react-router-dom";
 import './snippetScreen.scss'
 import UpdateSnippetForm from "./updateSnippetForm";
+import { UserRole } from "../app/useStore.js";
+import ErrorScreen from "./errorScreen";
+import LoadingScreen from './loadingScreen'
 
 export default function SnippetDetails() {
 
@@ -15,8 +18,7 @@ export default function SnippetDetails() {
     const [snippetBody, setSnippetBody] = useState(null);
     const [similarSnippets, setSimilarSnippets] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
-    const userRole = "admin"
-
+    const role = UserRole()
 
     useEffect(() => { getSnippetDetail(); getSimilarCard() }, [])
 
@@ -76,7 +78,6 @@ export default function SnippetDetails() {
     }
 
     const Screen = () => {
-
         return (
             snippetBody !== null ?
                 <>
@@ -158,7 +159,7 @@ export default function SnippetDetails() {
                                     </div>
                                 </div>
 
-                                {userRole === "admin" &&
+                                {role === "admin" &&
                                     <div className="area-div base-flex snippet-admin">
                                         <h2>Snippet Actions</h2>
                                         <span>Warning: these actions can only be performed by Admins and cant be reversed !</span>
@@ -223,7 +224,7 @@ export default function SnippetDetails() {
                         </div >
                     </div >
 
-                    {userRole === "admin" &&
+                    {role === "admin" &&
                         <UpdateSnippetForm
                             snippetId={snippetBody.snippet_id}
                             title={snippetBody.snippet_title}
@@ -237,16 +238,10 @@ export default function SnippetDetails() {
                             author={snippetBody.snippet_author}
                         />}
                 </>
-                : <h3>Invalid Sauce</h3>
+                : <ErrorScreen />
         )
-
     }
-
-
     return (
-        !isLoading ?
-            <Screen />
-            :
-            <h1>Loading ..........</h1>
+        !isLoading ? <Screen /> : <LoadingScreen />
     )
 }

@@ -15,10 +15,10 @@ export default function LoginScreen() {
     const login = () => {
         axios.post('https://snippetsauce.herokuapp.com/api/admin_login', { git_username: `${userName}`, password: `${password}` })
             .then((response) => {
-                response.data.logged_in
-                    &&
+                if (response.data.logged_in) {
                     dispatch(setActiveUser({ username: response.data.admin_username, loggedIn: true, role: response.data.role }));
-                history.push({ pathname: '/admin' })
+                    history.push({ pathname: '/admin' })
+                } else alert("Wrong password or username !")
             })
             .catch((error) => { console.log(error); });
     }
