@@ -2,16 +2,24 @@ import axios from "axios";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import './loginScreen.scss';
+import { useDispatch } from "react-redux";
+import { setActiveUser } from "../features/userSlice";
 
 export default function LoginScreen() {
 
     const [userName, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const login = () => {
         axios.post('https://snippetsauce.herokuapp.com/api/admin_login', { git_username: `${userName}`, password: `${password}` })
-            .then((response) => { response.data.logged_in && history.push({ pathname: '/admin' }) })
+            .then((response) => {
+                response.data.logged_in
+                    &&
+                    dispatch(setActiveUser({ username: response.data.admin_username, loggedIn: true, role: response.data.role }));
+                history.push({ pathname: '/admin' })
+            })
             .catch((error) => { console.log(error); });
     }
 
