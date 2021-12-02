@@ -14,7 +14,7 @@ import LoadingScreen from './loadingScreen'
 export default function SnippetDetails() {
 
     const history = useHistory();
-    const snippetId = history.location.hash.split('#')[1];
+    const snippetId = history.location.search.split('?')[1];
     const [snippetBody, setSnippetBody] = useState(null);
     const [similarSnippets, setSimilarSnippets] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
@@ -242,6 +242,6 @@ export default function SnippetDetails() {
         )
     }
     return (
-        !isLoading ? <Screen /> : <LoadingScreen />
+        !isLoading ? <Screen /> : <LoadingScreen mode={"snippetscreen"} />
     )
 }

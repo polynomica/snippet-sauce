@@ -1,9 +1,9 @@
 import './App.scss';
-
 import HomeScreen from '../src/components/homeScreen'
 import SnippetDetails from './components/snippetScreen';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginScreen from './components/loginScreen';
+import ErrorScreen from './components/errorScreen';
 import AdminPanel from './components/adminPanel';
 import { LoggedIn } from '../src/app/useStore'
 
@@ -21,7 +21,7 @@ function App() {
           <Route path="/snippet" exact component={() => <SnippetDetails />} />
           <Route path="/login" exact component={() => <LoginScreen />} />
           <Route path="/admin" exact component={() => loggedIn ? <AdminPanel /> : <LoginScreen />} />
-
+          <Route path="*"> <ErrorScreen /></Route>
         </Switch>
       </Router>
 

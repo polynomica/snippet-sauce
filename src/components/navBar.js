@@ -20,7 +20,7 @@ export default function NavBar(props) {
         if (inputSauce.length !== 9) {
             alert("Invalid Sauce ! ")
             e.preventDefault()
-        } else history.push({ pathname: '/snippet', search: `search/`, hash: `${inputSauce}`, state: { snippetId: inputSauce } });
+        } else history.push({ pathname: '/snippet', search: `${inputSauce}`, state: { snippetId: inputSauce } });
 
     }
 

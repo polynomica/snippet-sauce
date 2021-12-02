@@ -7,7 +7,7 @@ import SnippetMangaerPanel from "./snippetManager";
 import { UserName } from "../app/useStore";
 import { useDispatch } from "react-redux";
 import { setUserLogOutState } from "../features/userSlice";
-
+import ErrorScreen from "./errorScreen";
 
 export default function AdminPanel() {
 
@@ -27,7 +27,7 @@ export default function AdminPanel() {
             case "?snippet-manager":
                 return <SnippetMangaerPanel />;
             default:
-                console.log("Error 404 ")
+                <ErrorScreen />
         }
     }
 
