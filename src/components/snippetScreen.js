@@ -20,7 +20,13 @@ export default function SnippetDetails() {
     const [isLoading, setIsLoading] = useState(true)
     const role = UserRole()
 
-    useEffect(() => { getSnippetDetail(); getSimilarCard() }, [])
+
+
+    useEffect(() => {
+        getSnippetDetail();
+        getSimilarCard();
+
+    }, [])
 
     const getSnippetDetail = () => {
         axios.get(`https://snippetsauce.herokuapp.com/api/search/${snippetId}`)
@@ -78,7 +84,9 @@ export default function SnippetDetails() {
     }
 
     const Screen = () => {
+        document.title = `${snippetBody.snippet_title} | Snippet Sauce`;
         return (
+
             snippetBody !== null ?
                 <>
                     <NavBar navOptions={false} />

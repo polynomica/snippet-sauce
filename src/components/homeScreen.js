@@ -14,7 +14,8 @@ export default function HomeScreen(props) {
     const [isLoading, setLoading] = useState(true)
 
     useEffect(() => {
-        getSnippets()
+        getSnippets();
+        document.title = "Snippet Sauce | Easy and fast code snippet collection"
     }, [history.location.search]);
 
     const getSnippets = () => {

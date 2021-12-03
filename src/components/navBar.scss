@@ -23,3 +23,35 @@ nav{ width: 100%;  padding: 10px 20px;}
   .modal-dialog.custom {
     max-width: 60%;
   }
+
+  .mobile-brand{
+    display: none;
+  }
+
+  .search-div{
+    flex-direction: row;
+    input{
+      width: 60%;
+    }
+
+    .mobile-search{
+      display: none;
+    }
+  }
+
+
+  @media screen and (max-width: 500px) {
+    .modal-dialog.custom {max-width: 90%;}
+    .navbar{padding-right: 5px;}
+    .pc-brand{display: none;}
+    .mobile-brand{ display: block;}
+    .nav-option-holder{display: none;}
+    .container-fluid{ justify-content: space-between; padding: 0px;}
+    .search-div{
+      width: 60%;
+      input{ width: 70%;}
+      .mobile-search{ display: block;}
+      .pc-search{display: none;}
+    }
+
+  }

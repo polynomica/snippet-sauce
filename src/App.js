@@ -8,7 +8,6 @@ import AdminPanel from './components/adminPanel';
 import { LoggedIn } from '../src/app/useStore'
 
 function App() {
-
   const loggedIn = LoggedIn()
 
   return (

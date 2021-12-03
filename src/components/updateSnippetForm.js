@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import '../../src/components/updateForm.scss'
+
 
 export default function UpdateSnippetForm(props) {
 
@@ -49,7 +51,7 @@ export default function UpdateSnippetForm(props) {
 
 
     return (
-        <div className="modal fade" id="updateModal" tabIndex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div className="modal fade updateForm" id="updateModal" tabIndex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -83,11 +85,11 @@ export default function UpdateSnippetForm(props) {
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="floatingTextarea">Description</label>
+                            <label className="form-label" htmlFor="floatingTextarea">Description</label>
                             <textarea value={snippetDescription} onChange={(e) => setSnippetDescription(e.target.value)} className="form-control" id="floatingTextarea"></textarea>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="floatingTextarea">Code</label>
+                            <label className="form-label" htmlFor="floatingTextarea">Code</label>
                             <textarea value={snippetCode} onChange={(e) => setSnippetCode(e.target.value)} className="form-control" placeholder="print(hello)" id="floatingTextarea"></textarea>
                         </div>
                         <div className="mb-3">

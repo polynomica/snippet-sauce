@@ -11,7 +11,7 @@ export default function SnippetCard(props) {
     const snippetId = props.snippetId;
     const imageAlt = `Snippet by ${props.snippetAuthor} ${props.snippetId}`
 
-    const openDetails = () => history.push({ pathname: '/snippet', search: `${snippetId}` });
+    const openDetails = () => history.push({ pathname: '/snippet', search: `${snippetId}`, hash: `${props.snippetTitle.replaceAll(' ', '-')}` });
 
     return (
         <div className="snippet-card">

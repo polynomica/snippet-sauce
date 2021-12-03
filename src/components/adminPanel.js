@@ -7,7 +7,7 @@ import SnippetMangaerPanel from "./snippetManager";
 import { UserName } from "../app/useStore";
 import { useDispatch } from "react-redux";
 import { setUserLogOutState } from "../features/userSlice";
-import ErrorScreen from "./errorScreen";
+// import ErrorScreen from "./errorScreen";
 
 export default function AdminPanel() {
 
@@ -27,7 +27,7 @@ export default function AdminPanel() {
             case "?snippet-manager":
                 return <SnippetMangaerPanel />;
             default:
-                <ErrorScreen />
+                console.warn("Error : 404")
         }
     }
 
@@ -56,7 +56,7 @@ export default function AdminPanel() {
                     <hr />
                     <div className="dropdown">
                         <a className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://avatars.githubusercontent.com/u/65910716?v=4" alt="" width="32" height="32" className="rounded-circle me-2" />
+                            {/* <img src="https://avatars.githubusercontent.com/u/65910716?v=4" alt="" width="32" height="32" className="rounded-circle me-2" /> */}
                             @{adminName}
                         </a>
                         <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">

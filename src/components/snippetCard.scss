@@ -63,7 +63,7 @@
     .snippet-card{
       width: 44%;
       .snippet-card-about{
-        flex-direction: column;
+        flex-direction: row;
         button{ display: none;}
         div{
           overflow: hidden;
@@ -72,7 +72,7 @@
           span{ font-size: 0.9rem; }
           figcaption{font-size: 0.8rem;}
         }
-        img{ display: none;}
+     
       }
     }
   }

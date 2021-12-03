@@ -41,38 +41,30 @@ export default function NavBar(props) {
         <>
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to={"/"}>Snippet Sauce</Link>
+                    <Link className="navbar-brand pc-brand" to={"/"}>Snippet Sauce</Link>
+                    <Link className="navbar-brand mobile-brand" to={"/"}>SS</Link>
                     {props.navOptions === true &&
-                        <>
-                            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span className="navbar-toggler-icon"></span>
-                            </button>
-                            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
-                                    <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Languages
-                                        </a>
-                                        <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><button className="dropdown-item" onClick={() => chooseLang('python')}>Python</button></li>
-                                            <li><button className="dropdown-item" onClick={() => chooseLang('javascript')}>JavaScript</button></li>
-                                            <li><button className="dropdown-item" onClick={() => chooseLang('laravel')}>Laravel</button></li>
-                                            <li><hr className="dropdown-divider" /></li>
-                                            <li><a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Browse All</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li className="nav-item"> <a className="nav-link active" aria-current="page" rel="noopener noreferrer" target="blank" href="https://github.com/polynomica/service-snippetsauce">Contribute</a></li>
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-option-holder">
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Languages
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><button className="dropdown-item" onClick={() => chooseLang('python')}>Python</button></li>
+                                    <li><button className="dropdown-item" onClick={() => chooseLang('javascript')}>JavaScript</button></li>
+                                    <li><button className="dropdown-item" onClick={() => chooseLang('laravel')}>Laravel</button></li>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li><a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Browse All</a></li>
                                 </ul>
-                                <div className="d-flex">
-                                    <input onChange={(e) => setInputSauce(e.target.value)} className="form-control me-2" type="search" placeholder="Enter Sauce" aria-label="Search" />
-                                    <button onClick={(e) => searchSauce(e)} className="btn btn-primary" type="submit">Search</button>
-                                </div>
-
-                            </div>
-                        </>
+                            </li>
+                            <li className="nav-item"> <a className="nav-link active" aria-current="page" rel="noopener noreferrer" target="blank" href="https://github.com/polynomica/service-snippetsauce">Contribute</a></li>
+                        </ul>
                     }
+                    <div className="base-flex search-div">
+                        <input onChange={(e) => setInputSauce(e.target.value)} className="form-control me-2" type="search" placeholder="Enter Sauce" aria-label="Search" />
+                        <button onClick={(e) => searchSauce(e)} className="btn btn-primary pc-search" type="submit">Search</button>
+                        <button onClick={(e) => searchSauce(e)} className="btn btn-primary mobile-search" type="submit"><img src="https://img.icons8.com/ios-filled/20/000000/search.png" /></button>
+                    </div>
                 </div>
             </nav>
 
