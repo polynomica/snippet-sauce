@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import './navBar.scss';
+import ssLogo from '../../src/assets/sslogo.png'
 
 export default function NavBar(props) {
 
@@ -41,8 +42,10 @@ export default function NavBar(props) {
         <>
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
-                    <Link className="navbar-brand pc-brand" to={"/"}>Snippet Sauce</Link>
-                    <Link className="navbar-brand mobile-brand" to={"/"}>SS</Link>
+                    <Link className="navbar-brand base-flex pc-brand" to={"/"}><img className="nav-logo" src={ssLogo} /> Snippet Sauce</Link>
+                    <Link className="navbar-brand base-flex mobile-brand" to={"/"}>
+                        <img src={ssLogo} />
+                    </Link>
                     {props.navOptions === true &&
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-option-holder">
                             <li className="nav-item dropdown">

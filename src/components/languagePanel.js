@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import snippetThumb from '../assets/snippetThumb.png'
 
 export default function LanguagePanel() {
 
