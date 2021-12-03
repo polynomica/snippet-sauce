@@ -19,7 +19,7 @@ function App() {
           <Route path="/filter" exact component={() => <HomeScreen mode="filterScreen" />} />
           <Route path="/snippet" exact component={() => <SnippetDetails />} />
           <Route path="/login" exact component={() => <LoginScreen />} />
-          <Route path="/admin" exact component={() => loggedIn ? <AdminPanel /> : <LoginScreen />} />
+          <Route path="/ssadmin" exact component={() => loggedIn ? <AdminPanel /> : <LoginScreen />} />
           <Route path="*"> <ErrorScreen /></Route>
         </Switch>
       </Router>

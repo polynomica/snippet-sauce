@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './adminPanel.scss'
 import { useHistory } from "react-router-dom";
 import LanguagePanel from "./languagePanel";
@@ -8,15 +8,32 @@ import { UserName } from "../app/useStore";
 import { useDispatch } from "react-redux";
 import { setUserLogOutState } from "../features/userSlice";
 // import ErrorScreen from "./errorScreen";
+import axios from "axios";
+
 
 export default function AdminPanel() {
 
     const history = useHistory();
     const [tabHead, setTabHead] = useState('Dashboard')
+    const [adminPic, setAdminPic] = useState('');
     const adminName = UserName();
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        document.title = "Admin Panel";
+        getAdminPic()
+    }, [])
+
+    const getAdminPic = () => {
+        axios.get(`https://api.github.com/users/${adminName}`)
+            .then(response => setAdminPic(response.data.avatar_url))
+            .catch(err => alert(err.message))
+    }
+
+
+
     const Panel = () => {
+
         switch (history.location.search) {
             case "":
                 return <DashboardPanel />;
@@ -33,7 +50,7 @@ export default function AdminPanel() {
 
     const changeTabs = (tab) => {
         setTabHead(tab.title)
-        history.push({ pathname: '/admin', search: tab.path })
+        history.push({ search: tab.path })
     }
 
     const logOut = () => {
@@ -56,7 +73,7 @@ export default function AdminPanel() {
                     <hr />
                     <div className="dropdown">
                         <a className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            {/* <img src="https://avatars.githubusercontent.com/u/65910716?v=4" alt="" width="32" height="32" className="rounded-circle me-2" /> */}
+                            <img src={adminPic} alt="" width="32" height="32" className="rounded-circle me-2" />
                             @{adminName}
                         </a>
                         <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
@@ -89,8 +106,16 @@ export default function AdminPanel() {
                         <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
                     </svg>
                 </div>
-                <div className="base-flex bars">
-                    <img src="https://avatars.githubusercontent.com/u/65910716?v=4" alt="" width="30" height="30" className="rounded-circle me-2" />
+                <div className="base-flex bars dropdown">
+                    <a className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src={adminPic} alt="" width="30" height="30" className="rounded-circle me-2" />
+                    </a>
+                    <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><button className="dropdown-item" onClick={() => history.push({ pathname: '/' })}>Home</button></li>
+                        <li><button className="dropdown-item" onClick={() => window.open('https://github.com/polynomica/service-snippetsauce', '_blank', 'noopener,noreferrer')}>Service Repo</button></li>
+                        <hr />
+                        <li><button className="dropdown-item" onClick={logOut}>Sign out</button></li>
+                    </ul>
                 </div>
             </div>
 

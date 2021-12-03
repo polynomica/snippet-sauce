@@ -1,6 +1,11 @@
 import './loadingScreen.scss'
+import { useEffect } from 'react'
 
 export default function LoadingScreen(props) {
+
+    useEffect(() => {
+        document.title = "Loading...."
+    }, [])
 
 
     const LoadingText = () => {

@@ -15,7 +15,7 @@ export default function HomeScreen(props) {
 
     useEffect(() => {
         getSnippets();
-        document.title = "Snippet Sauce | Easy and fast code snippet collection"
+
     }, [history.location.search]);
 
     const getSnippets = () => {
@@ -41,7 +41,7 @@ export default function HomeScreen(props) {
         return d.toLocaleDateString('en-GB');;
     }
 
-
+    document.title = "Snippet Sauce | Easy and fast code snippet collection"
 
     return (
 
