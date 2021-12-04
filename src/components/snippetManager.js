@@ -48,7 +48,7 @@ export default function SnippetMangaerPanel() {
         }
 
         axios.post('https://snippetsauce.herokuapp.com/api/create_snippet', data)
-            .then((response) => alert(response.data.status ? "Snippet added Sucessfully !" : "Some Error Occure"))
+            .then((response) => alert(response.data.status ? "Snippet added Sucessfully!" : "Some Error Occure"))
             .catch(err => alert(err.message))
 
     }

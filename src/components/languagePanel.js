@@ -48,7 +48,7 @@ export default function LanguagePanel() {
             const langNameReal = updateLangName;
             const data = { language_name: updateLangName, thumbnail: updateLangThumb, previous_language: langNameReal }
             axios.post(`https://snippetsauce.herokuapp.com/api/update_language/${selectedLang}`, data)
-                .then(response => alert(response.data.status ? "Language updated sucessfully !" : "Some Error occured"))
+                .then(response => alert(response.data.status ? "Language updated sucessfully!" : "Some Error occured"))
         }
     }
 

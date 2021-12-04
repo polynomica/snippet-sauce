@@ -19,7 +19,7 @@ function App() {
           <Route path="/snippet" exact component={() => <SnippetDetails />} />
           <Route path="/login" exact component={() => <LoginScreen />} />
           <Route path="/ssadmin" exact component={() => loggedIn ? <AdminPanel /> : <LoginScreen />} />
-          <Route path="*"> <ErrorScreen /></Route>
+          <Route path="*"> <ErrorScreen mode={"other"} /></Route>
         </Switch>
       </Router>
 

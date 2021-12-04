@@ -19,10 +19,14 @@ export default function NavBar(props) {
 
     const searchSauce = (e) => {
         if (inputSauce.length !== 9) {
-            alert("Invalid Sauce ! ")
+            alert("Invalid Sauce!")
             e.preventDefault()
-        } else history.push({ pathname: '/snippet', search: `${inputSauce}`, state: { snippetId: inputSauce } });
-
+        } else {
+            history.push({ pathname: '/snippet', search: `${inputSauce}` });
+            if (history.location.pathname === "/snippet") {
+                window.location.reload()
+            }
+        }
     }
 
     const chooseLang = (language) => {

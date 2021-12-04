@@ -44,7 +44,7 @@ export default function UpdateSnippetForm(props) {
         }
 
         axios.post(`https://snippetsauce.herokuapp.com/api/update_snippet/${props.snippetId}`, data)
-            .then((response) => { alert(response.data.status ? "Snippet updated Sucessfully !" : "Some Error Occure"); window.location.reload() })
+            .then((response) => { alert(response.data.status ? "Snippet updated Sucessfully!" : "Some Error Occure"); window.location.reload() })
             .catch(err => alert(err.message))
 
     }

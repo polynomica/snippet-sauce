@@ -18,7 +18,7 @@ export default function LoginScreen() {
                 if (response.data.logged_in) {
                     dispatch(setActiveUser({ username: response.data.admin_username, loggedIn: true, role: response.data.role }));
                     history.push({ pathname: '/ssadmin' })
-                } else alert("Wrong password or username !")
+                } else alert("Wrong password or username!")
             })
             .catch((error) => { console.log(error); });
     }

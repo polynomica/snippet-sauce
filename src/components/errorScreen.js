@@ -1,6 +1,7 @@
 import './errorScreen.scss'
 import brokenBottle from '../assets/fragile.png'
 import { useEffect } from 'react'
+import NavBar from './navBar'
 
 export default function ErrorScreen(props) {
 
@@ -11,22 +12,37 @@ export default function ErrorScreen(props) {
     const ErrorText = () => {
         switch (props.mode) {
             case "pageError":
-                return <h3>Error 404 : Page not found</h3>;
+                return <h4>Error 404 : Page not found</h4>;
             case "nosnippet":
-                return <h3>Invalid sauce ! No Snippet found.</h3>;
+                return <h4>Invalid sauce <code>"{props.sauce}"</code> ! No Snippet found.</h4>;
+            case "other":
+                return <h4>Hmmm... Looks like someone is NASA Hacker Today !</h4>
             default:
-                console.log("Error 404 ")
+                return <h4>Hmmm... Looks like someone is NASA Hacker Today !</h4>
         }
 
     }
 
 
     return (
-        <div className="base-flex error-screen">
-            <img src={brokenBottle} />
-            <ErrorText />
-            <br />
-            <a role="button" href='/' className="btn btn-primary" >Go Home</a>
-        </div>
+        <>
+            <NavBar navOptions={true} />
+            <div className="base-flex error-screen">
+                <img src={brokenBottle} />
+                <ErrorText />
+                <br />
+                <br />
+                <span>Did'nt found what you were looking for ?</span>
+                <span> <strong>Let's be a Hero and Add it yourself!</strong> </span>
+                <br />
+                <div className="base-flex contrib-btn-holder">
+                    <a role="button" rel="noopener noreferrer" target="blank" href="https://github.com/polynomica/service-snippetsauce#add-snippet" className="btn btn-outline-dark">Add Snippet</a>
+                    |
+                    <a role="button" rel="noopener noreferrer" target="blank" href="https://github.com/polynomica/service-snippetsauce" className="btn btn-outline-primary" >Contribute </a>
+                </div>
+
+            </div>
+        </>
+
     )
 }
