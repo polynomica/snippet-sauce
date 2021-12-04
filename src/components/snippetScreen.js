@@ -26,9 +26,10 @@ export default function SnippetDetails() {
         getSnippetDetail();
         getSimilarCard();
 
-    }, [])
+    }, [history.location.search])
 
     const getSnippetDetail = () => {
+        setIsLoading(true)
         axios.get(`https://snippetsauce.herokuapp.com/api/search/${snippetId}`)
             .then((response) => {
                 if (response.data.status === true) {
