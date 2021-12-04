@@ -10,6 +10,7 @@ import UpdateSnippetForm from "./updateSnippetForm";
 import { UserRole } from "../app/useStore.js";
 import ErrorScreen from "./errorScreen";
 import LoadingScreen from './loadingScreen'
+import Clipboard from 'react-clipboard.js';
 
 export default function SnippetDetails() {
 
@@ -36,7 +37,7 @@ export default function SnippetDetails() {
                     setSnippetBody(response.data.snippet_data);
                     setIsLoading(false);
                 } else setIsLoading(false)
-            }).catch(error => alert("Something went wrong please ! Try after sometime"))
+            }).catch(error => { setIsLoading(false); setSnippetBody(null) })
 
     }
 
@@ -84,8 +85,12 @@ export default function SnippetDetails() {
         }
     }
 
+    const copyToClipboard = (data) => {
+        navigator.clipboard.writeText(data)
+    }
+
     const Screen = () => {
-        document.title = `${snippetBody.snippet_title} | Snippet Sauce`;
+        document.title = snippetBody !== null ? `${snippetBody.snippet_title} | Snippet Sauce` : 'Error: No snippet Found';
         return (
 
             snippetBody !== null ?
@@ -120,10 +125,10 @@ export default function SnippetDetails() {
                                             <span className="badge rounded-pill bg-primary">{snippetBody.snippet_language}</span>
                                             {tagArrayFormatter(snippetBody.snippet_tag).map((item, index) => (<span key={index} className="badge rounded-pill bg-warning text-dark">{item.name}</span>))}
                                         </div>
-
-                                        <button type="button" onClick={() => { navigator.clipboard.writeText(snippetBody.snippet_id); alert("Sauce copied sucessfully !") }} className="btn btn-sm btn-outline-dark">Copy Sauce - {snippetBody.snippet_id}</button>
+                                        <Clipboard className="btn btn-sm btn-outline-dark" data-clipboard-text={snippetBody.snippet_id}>
+                                            Copy Sauce - {snippetBody.snippet_id}
+                                        </Clipboard>
                                     </div>
-
                                     <div className="code-terminal">
                                         <div className="base-flex terminal-head">
                                             <div className="head-dot-holder">
@@ -139,12 +144,12 @@ export default function SnippetDetails() {
                                             </div>
 
 
-                                            <button className="copy_button" onClick={() => { navigator.clipboard.writeText(snippetBody.snippet_code); alert("Code copied sucessfully !") }}>
+                                            <Clipboard className="copy_button" data-clipboard-text={snippetBody.snippet_code}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-clipboard" viewBox="0 0 16 16">
                                                     <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
                                                     <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
                                                 </svg>
-                                            </button>
+                                            </Clipboard>
                                         </div>
                                         <SyntaxHighlighter language="javascript" style={atomOneDark}>{snippetBody.snippet_code}</SyntaxHighlighter>
 
@@ -247,10 +252,13 @@ export default function SnippetDetails() {
                             author={snippetBody.snippet_author}
                         />}
                 </>
-                : <ErrorScreen />
+                : <ErrorScreen mode={"nosnippet"} />
         )
     }
     return (
-        !isLoading ? <Screen /> : <LoadingScreen mode={"snippetscreen"} />
+        !isLoading ?
+            <Screen />
+            :
+            <LoadingScreen mode={"snippetscreen"} />
     )
 }

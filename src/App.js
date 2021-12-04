@@ -13,7 +13,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-
         <Switch>
           <Route path="/" exact component={() => <HomeScreen mode="home" />} />
           <Route path="/filter" exact component={() => <HomeScreen mode="filterScreen" />} />

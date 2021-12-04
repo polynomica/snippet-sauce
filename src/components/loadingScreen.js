@@ -17,12 +17,12 @@ export default function LoadingScreen(props) {
             case "homescreen":
                 return <h3>Getting latest snippet ...</h3>;
             default:
-                console.log("Error 404 ")
+                return <h3>Loading content.......</h3>
         }
     }
 
     return (
-        <div className='base-flex loading-screen'>
+        <div className={props.mode === "homescreen" ? 'base-flex loading-screen h70h' : 'base-flex loading-screen'}>
             <svg className="milk-bottle" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 51">
                 <defs>
                     <mask id="milk-mask">
