@@ -221,6 +221,7 @@ export default function SnippetDetails() {
 
                             <div ref={scrollerRef} className="snippet-scroller-div">
                                 {similarSnippets.length && similarSnippets.map((item, index) => (
+
                                     <SnippetCard
                                         key={index}
                                         snippetTitle={item.snippet_title}

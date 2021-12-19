@@ -73,7 +73,7 @@ export default function AdminPanel() {
                     <hr />
                     <div className="dropdown">
                         <a className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src={adminPic} alt="" width="32" height="32" className="rounded-circle me-2" />
+                            <img src={adminPic} alt="Current admin profile pic." width="32" height="32" className="rounded-circle me-2" />
                             @{adminName}
                         </a>
                         <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
@@ -108,7 +108,7 @@ export default function AdminPanel() {
                 </div>
                 <div className="base-flex bars dropdown">
                     <a className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src={adminPic} alt="" width="30" height="30" className="rounded-circle me-2" />
+                        <img src={adminPic} alt="Current admin profile pic" width="30" height="30" className="rounded-circle me-2" />
                     </a>
                     <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                         <li><button className="dropdown-item" onClick={() => history.push({ pathname: '/' })}>Home</button></li>

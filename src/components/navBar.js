@@ -46,9 +46,9 @@ export default function NavBar(props) {
         <>
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
-                    <Link className="navbar-brand base-flex pc-brand" to={"/"}><img className="nav-logo" src={ssLogo} /> Snippet Sauce</Link>
+                    <Link className="navbar-brand base-flex pc-brand" to={"/"}><img alt="Snippet Sauce logo" className="nav-logo" src={ssLogo} /> Snippet Sauce</Link>
                     <Link className="navbar-brand base-flex mobile-brand" to={"/"}>
-                        <img src={ssLogo} />
+                        <img alt="Snippet sauce logo for mobile" src={ssLogo} />
                     </Link>
                     {props.navOptions === true &&
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-option-holder">
@@ -70,7 +70,7 @@ export default function NavBar(props) {
                     <div className="base-flex search-div">
                         <input onChange={(e) => setInputSauce(e.target.value)} className="form-control me-2" type="search" placeholder="Enter Sauce" aria-label="Search" />
                         <button onClick={(e) => searchSauce(e)} className="btn btn-primary pc-search" type="submit">Search</button>
-                        <button onClick={(e) => searchSauce(e)} className="btn btn-primary mobile-search" type="submit"><img src="https://img.icons8.com/ios-filled/20/000000/search.png" /></button>
+                        <button onClick={(e) => searchSauce(e)} className="btn btn-primary mobile-search" type="submit"><img src="https://img.icons8.com/ios-filled/20/000000/search.png" alt="search icon" /></button>
                     </div>
                 </div>
             </nav>

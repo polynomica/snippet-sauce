@@ -16,9 +16,9 @@ export default function ErrorScreen(props) {
             case "nosnippet":
                 return <h4>Invalid sauce <code>"{props.sauce}"</code> ! No Snippet found.</h4>;
             case "other":
-                return <h4>Hmmm... Looks like someone is NASA Hacker Today !</h4>
+                return <h4>Hmmm... Looks like someone is trying to be a NASA Hacker Today!</h4>
             default:
-                return <h4>Hmmm... Looks like someone is NASA Hacker Today !</h4>
+                return <h4>Hmmm... Looks like someone is trying to be a NASA Hacker Today!</h4>
         }
 
     }
@@ -32,7 +32,7 @@ export default function ErrorScreen(props) {
                 <ErrorText />
                 <br />
                 <br />
-                <span>Did'nt found what you were looking for ?</span>
+                <span>Didn't found what you were looking for ?</span>
                 <span> <strong>Let's be a Hero and Add it yourself!</strong> </span>
                 <br />
                 <div className="base-flex contrib-btn-holder">

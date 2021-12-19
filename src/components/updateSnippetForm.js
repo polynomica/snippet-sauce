@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import '../../src/components/updateForm.scss'
-
+import { useHistory } from "react-router-dom";
 
 export default function UpdateSnippetForm(props) {
 
@@ -14,6 +14,8 @@ export default function UpdateSnippetForm(props) {
     const [snippetBlog, setSnippetBlog] = useState(props.blog);
     const [snippetDemo, setSnippetDemo] = useState(props.demo);
     const [snippetAuthor, setSnippetAuthor] = useState(props.author);
+
+    const history = useHistory();
 
     const [languages, setLanguages] = useState([]);
 
@@ -44,7 +46,11 @@ export default function UpdateSnippetForm(props) {
         }
 
         axios.post(`https://snippetsauce.herokuapp.com/api/update_snippet/${props.snippetId}`, data)
-            .then((response) => { alert(response.data.status ? "Snippet updated Sucessfully!" : "Some Error Occure"); window.location.reload() })
+            .then((response) => {
+                alert(response.data.status ? "Snippet updated Sucessfully!" : "Some Error Occure");
+                history.push({ pathname: '/' })
+                window.location.reload()
+            })
             .catch(err => alert(err.message))
 
     }

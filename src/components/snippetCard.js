@@ -9,7 +9,7 @@ export default function SnippetCard(props) {
 
     const formattedTitle = props.snippetTitle.replaceAll(' ', '-');
     const snippetId = props.snippetId;
-    const imageAlt = `Snippet by ${props.snippetAuthor} ${props.snippetId}`
+    const imageAlt = `Snippet by ${props.snippetAuthor}, title= ${props.snippetTitle}`
 
     const openDetails = () => history.push({ pathname: '/snippet', search: `${snippetId}`, hash: `${props.snippetTitle.replaceAll(' ', '-')}` });
 
@@ -21,7 +21,7 @@ export default function SnippetCard(props) {
             </div>
 
             <div className="base-flex snippet-card-about">
-                <img src={props.authorPic} alt="Author Profile pi" />
+                <img src={props.authorPic} alt="Author Profile pic" />
                 <div className="base-flex">
                     <span>{props.snippetAuthor}</span>
                     <figcaption className="figure-caption">{props.snippetTime}</figcaption>

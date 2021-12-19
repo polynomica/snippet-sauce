@@ -48,7 +48,7 @@ export default function DashboardPanel() {
             <div className="base-flex report-holder">
                 {repoIssues.length !== 0 ? repoIssues.map((item, index) => (
                     <div key={index} className="base-flex report-tab">
-                        <img className="avatar-pc" src={item.user.avatar_url} alt="" />
+                        <img className="avatar-pc" src={item.user.avatar_url} alt="Issue creator profile pic." />
                         <div className="report-data">
                             <h2 className="base-flex issue-title">{item.title}
                                 <a role="button" rel="noopener noreferrer" target="blank" href={item.html_url} className="btn btn-sm btn-outline-primary">View Report</a>
