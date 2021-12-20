@@ -1,33 +1,42 @@
+import axios from "axios";
 import React from "react";
 import { useHistory } from "react-router-dom";
+import './loginScreen.scss';
+import { useDispatch } from "react-redux";
+import { setActiveUser } from "../features/userSlice";
 
 export default function LoginScreen() {
 
     const [userName, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const login = () => {
-        history.push({ pathname: '/admin' })
+        axios.post('https://snippetsauce.herokuapp.com/api/admin_login', { git_username: `${userName}`, password: `${password}` })
+            .then((response) => {
+                if (response.data.logged_in) {
+                    dispatch(setActiveUser({ username: response.data.admin_username, loggedIn: true, role: response.data.role }));
+                    history.push({ pathname: '/ssadmin' })
+                } else alert("Wrong password or username!")
+            })
+            .catch((error) => { console.log(error); });
     }
-
 
     return (
         <div className="base-flex login-screen">
-            <form>
+            <div>
                 <h3>Admin Login</h3>
-
                 <div className="mb-3">
-                    <label for="exampleInputEmail1" className="form-label">Username</label>
-                    <input onInputCapture={(e) => setUsername(e.target.value)} type="email" placeholder="" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-
+                    <label htmlFor="text" className="form-label">Username</label>
+                    <input onInputCapture={(e) => setUsername(e.target.value)} type="text" placeholder="" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                 </div>
                 <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">Password</label>
+                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                     <input onInputCapture={(e) => setPassword(e.target.value)} type="password" className="form-control" id="exampleInputPassword1" />
                 </div>
-                <button onClick={login} type="submit" className="btn btn-primary">Login</button>
-            </form>
+                <button onClick={login} className="btn btn-primary">Login</button>
+            </div>
         </div>
     )
 }
