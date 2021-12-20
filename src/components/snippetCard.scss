@@ -1,5 +1,5 @@
 .snippet-card {
-    width: 280px;
+    width: 330px;
     box-shadow: #808080b3 0px 3px 4px 0px;
     border-radius: 8px;
     background-color: white;
@@ -11,8 +11,7 @@
     display: inline-block;
   
     .snippet-card-thumbnail {
-      width: auto;
-      height: 50%;
+ 
       position: relative;
       overflow: hidden;
       cursor: pointer;

@@ -13,7 +13,7 @@ export default function LanguagePanel() {
     const [currentLangMode, setCurrentLangMode] = useState('new')
     const [createLangName, setCreateLangName] = useState('');
     const [createLangShort, setCreateLangShort] = useState('');
-    const [createLangthumb, setCreateLangthumb] = useState(null);
+    const [createLangthumb, setCreateLangthumb] = useState('https://raw.githubusercontent.com/polynomica/service-snippetsauce/main/snippetThumbs/defaultThumb.png');
 
     useEffect(() => {
         axios.get("https://snippetsauce.herokuapp.com/api/languages")
@@ -29,9 +29,10 @@ export default function LanguagePanel() {
 
 
     const addLanguage = () => {
-        if (createLangShort.length === 3) {
+        if (createLangShort.length === 3 && createLangName !== '') {
             axios.post("https://snippetsauce.herokuapp.com/api/add_language", { language_name: createLangName.toLowerCase(), short_form: createLangShort.toLowerCase(), thumbnail: createLangthumb })
                 .then((response) => alert(response.data.message))
+                .catch(err => alert(err))
         } else { alert("Short form must be 3 words long " + createLangShort) }
     }
 
@@ -41,14 +42,18 @@ export default function LanguagePanel() {
         setSelectedLang(language)
         axios.get(`https://snippetsauce.herokuapp.com/api/language_detail/${language}`)
             .then((response) => { setUpdateLangName(response.data.language); setUpdateLangShort(response.data.short_form) })
+            .catch(err => alert(err))
     }
+
 
     const updateLanguage = () => {
         if (selectedLang !== null) {
             const langNameReal = updateLangName;
-            const data = { language_name: updateLangName, thumbnail: updateLangThumb, previous_language: langNameReal }
+            console.log(updateLangThumb)
+            const data = { language_name: updateLangName, language_thumbnail: updateLangThumb, previous_language: langNameReal }
             axios.post(`https://snippetsauce.herokuapp.com/api/update_language/${selectedLang}`, data)
-                .then(response => alert(response.data.status ? "Language updated sucessfully!" : "Some Error occured"))
+                .then(response => { console.log(response.data); alert(response.data.message) })
+                .catch(err => alert(err))
         }
     }
 
