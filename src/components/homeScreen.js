@@ -18,7 +18,7 @@ export default function HomeScreen(props) {
 
     }, [history.location.search]);
 
-    const getSnippets = () => {
+    const getSnippets = async () => {
 
         if (props.mode === "filterScreen") {
             axios.post("https://snippetsauce.herokuapp.com/api/filter", { language: `${history.location.search.split("?")[1]}` })
