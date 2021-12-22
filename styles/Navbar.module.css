@@ -1,0 +1,34 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 1px 20px 2px #c9c9c9;
+  }
+  
+ .navContent{
+   width: fit-content;
+ }
+
+ .navLinks{
+  padding: 15px;
+  padding-bottom: 15px;
+  font-weight: 600;
+  margin-right: 5px;
+  transition: ease 0.2s;
+ }
+
+ .navLinks:hover{
+   background-color: rgb(235, 235, 235);
+   transition: ease 0.2s;
+ }
+
+.navLinksActive{
+  border-bottom: 3px solid red;
+  padding-bottom: 12px;
+  transition: ease 0.2s;
+}
