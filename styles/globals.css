@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: whitesmoke;
 }
 
 a {
@@ -13,4 +14,69 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+
+footer{
+  background-color: black;
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+footer>div{
+
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-stamp{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 15px;
+}
+
+.footer-stamp>img{
+  width: 50px;
+  height: 50px;
+}
+
+.company{
+  font-size: 0.8rem;
+  color: darkgrey;
+}
+
+.footer-nav{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 15px;
+
+}
+
+.footer-nav>a{
+  font-size: 0.9rem;
+  margin: 5px;
+  transition: ease 0.3s;
+}
+
+.footer-nav>a:hover{
+  color: red;
+  
+}
+
+.copy-right{
+  margin: 20px;
+  font-size: 0.8rem;
+  color: darkgrey;
 }
