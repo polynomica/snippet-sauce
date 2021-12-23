@@ -1,0 +1,33 @@
+.customButton{
+    background-color: #ec0000;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: .3s ease;
+    border: 2px solid #ec0000;
+    font-size: 1rem;
+}
+
+.customButtonFilled{
+    background-color: #ec0000;
+    color: white;
+}
+
+.customButtonFilled:hover{
+    background-color: transparent;
+    color: #ec0000;
+}
+
+.customButtonOutline{
+    background-color: transparent;
+    color: #ec0000;
+}
+
+.customButtonOutline:hover{
+    background-color: #ec0000;
+    color: white;
+}

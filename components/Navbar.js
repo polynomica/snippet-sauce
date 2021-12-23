@@ -1,5 +1,5 @@
 import navStyles from '../styles/Navbar.module.css'
-import ssLogo from '../components/sslogo.png'
+import ssLogo from '../public/sslogo.png'
 
 export default function Navbar() {
     return (

@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import Layout from '../components/Layout'
 import Navbar from '../components/Navbar'
-import ssLogo from '../components/sslogo.png'
+import ssLogo from '../public/sslogo.png'
 
 function MyApp({ Component, pageProps }) {
   return (
