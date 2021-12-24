@@ -20,11 +20,11 @@ export default function FilterScreen() {
                     <h2>Filter</h2>
                     <div className={styles.tagHolder}>
                         <span className={styles.bodyTagline}>{filterName}</span>
-                        <span>Python is an interpreted high-level general-purpose programming
+                        <p>Python is an interpreted high-level general-purpose programming
                             language. Its design philosophy emphasizes code readability with
                             its use of significant indentation. Its language constructs as
                             well as its object-oriented approach aim to help programmers write
-                            clear, logical code for small and large-scale projects.</span>
+                            clear, logical code for small and large-scale projects.</p>
                     </div>
 
 

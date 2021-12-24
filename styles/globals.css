@@ -21,6 +21,9 @@ a {
   width: 100%;
   min-height:88vh;
   margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 footer{
