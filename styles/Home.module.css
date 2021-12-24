@@ -1,8 +1,5 @@
 
 .homeScreen{
-  width: 100%;
-  min-height:88vh;
-  margin-top: 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,11 +59,15 @@
 
 img.svgDecoration{
   background-color: transparent;
+  
+  width: 15%;
+  z-index: -10;
+}
+
+img.decorationAnimation{
   transform: translateY(-10%);
   animation: floater 2s infinite;
   transition: ease 2s;
-  width: 15%;
-  z-index: -10;
 }
 
 @keyframes floater {

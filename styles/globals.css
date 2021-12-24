@@ -17,6 +17,12 @@ a {
 }
 
 
+.screen{
+  width: 100%;
+  min-height:88vh;
+  margin-top: 70px;
+}
+
 footer{
   background-color: black;
   color: white;

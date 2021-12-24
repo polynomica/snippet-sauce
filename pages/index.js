@@ -1,12 +1,16 @@
+
 import styles from '../styles/Home.module.css'
 import SnippetCard from '../components/Snippetcard'
 import Button from '../components/Button'
-// import codeSvg from '../public/codeSnippetSvg.svg'
+import Head from 'next/head'
 import ssLogo from '../public/sslogo.png'
 
 export default function HomeScreen() {
   return (
-    <div className={styles.homeScreen}>
+    <div className={`screen ${styles.homeScreen}`}>
+      <Head>
+        <title>Snippet Sauce | Home</title>
+      </Head>
 
       <div className={styles.homeHeader}>
         <div className={styles.homeBody}>
@@ -23,7 +27,7 @@ export default function HomeScreen() {
           {/* <span>Create account to save your fav snippets!</span> */}
 
         </div>
-        <img className={styles.svgDecoration} src={ssLogo.src} />
+        <img className={`${styles.svgDecoration} ${styles.decorationAnimation}`} src={ssLogo.src} />
 
       </div>
 
