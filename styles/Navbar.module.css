@@ -8,6 +8,7 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: 0px 1px 20px 2px #c9c9c9;
+    z-index: 10;
   }
   
  .navContent{
@@ -17,13 +18,30 @@
  .navLinks{
   padding: 15px;
   padding-bottom: 15px;
-  font-weight: 600;
+  font-size: 0.9rem;
   margin-right: 5px;
   transition: ease 0.2s;
  }
 
+ .hero{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1rem;
+  padding:8px 0px;
+  margin-left: 30px;
+ }
+
+ .hero>img{
+  width: 35px;
+  height: 35px;
+  margin-right: 5px;
+
+ }
+
  .navLinks:hover{
    background-color: rgb(235, 235, 235);
+   color: red;
    transition: ease 0.2s;
  }
 
@@ -31,4 +49,52 @@
   border-bottom: 3px solid red;
   padding-bottom: 12px;
   transition: ease 0.2s;
+}
+
+.langPicker:hover{
+  cursor: pointer;
+}
+
+.langPicker:hover .languageHolder {
+  visibility: visible;
+  opacity: 1;
+}
+
+.languageHolder:hover .languageHolder{
+  visibility: visible;
+  opacity: 1;
+
+}
+
+.languageHolder{
+  background-color: white;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  top: 3.2rem;
+  left: 4rem;
+  z-index: 10;
+  width: 90%;
+  box-shadow: 0px 1px 20px 2px #c9c9c9;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s linear;
+}
+
+
+
+.langHolderLinks{
+  margin: 5px;
+  color: black;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.langHolderLinks:hover{
+  color: red;
 }
