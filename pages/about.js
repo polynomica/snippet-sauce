@@ -1,6 +1,7 @@
 import styles from '../styles/About.module.css'
 import QStart from '../public/qStart.svg'
 import QEnd from '../public/qEnd.svg'
+import BMC from '../public/bmc-button.svg'
 
 export default function AboutScreen() {
     return (
@@ -25,7 +26,21 @@ export default function AboutScreen() {
                     diam. Integer lobortis dui risus, posuere tincidunt dolor elementum id.
                 </p>
                 <br />
-                <h2>Meet the Founders</h2>
+                {/* <h2>Founders</h2>
+                <br /> */}
+                <h2>Support Us</h2>
+                <span>We upload working and useful code snippets for FREE, so you don't have to do the hustle to remember them !</span>
+                <br />
+                <span>Any Donation will be appreciated :) </span>
+                <br />
+                <br />
+                <a
+                    href="https://www.buymeacoffee.com/snippetsauce"
+                    target="_blank">
+                    <img
+                        src={BMC.src}
+                        alt="Buy Me A Coffee"
+                        className={styles.buyMeCoffeeButton} /></a>
 
             </div>
 
