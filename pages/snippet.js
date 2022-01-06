@@ -1,8 +1,10 @@
 import styles from '../styles/SnippetScreen.module.css'
-
+import Link from 'next/link'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Clipboard from 'react-clipboard.js';
+import Head from 'next/head';
+import Button from '../components/Button';
 
 export default function SnippetPage() {
 
@@ -54,23 +56,82 @@ def main():
 
 main()`
 
+    const suggested = [
+        { title: 'OOP with core' },
+        { title: 'Selenium with axios' },
+        { title: 'Python sorting algo' },
+        { title: 'OOP with core' },
+        { title: 'Selenium with axios' },
+        { title: 'Python sorting algo' },
+        { title: 'OOP with core' },
+        { title: 'Selenium with axios' },
+        { title: 'Python sorting algo' },
+        { title: 'OOP with core' },
+        { title: 'Selenium with axios' },
+        { title: 'Python sorting algo' },
+        { title: 'OOP with core' },
+        { title: 'Selenium with axios' },
+        { title: 'Python sorting algo' },
+    ]
+
+    const seoTags = [
+        { tagName: 'OOP with core' },
+        { tagName: 'Selenium with axios' },
+        { tagName: 'Python sorting algo' },
+        { tagName: 'OOP with core' },
+        { tagName: 'Selenium with axios' },
+        { tagName: 'Python sorting algo' },
+        { tagName: 'OOP with core' },
+        { tagName: 'Selenium with axios' },
+        { tagName: 'Python sorting algo' },
+        { tagNamec: 'OOP with core' },
+        { tagName: 'Selenium with axios' },
+        { tagName: 'Python sorting algo' },
+        { tagName: 'OOP with core' },
+        { tagName: 'Selenium with axios' },
+        { tagName: 'Python sorting algo' },
+    ]
+
+
     return (
         <div className={`screen ${styles.snippetPage}`}>
+            <Head>
+                <title>Snippet name | Snippet Sauce</title>
+            </Head>
+
+            <div className={styles.suggestedTab}>
+                <h3 className={styles.suggestedTitle}>Similar Snippets</h3>
+                <div>
+                    {suggested &&
+                        suggested.map(link => (
+                            <Link href={{ pathname: '/snippet' }}>
+                                <a className={styles.suggestedLink}>{link.title}</a>
+                            </Link>
+                        ))}
+                </div>
+
+            </div>
             <div className={styles.snippetScreen}>
                 <div className={styles.snippetHeader}>
-                    <span className={styles.langName}>Python</span>
-                    <h1 className={styles.snippetTitle}>Python Class code | Object Oriented Programming</h1>
-                    <div className={styles.tagHolder}>
-                        <span className={styles.snippetTags}>#oop</span>
-                        <span className={styles.snippetTags}>#classes</span>
-                        <span className={styles.snippetTags}>#dsa</span>
-                        <span className={styles.snippetTags}>#coding</span>
+                    <div>
+                        <h1 className={styles.snippetTitle}>Object Oriented Programming</h1>
+                        <p className={styles.snippetlang}> <strong>Language - Python</strong> </p>
+                    </div>
+
+                    <div>
+                        <button className={styles.shareBtn}>
+                            <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="30" height="30" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M3 12c0 1.654 1.346 3 3 3c.794 0 1.512-.315 2.049-.82l5.991 3.424c-.018.13-.04.26-.04.396c0 1.654 1.346 3 3 3s3-1.346 3-3s-1.346-3-3-3c-.794 0-1.512.315-2.049.82L8.96 12.397c.018-.131.04-.261.04-.397s-.022-.266-.04-.397l5.991-3.423c.537.505 1.255.82 2.049.82c1.654 0 3-1.346 3-3s-1.346-3-3-3s-3 1.346-3 3c0 .136.022.266.04.397L8.049 9.82A2.982 2.982 0 0 0 6 9c-1.654 0-3 1.346-3 3z" fill="red" /></svg>
+                        </button>
+
+                        <button className={styles.shareBtn}>
+                            <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><g fill="red"><path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" /></g></svg>
+                        </button>
+
                     </div>
                 </div>
 
                 <div className={styles.snippetData}>
 
-                    <h3 className={styles.snippetHeading}>Snippet Description</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Aenean ac odio sit amet metus bibendum egestas id sodales sapien.
                         Maecenas eleifend ultricies leo, sed tempor lorem. Praesent mollis
@@ -83,7 +144,7 @@ main()`
                     </p>
 
                     <br />
-                    <h3 className={styles.snippetHeading}>Snippet Code</h3>
+                    {/* <p className={styles.snippetHeading}> <strong>Snippet Code</strong> </p> */}
                     <div className={styles.codeTerminal}>
                         <div className={styles.terminalHead}>
                             <div className="head-dot-holder">
@@ -110,10 +171,22 @@ main()`
 
                     </div>
                     <br />
+                    <p className={styles.snippetHeading}>Related tags</p>
+                    <div className={styles.snippetSeo}>
+                        {seoTags &&
+                            seoTags.map((tag, index) => <span className={styles.seoTags} key={index}>{tag.tagName}</span>)
+                        }
+                    </div>
 
-                    <h3 className={styles.snippetHeading}>Related terms</h3>
-
-
+                    <br />
+                    <p className={styles.snippetHeading}>Author</p>
+                    <div className={styles.snippetAutherHolder}>
+                        <img src='https://github.com/suyashvash.png' className={styles.authorPic} />
+                        <div className={styles.authorData}>
+                            <p>Suyash Vashishtha</p>
+                            <a href='' target={'_blank'} rel={'no-ref'} style={{ color: 'red', fontSize: 15, fontWeight: 'bold' }}>View Profile</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -57,14 +57,14 @@
 }
 
 
-img.svgDecoration{
+.svgDecoration{
   background-color: transparent;
   
   width: 15%;
   z-index: -10;
 }
 
-img.decorationAnimation{
+.decorationAnimation{
   transform: translateY(-10%);
   animation: floater 2s infinite;
   transition: ease 2s;
