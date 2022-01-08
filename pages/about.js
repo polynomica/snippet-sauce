@@ -5,10 +5,10 @@ import BMC from '../public/bmc-button.svg'
 
 export default function AboutScreen() {
     return (
-        <div className={`screen ${styles.aboutPage}`}>
+        <div className={`screen flex ${styles.aboutPage}`}>
 
             <div className={styles.aboutScreen}>
-                <div className={styles.aboutBanner}>
+                <div className={`flex ${styles.aboutBanner}`}>
                     <img alt='' src={QStart.src} />
                     <span>No one wants to remmber the codes, that's why we are here to help!</span>
                     <img alt='' src={QEnd.src} />

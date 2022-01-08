@@ -32,7 +32,7 @@ export default function UserProfile() {
                 </div>
 
                 <h3>Suyash's Snippets</h3>
-                <div className={styles.contentArea}>
+                <div className={`contentArea`}>
                     <SnippetCard type={'save'} />
                     <SnippetCard type={'save'} />
                     <SnippetCard type={'save'} />

@@ -25,15 +25,15 @@ export default function HomeScreen() {
 
   return (
     !isLoading ?
-      <div className={`screen ${styles.homeScreen}`}>
+      <div className={`screen flex ${styles.homeScreen}`}>
         <Head>
           <title>Snippet Sauce | Home</title>
         </Head>
 
-        <div className={styles.homeHeader}>
-          <div className={styles.homeBody}>
+        <div className={`flex ${styles.homeHeader}`}>
+          <div className={`flex ${styles.homeBody}`}>
             <h2>Home</h2>
-            <div className={styles.tagHolder}>
+            <div className={`flex ${styles.tagHolder}`}>
               <span className={styles.bodyTagline}>Discover the latest snippet for your latest project</span>
               <span>Snippet Sauce is the leading destination to find pre made working Code Snippets from all the languages and frameworks.</span>
             </div>
@@ -50,7 +50,7 @@ export default function HomeScreen() {
         </div>
 
 
-        <div className={styles.contentArea}>
+        <div className={`contentArea`}>
           {snippetData ? snippetData.map((card, index) => (
             <SnippetCard
               key={index}

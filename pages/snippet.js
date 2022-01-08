@@ -89,14 +89,14 @@ export default function SnippetPage() {
         !isLoading ?
             <>
                 {snippetBody ?
-                    <div className={`screen ${styles.snippetPage}`}>
+                    <div className={`screen flex ${styles.snippetPage}`}>
                         <Head>
                             <title>{snippetBody ? snippetBody.snippet_title : "No Snippet Found"} | Snippet Sauce</title>
                         </Head>
 
-                        <div className={styles.suggestedTab}>
+                        <div className={`flex ${styles.suggestedTab}`}>
                             <h3 className={styles.suggestedTitle}>Similar Snippets</h3>
-                            <div>
+                            <div className={`flex`}>
                                 {similarSnippets &&
                                     similarSnippets.map((link, index) => (
                                         <Link key={index} href={{ pathname: '/snippet', query: { sauce: link.snippet_id } }}>
@@ -108,7 +108,7 @@ export default function SnippetPage() {
                         </div>
 
                         <div className={styles.snippetScreen}>
-                            <div className={styles.snippetHeader}>
+                            <div className={`flex ${styles.snippetHeader}`}>
                                 <div style={{ width: '80%' }}>
                                     <p className={styles.snippetlang}> <strong>Snippet Sauce - {snippetBody.snippet_id}</strong> </p>
                                     <h1 className={styles.snippetTitle}>{snippetBody.snippet_title}</h1>
@@ -137,7 +137,7 @@ export default function SnippetPage() {
                                 <br />
                                 {/* <p className={styles.snippetHeading}> <strong>Snippet Code</strong> </p> */}
                                 <div className={styles.codeTerminal}>
-                                    <div className={styles.terminalHead}>
+                                    <div className={`flex ${styles.terminalHead}`}>
                                         <div className="head-dot-holder">
                                             <svg stroke="currentColor" fill="#ff5f56" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                                 <circle cx="12" cy="12" r="8"></circle>
@@ -163,7 +163,7 @@ export default function SnippetPage() {
                                 </div>
                                 <br />
                                 <p className={styles.snippetHeading}>Related tags</p>
-                                <div className={styles.snippetSeo}>
+                                <div className={`flex ${styles.snippetSeo}`}>
                                     {snippetBody.snippet_seo &&
                                         tagArrayFormatter(snippetBody.snippet_seo).map((tag, index) => <span className={styles.seoTags} key={index}>{tag.name}</span>)
                                     }
@@ -171,7 +171,7 @@ export default function SnippetPage() {
 
                                 <br />
                                 <p className={styles.snippetHeading}>Author</p>
-                                <div className={styles.snippetAutherHolder}>
+                                <div className={`flex ${styles.snippetAutherHolder}`}>
                                     <img alt="Author Pic" src={`https://github.com/${snippetBody.snippet_author}.png`} className={styles.authorPic} />
                                     <div className={styles.authorData}>
                                         <p>{snippetBody.snippet_author}</p>

@@ -1,28 +1,19 @@
 
 .homeScreen{
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .homeHeader{
   width: 90%;
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-
 }
 
 .homeBody{
   width: 60%;
   padding: 20px 0px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 70vh;
- 
+  flex-direction: column;
+  align-items: flex-start;
+  height: 70vh;
 }
 
 .homeBody>h2{
@@ -31,9 +22,7 @@
 
 .tagHolder{
   width: 70%;
-  display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
 }
 
@@ -44,17 +33,6 @@
     margin-bottom: 20px;
 }
 
-.contentArea{
-  margin-top: 10px;
-  width: 95%;
-  min-height: 100%; 
-
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-}
 
 .errorHolder{
   width: 95%;

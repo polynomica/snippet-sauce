@@ -16,7 +16,7 @@ export default function Search() {
 
     return (
         <div className={`screen`}>
-            <div className={styles.searchDiv}>
+            <div className={`flex ${styles.searchDiv}`}>
                 <h2>Search Snippet</h2>
 
                 <div className={styles.searchBox}>

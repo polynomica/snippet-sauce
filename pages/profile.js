@@ -27,7 +27,7 @@ export default function Profile() {
         return (
             <>
                 <h3>Saved Snippets</h3>
-                <div className={styles.contentArea}>
+                <div className={`contentArea`}>
                     <SnippetCard type={'save'} />
                     <SnippetCard type={'save'} />
                     <SnippetCard type={'save'} />
@@ -49,7 +49,7 @@ export default function Profile() {
         return (
             <>
                 <h3>My Snippets</h3>
-                <div className={styles.contentArea}>
+                <div className={`contentArea`}>
                     <SnippetCard type={'save'} />
                     <SnippetCard type={'save'} />
                     <SnippetCard type={'save'} />
@@ -84,14 +84,14 @@ export default function Profile() {
     }
 
     return (
-        <div className={`screen ${styles.profilePage}`}>
+        <div className={`screen flex ${styles.profilePage}`}>
             <div className={styles.sidePanel}>
                 <span onClick={() => changeTab('about')} className={styles.panels}>About </span>
                 <span onClick={() => changeTab('saved')} className={styles.panels}>Saved</span>
                 <span onClick={() => changeTab('myposts')} className={styles.panels}>My Posts</span>
             </div>
             <div className={styles.profileDiv}>
-                <div className={styles.banner}>
+                <div className={`flex ${styles.banner}`}>
                     <img alt='Author image' width={100} height={100} src='https://github.com/suyashvash.png' />
                     <div className={styles.profileData}>
                         <h3>Suyash Vashishtha</h3>

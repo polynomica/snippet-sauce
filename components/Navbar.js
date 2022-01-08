@@ -35,9 +35,9 @@ export default function Navbar() {
     const currentPath = router.pathname;
 
     return (
-        <nav className={navStyles.navbar}>
+        <nav className={`flex ${navStyles.navbar}`}>
             <Link href={{ pathname: '/' }}>
-                <a className={`${navStyles.navLinks} ${navStyles.hero} ${currentPath == "/" && navStyles.navLinksActive}`} >
+                <a className={`${navStyles.navLinks} flex ${navStyles.hero} ${currentPath == "/" && navStyles.navLinksActive}`} >
                     <img alt='Snippet sauce logo in navbar' src={ssLogo.src} />
                     Snippet Sauce
                 </a>
@@ -50,7 +50,7 @@ export default function Navbar() {
                 </Link>
 
                 <span className={`${navStyles.navLinks}  ${navStyles.langPicker} ${currentPath == "/filter" && navStyles.navLinksActive}`}>Filter
-                    <div className={navStyles.languageHolder}>
+                    <div className={`flex ${navStyles.languageHolder}`}>
                         {languages &&
                             languages.map((item, index) => (
                                 <Link key={index} href={{ pathname: '/filter', query: { name: item.name } }}>

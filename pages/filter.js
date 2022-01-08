@@ -50,10 +50,10 @@ export default function FilterScreen() {
                     <title>{filterName} Snippets | Snippet Sauce </title>
                 </Head>
 
-                <div className={styles.homeHeader}>
-                    <div className={styles.homeBody}>
+                <div className={`flex ${styles.homeHeader}`}>
+                    <div className={`flex ${styles.homeBody}`}>
                         <h2>Filter</h2>
-                        <div className={styles.tagHolder}>
+                        <div className={`flex ${styles.tagHolder}`}>
                             <span className={styles.bodyTagline}>{filterName}</span>
                             <p>Python is an interpreted high-level general-purpose programming
                                 language. Its design philosophy emphasizes code readability with
@@ -66,7 +66,7 @@ export default function FilterScreen() {
 
                 </div>
 
-                <div className={styles.contentArea}>
+                <div className={`contentArea`}>
                     {snippetData
                         ? snippetData.map((card, index) => (
                             <SnippetCard
