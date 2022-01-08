@@ -1,12 +1,18 @@
 
-
-.card{
+.home{
     width: 337px;
     height: 253px;
+}
+
+.save{
+    width: 278px;
+    height: 193px;
+}
+
+.card{
     background-color: rgb(255, 255, 255);
     border-radius: 8px;
-    margin: 20px auto;
-    
+    margin: 20px;
     position: relative;
     transition: ease 0.3s;
 }

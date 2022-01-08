@@ -1,0 +1,28 @@
+.searchDiv{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBox{
+    width: 75%;
+    border-radius: 8px;
+    border: none;
+    padding: 5px;
+    box-shadow: 0px 2px 15px rgb(0 0 0 / 19%);
+}
+
+.searchBox>input{
+    width: 85%;        
+    font-size: 1.2rem;
+    border-radius: 8px;
+    border: none;
+    padding: 20px;
+}
+
+.searchBox>input:focus{
+    outline: none !important;
+}
+

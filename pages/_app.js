@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import Layout from '../components/Layout'
 import Navbar from '../components/Navbar'
 import ssLogo from '../public/sslogo.png'
+import Link from 'next/link'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,15 +12,18 @@ function MyApp({ Component, pageProps }) {
       <footer>
         <div>
           <div className='footer-stamp'>
-            <img src={ssLogo.src} />
+            <img alt='Snippet sauce footer logo' src={ssLogo.src} />
             <span className='ss'>Snippet Sauce</span>
             <span className='company'>by Polynomica</span>
           </div>
 
           <div className='footer-nav'>
-            <a href='#' >Home</a>
-            <a href='#' >About</a>
-            <a href='#' >Contribute</a>
+            <Link href={{ pathname: '/' }}>
+              <a href='' >Home</a>
+            </Link>
+            <Link href={{ pathname: '/about' }}>
+              <a href='' >About</a>
+            </Link>
           </div>
 
         </div>

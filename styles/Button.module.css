@@ -31,3 +31,13 @@
     background-color: #ec0000;
     color: white;
 }
+
+.customButtonOutlineNoHiver{
+    background-color: transparent;
+    color: #ec0000;
+}
+
+.customButtonFilledNoHover{
+    background-color: #ec0000;
+    color: white;
+}

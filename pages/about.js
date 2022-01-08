@@ -9,9 +9,9 @@ export default function AboutScreen() {
 
             <div className={styles.aboutScreen}>
                 <div className={styles.aboutBanner}>
-                    <img src={QStart.src} />
+                    <img alt='' src={QStart.src} />
                     <span>No one wants to remmber the codes, that's why we are here to help!</span>
-                    <img src={QEnd.src} />
+                    <img alt='' src={QEnd.src} />
                 </div>
                 <br />
                 <h2>About</h2>

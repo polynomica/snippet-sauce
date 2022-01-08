@@ -1,15 +1,14 @@
 import styles from '../styles/Cards.module.css'
 import Link from 'next/link'
 
-export default function SnippetCard() {
+export default function SnippetCard(props) {
     return (
-        <Link href={{ pathname: '/snippet' }}>
-            <a href="/snippet" className={styles.card}>
-                <img className={styles.cardThumb} src='https://raw.githubusercontent.com/polynomica/service-snippetsauce/main/snippetThumbs/jsThumb.png' />
+        <Link href={{ pathname: '/snippet', query: { sauce: props.id } }}>
+            <a href="/snippet" className={`${styles.card} ${props.type == 'home' ? styles.home : styles.save}`}>
+                <img alt='Snippet language thumbnail' className={styles.cardThumb} src={props.url} />
                 <div className={styles.cardData}>
-
-                    <h2 className={styles.cardTitle} >Javascipt array show aa</h2>
-                    <span className={styles.cardAuthor}>suyashvash</span>
+                    <h2 className={styles.cardTitle} >{props.title}</h2>
+                    <span className={styles.cardAuthor}>{props.author}</span>
                 </div>
             </a>
         </Link>
