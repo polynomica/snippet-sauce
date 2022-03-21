@@ -36,13 +36,14 @@ export default function FilterScreen() {
 
     const getLangSnippets = async () => {
         setLoading(true)
+
         await axios.post("https://snippetsauce.herokuapp.com/api/filter", { language: `${filterName.toLowerCase()}` })
             .then((response) => {
                 if (response.data.status === true) {
                     setLangData(response.data.lang_data)
                     console.log(response.data)
                     setSnippetData(response.data.snippet_data); setErrorLog(null); setLoading(false)
-                } else { console.log(response.data); setLoading(false); setErrorLog(response.data.message); setSnippetData(null) }
+                } else { setLangData(null); console.log(response.data); setLoading(false); setErrorLog(response.data.message); setSnippetData(null) }
             })
             .catch((err) => { console.log(err); setErrorLog(err.message); setLoading(false); setSnippetData(null) });
     }
