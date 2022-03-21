@@ -14,12 +14,8 @@ export default function FilterScreen() {
     useEffect(() => {
 
         if (!query.name) {
-            console.log("No query")
-            console.log(query.name)
             return;
         } else {
-            console.log("yes query name")
-            console.log(query.name)
             getLangSnippets()
         }
 
@@ -27,7 +23,6 @@ export default function FilterScreen() {
 
 
     const filterName = query.name
-    console.log(filterName)
 
     const [errorLog, setErrorLog] = useState(null);
     const [snippetData, setSnippetData] = useState([]);
@@ -41,11 +36,11 @@ export default function FilterScreen() {
             .then((response) => {
                 if (response.data.status === true) {
                     setLangData(response.data.lang_data)
-                    console.log(response.data)
+
                     setSnippetData(response.data.snippet_data); setErrorLog(null); setLoading(false)
-                } else { setLangData(null); console.log(response.data); setLoading(false); setErrorLog(response.data.message); setSnippetData(null) }
+                } else { setLangData(null); setLoading(false); setErrorLog(response.data.message); setSnippetData(null) }
             })
-            .catch((err) => { console.log(err); setErrorLog(err.message); setLoading(false); setSnippetData(null) });
+            .catch((err) => { setErrorLog(err.message); setLoading(false); setSnippetData(null) });
     }
 
     return (

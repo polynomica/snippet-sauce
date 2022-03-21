@@ -21,10 +21,9 @@ export default function HomeScreen() {
 
   const getSnippets = async () => {
     await axios.get("https://snippetsauce.herokuapp.com/api/display")
-      .then((response) => { setSnippetData(response.data.snippet_data); console.log(response.data.snippet_data); setLoading(false); setErrorLog(null) })
+      .then((response) => { setSnippetData(response.data.snippet_data); setLoading(false); setErrorLog(null) })
       .catch((err) => { setErrorLog(err.message); setSnippetData(null) });
   }
-
 
 
   return (
