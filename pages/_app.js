@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     console.log("Dont open this link ! ... Just Dont.")
-    console.log("https://youtu.be/dQw4w9WgXcQ")
+    console.log("https://youtu.be/hj9jw4wagD0")
 
   }, [])
 
