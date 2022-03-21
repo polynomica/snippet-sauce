@@ -1,0 +1,117 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    justify-content: space-between;
+    box-shadow: 0px 1px 5px 2px #e2e2e2;
+    z-index: 100;
+  }
+  
+ .navContent{
+   width: 50%;
+   justify-content: flex-end;
+ }
+
+ .navLinks{
+  padding: 15px;
+  padding-bottom: 15px;
+  font-size: 0.9rem;
+  margin-right: 5px;
+  transition: ease 0.2s;
+ }
+
+ .hero{
+  justify-content: normal;
+  padding:8px 0px;
+  margin-left: 30px;
+ }
+
+ .hero>span{
+font-size: 1rem;
+
+ }
+
+ .hero>img{
+  width: 35px;
+  height: 35px;
+  margin-right: 5px;
+
+ }
+
+ .navLinks:hover{
+   background-color: rgb(235, 235, 235);
+   color: red;
+   transition: ease 0.2s;
+ }
+
+.navLinksActive{
+  border-bottom: 3px solid red;
+  padding-bottom: 12px;
+  transition: ease 0.2s;
+}
+
+.langPicker:hover{
+  cursor: pointer;
+}
+
+.langPicker:hover .languageHolder {
+  visibility: visible;
+  opacity: 1;
+}
+
+.languageHolder:hover .languageHolder{
+  visibility: visible;
+  opacity: 1;
+
+}
+
+.languageHolder{
+  background-color: white;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  top: 3.2rem;
+  left: 4rem;
+  z-index: 10;
+  width: 90%;
+  box-shadow: 0px 1px 20px 2px #c9c9c9;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s linear;
+}
+
+
+
+.langHolderLinks{
+  margin: 5px;
+  color: black;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.langHolderLinks:hover{
+  color: red;
+}
+
+
+
+@media only screen and (max-width: 500px) {
+
+
+  .hero{
+    margin-left: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+   }
+
+   .hero>span{
+    display: none;
+     }
+
+     .langPicker{
+     display: none;
+    }
+}

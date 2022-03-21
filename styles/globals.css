@@ -1,0 +1,116 @@
+@font-face {
+  font-family: myFirstFont;
+  src: url('../public/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf');
+}
+
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: myFirstFont 
+
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+.screen{
+  width: 100%;
+  min-height:88vh;
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.contentArea{
+  margin-top: 10px;
+  width: 95%;
+  min-height: 100%; 
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+footer{
+  background-color: black;
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+footer>div{
+
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-stamp{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 15px;
+}
+
+.footer-stamp>img{
+  width: 50px;
+  height: 50px;
+}
+
+.company{
+  font-size: 0.8rem;
+  color: darkgrey;
+}
+
+.footer-nav{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 15px;
+
+}
+
+.footer-nav>a{
+  font-size: 0.9rem;
+  margin: 5px;
+  transition: ease 0.3s;
+}
+
+.footer-nav>a:hover{
+  color: red;
+  
+}
+
+.copy-right{
+  margin: 20px;
+  font-size: 0.8rem;
+  color: darkgrey;
+}
+
+

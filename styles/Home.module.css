@@ -1,0 +1,105 @@
+
+.homeScreen{
+  flex-direction: column;
+}
+
+.homeHeader{
+  width: 90%;
+  justify-content: space-between;
+}
+
+.homeBody{
+  width: 60%;
+  padding: 20px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 70vh;
+}
+
+.homeBody>h2{
+  color: red;
+}
+
+.tagHolder{
+  width: 70%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bodyTagline{
+  font-size: 2rem;
+    font-weight: 700;
+    line-height: 38px;
+    margin-bottom: 20px;
+}
+
+
+.errorHolder{
+  width: 95%;
+  margin: auto;
+  color: red;
+  flex-direction: column;
+}
+
+.contribButton{
+  cursor: pointer;
+  margin-top: 20px;
+
+  color: black;
+  text-decoration: underline;
+}
+
+
+.svgDecoration{
+  background-color: transparent;
+  
+  width: 15%;
+  z-index: -10;
+}
+
+.decorationAnimation{
+  transform: translateY(-10%);
+  animation: floater 2s infinite;
+  transition: ease 2s;
+}
+
+@keyframes floater {
+  0%{transform: translateY(-10%);transition: ease 2s;}
+  50%{transform: translateY(10%);transition: ease 2s;}
+}
+
+
+
+@media only screen and (max-width: 500px) {
+
+  .homeScreen{
+    align-items: center;
+    justify-content: flex-start;
+    }
+
+  .homeHeader {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    width: 90%;
+    
+  }
+
+  .homeBody{
+    width: 95%;
+    height: auto;
+  }
+
+  .tagHolder{
+    width: 100%;
+  }
+
+  .svgDecoration{
+    width: 120px;
+    display: none;
+  }
+
+  .bodyTagline{
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+}

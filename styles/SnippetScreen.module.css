@@ -1,0 +1,253 @@
+.snippetPage{
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 40px;
+
+}
+
+.suggestedTab{
+    width: 20vw;
+    color: white;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: sticky;
+    top: 6rem;
+    z-index: 90;
+    height: calc(80vh - 1rem);
+    padding: 10px;
+    color: black;
+
+}
+
+.suggestedTab>div{
+    height: 100%;
+    width: 95%;
+    overflow: scroll;
+    overflow-x: hidden;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+
+
+/* width */
+.suggestedTab>div::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Track */
+  .suggestedTab>div::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  .suggestedTab>div::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .suggestedTab>div::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+  }
+
+.suggestedTitle{
+    color:red;
+    margin: 4px 9px;
+    padding-bottom: 5px;
+}
+
+.suggestedLink{
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 2px;
+    padding: 8px;
+    transition: ease 0.3s;
+ 
+}
+
+.noSuggestedLink{
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  padding-left: 8px;
+  color: grey;
+}
+
+.suggestedLink:hover{
+    font-weight: bold;
+    color: white;
+    background: red;
+    transition: ease 0.3s;
+}
+
+.snippetScreen{
+    width: 50vw;
+    min-height: 100%;
+    overflow: hidden;
+  border-radius: 8px;
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+.snippetHeader{
+    width: 100%;
+    color: black;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+}
+
+
+.snippetTitle{
+    font-size: 1.7rem;
+    margin: 0px;
+}
+
+
+
+.snippetData{
+    padding: 10px;
+}
+
+.snippetData>p{
+  letter-spacing: .015rem;
+  line-height: 1.67;
+}
+
+.heads{
+
+  font-weight: bold;
+}
+
+.codeTerminal{
+    width: 95%;
+    border: 1px solid #ddd;
+    border-left: 3px solid red;
+    margin: 0px;
+    background-color: black;
+  }
+
+  .terminalHead{
+    flex-wrap: wrap;
+    background-color: black;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 5px;
+  }
+
+  .copyButton{
+    border: 1px transparent;
+    color: white;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-right: 5px;
+    transition: ease 0.5s;
+  }
+
+
+
+.snippetHeading{
+    color: black;
+    font-weight: bold;
+}
+
+.snippetlang{
+  color: red;
+}
+
+.codeTerminal>pre{
+    margin-top: 0px;
+    font-size: 0.9375rem;
+    padding-left: 10px;
+}
+
+.snippetSeo{
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.seoTags{
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #e4e4e4;
+    border-radius: 5px;
+    font-size: .9rem;
+    margin-left: 0px;
+}
+
+.snippetAutherHolder{
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.authorPic{
+  width: 60px;
+    height: 60px;
+    border: 2px solid red;
+    border-radius: 50%;
+
+}
+
+.authorData{
+  margin-left: 10px;
+}
+
+.authorData >p{
+  margin: 0px;
+
+}
+
+.shareBtn{
+  border: none;
+    background: white;
+    cursor: pointer;
+}
+
+
+
+/* width */
+.codeTerminal>pre::-webkit-scrollbar {
+  height: 4px;
+}
+
+/* Track */
+.codeTerminal>pre::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+.codeTerminal>pre::-webkit-scrollbar-thumb {
+  background: red; 
+  border-radius: 10px;
+  
+}
+
+/* Handle on hover */
+.codeTerminal>pre::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+
+@media only screen and (max-width: 500px) {
+
+.suggestedTab{
+  display: none;
+}
+
+.snippetScreen{
+  width: 95%;
+  margin: auto;
+}
+
+}

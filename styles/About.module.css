@@ -1,0 +1,45 @@
+.aboutPage{
+    flex-direction: column;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.aboutBanner{
+    background-color: #9e0000;
+    width: 100%;
+    height: 200px;
+    color: white;
+ 
+}
+
+.aboutBanner>span{
+    margin: 10px;
+}
+
+.aboutScreen{
+    width: 70%;
+    min-height: 100vh;
+    border-radius: 8px;
+    overflow: hidden;
+
+}
+
+.aboutScreen>h2{
+    color: red;
+}
+
+
+.buyMeCoffeeButton{
+    height: 50px;
+}
+
+@media only screen and (max-width: 500px) {
+
+    .aboutScreen{
+        width: 85%;
+    }
+
+    .aboutBanner{
+        display: none;
+    }
+}
