@@ -3,10 +3,12 @@ import Layout from '../components/Layout'
 import Navbar from '../components/Navbar'
 import ssLogo from '../public/sslogo.png'
 import Link from 'next/link'
+import SeoHandler from '../components/seoHandler'
 
 function MyApp({ Component, pageProps }) {
   return (
     <Layout>
+      <SeoHandler />
       <Navbar />
       <Component {...pageProps} />
       <footer>
@@ -20,6 +22,9 @@ function MyApp({ Component, pageProps }) {
           <div className='footer-nav'>
             <Link href={{ pathname: '/' }}>
               <a href='' >Home</a>
+            </Link>
+            <Link href={{ pathname: '/search' }}>
+              <a href='' >Search</a>
             </Link>
             <Link href={{ pathname: '/about' }}>
               <a href='' >About</a>

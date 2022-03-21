@@ -4,12 +4,14 @@ export default function Button(props) {
 
     return (
         props.hoverEffect ?
-            <button onClick={props.onPress} className={`${style.customButton}  ${props.type == "fill" ? style.customButtonFilled : style.customButtonOutline}`}>
+            <button style={props.customStyle} onClick={props.onPress} className={`${props.customClass} ${style.customButton}  ${props.type == "fill" ? style.customButtonFilled : style.customButtonOutline}`}>
                 {props.title}
+                {props.children}
             </button>
             :
-            <button onClick={props.onPress} className={`${style.customButton}  ${props.type == "fill" ? style.customButtonFilledNohover : style.customButtonOutlineNoHover}`}>
+            <button style={props.customStyle} onClick={props.onPress} className={`${props.customClass} ${style.customButton}  ${props.type == "fill" ? style.customButtonFilledNohover : style.customButtonOutlineNoHover}`}>
                 {props.title}
+                {props.children}
             </button>
     )
 }

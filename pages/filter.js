@@ -4,6 +4,7 @@ import SnippetCard from '../components/Snippetcard'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import axios from "axios";
+import Link from 'next/link'
 
 
 export default function FilterScreen() {
@@ -31,14 +32,17 @@ export default function FilterScreen() {
     const [errorLog, setErrorLog] = useState(null);
     const [snippetData, setSnippetData] = useState([]);
     const [isLoading, setLoading] = useState(true)
+    const [langData, setLangData] = useState(null)
 
     const getLangSnippets = async () => {
         setLoading(true)
         await axios.post("https://snippetsauce.herokuapp.com/api/filter", { language: `${filterName.toLowerCase()}` })
             .then((response) => {
                 if (response.data.status === true) {
+                    setLangData(response.data.lang_data)
+                    console.log(response.data)
                     setSnippetData(response.data.snippet_data); setErrorLog(null); setLoading(false)
-                } else { console.log(response.data.message); setLoading(false); setErrorLog(response.data.message); setSnippetData(null) }
+                } else { console.log(response.data); setLoading(false); setErrorLog(response.data.message); setSnippetData(null) }
             })
             .catch((err) => { console.log(err); setErrorLog(err.message); setLoading(false); setSnippetData(null) });
     }
@@ -55,14 +59,13 @@ export default function FilterScreen() {
                         <h2>Filter</h2>
                         <div className={`flex ${styles.tagHolder}`}>
                             <span className={styles.bodyTagline}>{filterName}</span>
-                            <p>Python is an interpreted high-level general-purpose programming
-                                language. Its design philosophy emphasizes code readability with
-                                its use of significant indentation. Its language constructs as
-                                well as its object-oriented approach aim to help programmers write
-                                clear, logical code for small and large-scale projects.</p>
+                            {langData && <p>{langData.desc}</p>}
                         </div>
                     </div>
-                    <img alt={`${filterName} logo`} className={styles.svgDecoration} src={"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png"} />
+                    {langData &&
+                        <img alt={`${filterName} logo`} className={styles.svgDecoration} src={langData.logo} />
+                    }
+
 
                 </div>
 
@@ -77,8 +80,13 @@ export default function FilterScreen() {
                                 id={card.snippet_id}
                                 type={'home'} />
                         ))
-                        : <div className={styles.errorHolder}>
-                            <span>No Snippet for this {filterName} found</span>
+                        :
+                        <div className={`flex ${styles.errorHolder}`}>
+                            <span>No Snippet for {filterName} found</span>
+                            <Link href={{ pathname: '/about', hash: 'contribute' }}>
+                                <span className={styles.contribButton}>Contribute by adding snippet</span>
+                            </Link>
+
                         </div>
                     }
                 </div>

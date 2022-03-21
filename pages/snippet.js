@@ -7,7 +7,8 @@ import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Clipboard from 'react-clipboard.js';
 import Head from 'next/head';
 import { useRouter } from 'next/router'
-import { deployConfig } from "./deployConfig";
+import { deployConfig } from "../components/deployConfig";
+import copySvg from '../public/copySvg.svg'
 
 export default function SnippetPage() {
 
@@ -70,7 +71,10 @@ export default function SnippetPage() {
         setIsLoading(true)
         await axios.post("https://snippetsauce.herokuapp.com/api/filter", { language: lang })
             .then((response) => {
-                if (response.data.status) { setSimilarSnippets(response.data.snippet_data); console.log(response.data.snippet_data) }
+                if (response.data.status) {
+                    setSimilarSnippets(response.data.snippet_data);
+                    console.log(response.data.snippet_data)
+                }
                 else setSimilarSnippets(null)
                 setIsLoading(false)
             })
@@ -97,29 +101,49 @@ export default function SnippetPage() {
                         <div className={`flex ${styles.suggestedTab}`}>
                             <h3 className={styles.suggestedTitle}>Similar Snippets</h3>
                             <div className={`flex`}>
-                                {similarSnippets &&
-                                    similarSnippets.map((link, index) => (
-                                        <Link key={index} href={{ pathname: '/snippet', query: { sauce: link.snippet_id } }}>
-                                            <a className={styles.suggestedLink}>{link.snippet_title}</a>
+                                {similarSnippets.filter(snippet => snippet.snippet_id !== sauce).length !== 0 ?
+                                    similarSnippets.filter(snippet => snippet.snippet_id !== sauce).map((data, index) =>
+
+                                    (
+                                        <Link key={index} href={{ pathname: '/snippet', query: { sauce: data.snippet_id } }}>
+                                            <a className={styles.suggestedLink}>{data.snippet_title}</a>
                                         </Link>
-                                    ))}
+                                    ))
+                                    :
+                                    <>
+                                        <span className={styles.noSuggestedLink}>No similar snippets right now </span>
+                                        <span className={styles.noSuggestedLink}>We will add more soon...</span>
+                                    </>
+
+                                }
                             </div>
 
                         </div>
 
                         <div className={styles.snippetScreen}>
                             <div className={`flex ${styles.snippetHeader}`}>
-                                <div style={{ width: '80%' }}>
-                                    <p className={styles.snippetlang}> <strong>Snippet Sauce - {snippetBody.snippet_id}</strong> </p>
+                                <div style={{ width: '100%' }}>
+                                    <div className="flex" style={{ width: '100%', flexDirection: 'row', justifyContent: "space-between" }}>
+                                        <p className={styles.snippetlang}> <strong>Snippet Sauce - {snippetBody.snippet_id}</strong> </p>
+
+                                        <div>
+                                            <Clipboard onClick={() => alert("Sauce Copied sucessfully!")} className={styles.copyButton} data-clipboard-text={`${snippetBody.snippet_id}`}>
+                                                <img src={copySvg.src} />
+                                            </Clipboard>
+                                            <Clipboard onClick={() => alert("URL Copied sucessfully!")} className={styles.copyButton} data-clipboard-text={`http://localhost:3000${shareUrl}`}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="30" height="30" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M3 12c0 1.654 1.346 3 3 3c.794 0 1.512-.315 2.049-.82l5.991 3.424c-.018.13-.04.26-.04.396c0 1.654 1.346 3 3 3s3-1.346 3-3s-1.346-3-3-3c-.794 0-1.512.315-2.049.82L8.96 12.397c.018-.131.04-.261.04-.397s-.022-.266-.04-.397l5.991-3.423c.537.505 1.255.82 2.049.82c1.654 0 3-1.346 3-3s-1.346-3-3-3s-3 1.346-3 3c0 .136.022.266.04.397L8.049 9.82A2.982 2.982 0 0 0 6 9c-1.654 0-3 1.346-3 3z" fill="red" /></svg>
+                                            </Clipboard>
+                                        </div>
+
+                                    </div>
+
                                     <h1 className={styles.snippetTitle}>{snippetBody.snippet_title}</h1>
                                     <p className={styles.snippetlang}> <strong>Language - {snippetBody.snippet_language}</strong> </p>
                                 </div>
 
                                 <div>
 
-                                    <Clipboard onClick={() => alert("URL Copied sucessfully!")} className={styles.copyButton} data-clipboard-text={`http://localhost:3000${shareUrl}`}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="30" height="30" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M3 12c0 1.654 1.346 3 3 3c.794 0 1.512-.315 2.049-.82l5.991 3.424c-.018.13-.04.26-.04.396c0 1.654 1.346 3 3 3s3-1.346 3-3s-1.346-3-3-3c-.794 0-1.512.315-2.049.82L8.96 12.397c.018-.131.04-.261.04-.397s-.022-.266-.04-.397l5.991-3.423c.537.505 1.255.82 2.049.82c1.654 0 3-1.346 3-3s-1.346-3-3-3s-3 1.346-3 3c0 .136.022.266.04.397L8.049 9.82A2.982 2.982 0 0 0 6 9c-1.654 0-3 1.346-3 3z" fill="red" /></svg>
-                                    </Clipboard>
+
 
                                     {
                                         deployConfig.visitorAuth == true &&
@@ -181,7 +205,7 @@ export default function SnippetPage() {
                                                     <a href='#' style={{ color: 'red', fontSize: 15, fontWeight: 'bold' }}>View Profile</a>
                                                 </Link>
                                                 :
-                                                <a target={'_blank'} rel={'no-ref'} href={`https://github.com/${snippetBody.snippet_author}`} style={{ color: 'red', fontSize: 15, fontWeight: 'bold' }}>View Profile</a>
+                                                <a target={'_blank'} rel="noreferrer" href={`https://github.com/${snippetBody.snippet_author}`} style={{ color: 'red', fontSize: 15, fontWeight: 'bold' }}>View Profile</a>
 
                                         }
 

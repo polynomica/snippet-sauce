@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import navStyles from '../styles/Navbar.module.css'
 import ssLogo from '../public/sslogo.png'
+import searchIcon from '../public/searchIcon.svg'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import axios from "axios";
-import { deployConfig } from '../pages/deployConfig'
+import { deployConfig } from '../components/deployConfig'
+import Button from './Button'
+import menuSvg from '../public/menuSvg.svg'
 
 export default function Navbar() {
 
@@ -16,15 +19,6 @@ export default function Navbar() {
     }, [])
 
     const router = useRouter()
-
-    // const languages = [
-    //     { name: 'Python' },
-    //     { name: 'Javascript' },
-    //     { name: 'Java' },
-    //     { name: 'Php' },
-    //     { name: 'React js' },
-    //     { name: 'HTML Css' }
-    // ]
 
     const languageSetter = (array) => {
         let temp = [];
@@ -39,17 +33,20 @@ export default function Navbar() {
             <Link href={{ pathname: '/' }}>
                 <a className={`${navStyles.navLinks} flex ${navStyles.hero} ${currentPath == "/" && navStyles.navLinksActive}`} >
                     <img alt='Snippet sauce logo in navbar' src={ssLogo.src} />
-                    Snippet Sauce
+                    <span>Snippet Sauce</span>
                 </a>
             </Link>
 
-            <div className={navStyles.navContent}>
+            <div className={`flex ${navStyles.navContent}`}>
 
                 <Link href={{ pathname: '/search' }}>
-                    <a className={`${navStyles.navLinks} ${currentPath == "/search" && navStyles.navLinksActive}`}>Search</a>
+                    <a className={`flex ${navStyles.navLinks} ${currentPath == "/search" && navStyles.navLinksActive} ${navStyles.navOptions}`}>
+                        <img alt='search' src={searchIcon.src} style={{ marginRight: 5 }} />
+                        Search
+                    </a>
                 </Link>
 
-                <span className={`${navStyles.navLinks}  ${navStyles.langPicker} ${currentPath == "/filter" && navStyles.navLinksActive}`}>Filter
+                <span className={` ${navStyles.navLinks}  ${navStyles.langPicker} ${currentPath == "/filter" && navStyles.navLinksActive} ${navStyles.navOptions}`}>Filter
                     <div className={`flex ${navStyles.languageHolder}`}>
                         {languages &&
                             languages.map((item, index) => (
@@ -62,17 +59,19 @@ export default function Navbar() {
                 </span>
 
                 <Link href={{ pathname: '/about' }}>
-                    <a className={`${navStyles.navLinks} ${currentPath == "/about" && navStyles.navLinksActive}`}>About</a>
+                    <a className={` ${navStyles.navLinks} ${currentPath == "/about" && navStyles.navLinksActive} ${navStyles.navOptions}`}>About</a>
                 </Link>
 
-                {deployConfig.visitorAuth == true &&
+                {/* {deployConfig.visitorAuth == true &&
                     <Link href={{ pathname: '/profile' }}>
-                        <a className={`${navStyles.navLinks} ${currentPath == "/profile" && navStyles.navLinksActive}`}>Profile</a>
+                        <a className={` ${navStyles.navLinks} ${currentPath == "/profile" && navStyles.navLinksActive} ${navStyles.navOptions}`}>Profile</a>
                     </Link>
-                }
+                } */}
+
+
 
             </div>
-        </nav>
+        </nav >
 
     )
 }

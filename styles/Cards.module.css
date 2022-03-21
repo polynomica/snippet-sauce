@@ -76,3 +76,16 @@
     color: lightgray;
     font-size: 0.9rem;
 }
+
+@media only screen and (max-width: 500px) {
+
+    /* .home{
+        width: 40%;
+        height: 150px;
+    } */
+
+    .card{
+        margin: 10px;
+    }
+
+}

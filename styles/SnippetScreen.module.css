@@ -72,6 +72,15 @@
  
 }
 
+.noSuggestedLink{
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  padding-left: 8px;
+  color: grey;
+}
+
 .suggestedLink:hover{
     font-weight: bold;
     color: white;
@@ -142,7 +151,7 @@
     background: none;
     cursor: pointer;
     padding: 5px;
-    margin-right: 10px;
+    margin-right: 5px;
     transition: ease 0.5s;
   }
 
@@ -183,8 +192,8 @@
 }
 
 .authorPic{
-  width: 80px;
-    height: 80px;
+  width: 60px;
+    height: 60px;
     border: 2px solid red;
     border-radius: 50%;
 
@@ -228,4 +237,17 @@
 /* Handle on hover */
 .codeTerminal>pre::-webkit-scrollbar-thumb:hover {
   background: #b30000; 
+}
+
+@media only screen and (max-width: 500px) {
+
+.suggestedTab{
+  display: none;
+}
+
+.snippetScreen{
+  width: 95%;
+  margin: auto;
+}
+
 }

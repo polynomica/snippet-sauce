@@ -5,6 +5,7 @@ import Button from '../components/Button'
 import Head from 'next/head'
 import axios from 'axios'
 import logo from '../public/logo.svg'
+import { deployConfig } from '../components/deployConfig.js'
 
 export default function HomeScreen() {
 
@@ -14,14 +15,17 @@ export default function HomeScreen() {
 
   useEffect(() => {
     getSnippets();
+    //getSnippetsByGZip()
 
   }, []);
 
   const getSnippets = async () => {
     await axios.get("https://snippetsauce.herokuapp.com/api/display")
-      .then((response) => { setSnippetData(response.data.snippet_data); setLoading(false); setErrorLog(null) })
+      .then((response) => { setSnippetData(response.data.snippet_data); console.log(response.data.snippet_data); setLoading(false); setErrorLog(null) })
       .catch((err) => { setErrorLog(err.message); setSnippetData(null) });
   }
+
+
 
   return (
     !isLoading ?
@@ -29,6 +33,7 @@ export default function HomeScreen() {
         <Head>
           <title>Snippet Sauce | Home</title>
         </Head>
+
 
         <div className={`flex ${styles.homeHeader}`}>
           <div className={`flex ${styles.homeBody}`}>
@@ -38,10 +43,14 @@ export default function HomeScreen() {
               <span>Snippet Sauce is the leading destination to find pre made working Code Snippets from all the languages and frameworks.</span>
             </div>
             <br />
-            <div>
-              <Button title={"Sign Up"} type="fill" hoverEffect={true} />
-              <Button title={"Login"} type="outline" hoverEffect={true} />
-            </div>
+            {
+              deployConfig.visitorAuth == true &&
+              <div>
+                <Button title={"Sign Up"} type="fill" hoverEffect={true} />
+                <Button title={"Login"} type="outline" hoverEffect={true} />
+              </div>
+            }
+
             {/* <span>Create account to save your fav snippets!</span> */}
 
           </div>
