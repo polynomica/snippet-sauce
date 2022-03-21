@@ -19,7 +19,6 @@ export default function SnippetPage() {
     useEffect(() => {
 
         if (!query.sauce) {
-            console.log(query.sauce)
             return;
         } else {
             getSnippetDetail();
@@ -33,25 +32,6 @@ export default function SnippetPage() {
     const [isLoading, setIsLoading] = useState(true)
 
 
-
-
-    // const suggested = [
-    //     { title: 'OOP with core' },
-    //     { title: 'Selenium with axios' },
-    //     { title: 'Python sorting algo' },
-    //     { title: 'OOP with core' },
-    //     { title: 'Selenium with axios' },
-    //     { title: 'Python sorting algo' },
-    //     { title: 'OOP with core' },
-    //     { title: 'Selenium with axios' },
-    //     { title: 'Python sorting algo' },
-    //     { title: 'OOP with core' },
-    //     { title: 'Selenium with axios' },
-    //     { title: 'Python sorting algo' },
-    //     { title: 'OOP with core' },
-    //     { title: 'Selenium with axios' },
-    //     { title: 'Python sorting algo' },
-    // ]
 
 
     const getSnippetDetail = async () => {
@@ -73,7 +53,6 @@ export default function SnippetPage() {
             .then((response) => {
                 if (response.data.status) {
                     setSimilarSnippets(response.data.snippet_data);
-                    console.log(response.data.snippet_data)
                 }
                 else setSimilarSnippets(null)
                 setIsLoading(false)

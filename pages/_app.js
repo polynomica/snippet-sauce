@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import React, { useRef, useState, useEffect } from "react";
 import Layout from '../components/Layout'
 import Navbar from '../components/Navbar'
 import ssLogo from '../public/sslogo.webp'
@@ -6,6 +7,13 @@ import Link from 'next/link'
 import SeoHandler from '../components/seoHandler'
 
 function MyApp({ Component, pageProps }) {
+
+  useEffect(() => {
+    console.log("Dont open this link ! ... Just Dont.")
+    console.log("https://youtu.be/dQw4w9WgXcQ")
+
+  }, [])
+
   return (
     <Layout>
       <SeoHandler />
