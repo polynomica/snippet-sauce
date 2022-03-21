@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import Layout from '../components/Layout'
 import Navbar from '../components/Navbar'
-import ssLogo from '../public/sslogo.png'
+import ssLogo from '../public/sslogo.webp'
 import Link from 'next/link'
 import SeoHandler from '../components/seoHandler'
 
@@ -21,13 +21,13 @@ function MyApp({ Component, pageProps }) {
 
           <div className='footer-nav'>
             <Link href={{ pathname: '/' }}>
-              <a href='' >Home</a>
+              <a href='https://snippetsauce.netlify.app/' >Home</a>
             </Link>
             <Link href={{ pathname: '/search' }}>
-              <a href='' >Search</a>
+              <a href='https://snippetsauce.netlify.app/search' >Search</a>
             </Link>
             <Link href={{ pathname: '/about' }}>
-              <a href='' >About</a>
+              <a href='https://snippetsauce.netlify.app/about' >About</a>
             </Link>
           </div>
 

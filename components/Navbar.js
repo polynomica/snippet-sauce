@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import navStyles from '../styles/Navbar.module.css'
-import ssLogo from '../public/sslogo.png'
+import ssLogo from '../public/sslogo.webp'
 import searchIcon from '../public/searchIcon.svg'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import axios from "axios";
 import { deployConfig } from '../components/deployConfig'
 import Button from './Button'
-import menuSvg from '../public/menuSvg.svg'
+
 
 export default function Navbar() {
 
