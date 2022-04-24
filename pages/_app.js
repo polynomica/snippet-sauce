@@ -9,8 +9,7 @@ import SeoHandler from '../components/seoHandler'
 function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
-    console.log("Dont open this link ! ... Just Dont.")
-    console.log("https://youtu.be/hj9jw4wagD0")
+    console.log("No !")
 
   }, [])
 

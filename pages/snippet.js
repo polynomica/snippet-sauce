@@ -9,6 +9,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router'
 import { deployConfig } from "../components/deployConfig";
 import copySvg from '../public/copySvg.svg'
+import Button from '../components/Button'
 
 export default function SnippetPage() {
 
@@ -41,6 +42,7 @@ export default function SnippetPage() {
                 if (response.data.status) {
                     setSnippetBody(response.data.snippet_data);
                     getSimilarSnippets(response.data.snippet_data.snippet_language);
+                    console.log(response.data.snippet_data)
                     setIsLoading(false);
                 } else setIsLoading(false)
             }).catch(error => { setSnippetBody(null); setIsLoading(false); })
@@ -53,6 +55,7 @@ export default function SnippetPage() {
             .then((response) => {
                 if (response.data.status) {
                     setSimilarSnippets(response.data.snippet_data);
+
                 }
                 else setSimilarSnippets(null)
                 setIsLoading(false)
@@ -137,7 +140,15 @@ export default function SnippetPage() {
 
                             <div className={styles.snippetData}>
                                 <p>{snippetBody.snippet_description}</p>
+                                {/* {
+                                    snippetBody.snippet_demo_url &&
+                                    <Button title={'Demo'} type='link' href={snippetBody.snippet_demo_url} />
+                                } */}
+
                                 <br />
+                                <br />
+                                <br />
+
                                 {/* <p className={styles.snippetHeading}> <strong>Snippet Code</strong> </p> */}
                                 <div className={styles.codeTerminal}>
                                     <div className={`flex ${styles.terminalHead}`}>
