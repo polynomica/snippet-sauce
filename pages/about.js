@@ -15,7 +15,7 @@ export default function AboutScreen() {
             <div className={styles.aboutScreen}>
                 <div className={`flex ${styles.aboutBanner}`}>
                     <img alt='a' src={QStart.src} />
-                    <span>No one wants to remmber the codes, that &apos; s why we are here to help!</span>
+                    <span>No one wants to remember the codes, that &apos; s why we are here to help!</span>
                     <img alt='b' src={QEnd.src} />
                 </div>
                 <br />
@@ -46,15 +46,19 @@ export default function AboutScreen() {
                 <br />
                 <br />
                 <h2 >Want to contribute ?</h2>
-                <p>Found a Bug or want to suggest something?</p>
+                <p>Found a Bug or have an awesome suggestion?</p>
 
-                <p>We will be glad to have you in out little team !. Please step forward and contribute anything you think can improve Snippet Sauce.</p>
+                <p>We will be more than happy to implement it and improve the experience of Snippet Sauce.</p>
                 <br />
                 <p style={{ color: '#ec0000', fontWeight: 'bold' }}>How to contribute?</p>
-                <p>Head over to our service repo and raise an issue regarding your query | Or upload the snippet you want to submit with your GitHub user name [ ;) we will give proper credit ]</p>
-                <p>We will approve the submittion once we cross check the issue/ query/ snippet</p>
+                <p>Please head over to our service repo and raise an issue with appropriate details to help us quickly resolve it.</p>
+                <p>If you decide to contribute Snippets feel free to open an issue. The guidelines for contributing are mentioned in the repo.
+                </p>
+                <p>The service repo can be found
+                    <a target={'_blank'} rel="noreferrer" style={{ color: '#ec0000', }} href='https://github.com/polynomica/service-snippetsauce' > here</a>
+                </p>
 
-                <a target={'_blank'} rel="noreferrer" style={{ color: '#ec0000', }} href='https://github.com/polynomica/service-snippetsauce' >Click to visit Service Repo</a>
+
 
             </div>
 
