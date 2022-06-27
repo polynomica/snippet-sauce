@@ -12,7 +12,7 @@ export default function NavBar(props) {
 
     useEffect(() => {
         axios.get("https://snippetsauce.herokuapp.com/api/languages")
-            .then((response) => { languageSetter(response.data.languages) })
+            .then((response) => { languageSetter(response.data.languages); })
     }, [])
 
 

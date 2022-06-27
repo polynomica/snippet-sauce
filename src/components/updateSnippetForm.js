@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import '../../src/components/updateForm.scss'
 import { useHistory } from "react-router-dom";
+import { AuthToken } from "../app/useStore";
 
 export default function UpdateSnippetForm(props) {
 
@@ -16,6 +17,7 @@ export default function UpdateSnippetForm(props) {
     const [snippetAuthor, setSnippetAuthor] = useState(props.author);
 
     const history = useHistory();
+    const token = AuthToken()
 
     const [languages, setLanguages] = useState([]);
 
@@ -35,7 +37,6 @@ export default function UpdateSnippetForm(props) {
 
         const data = {
             snippet_title: snippetTitle,
-            snippet_language: snippetLang,
             snippet_description: snippetDescription,
             snippet_code: snippetCode,
             snippet_seo: snippetSeo.split(","),
@@ -45,7 +46,9 @@ export default function UpdateSnippetForm(props) {
             snippet_author: snippetAuthor,
         }
 
-        axios.post(`https://snippetsauce.herokuapp.com/api/update_snippet/${props.snippetId}`, data)
+        axios.post(`https://snippetsauce.herokuapp.com/api/update_snippet/${props.snippetId}`, data,
+
+            { "headers": { "x-admin-token": `${token}` } })
             .then((response) => {
                 alert(response.data.status ? "Snippet updated Sucessfully!" : "Some Error Occure");
                 history.push({ pathname: '/' })
@@ -75,17 +78,17 @@ export default function UpdateSnippetForm(props) {
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="lang" className="form-label">Language and Tags</label>
+                            <label htmlFor="lang" className="form-label">Tags</label>
                             <br />
                             <div className="base-flex tag-div">
-                                <div className="dropdown">
+                                {/* <div className="dropdown">
                                     <button className="btn small btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         {snippetLang === null ? 'Choose Lanaguage' : snippetLang}
                                     </button>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         {languages.map((item, index) => <li key={index}><button onClick={(e) => setSnippetLang(item.name)} className="dropdown-item" >{item.name}</button></li>)}
                                     </ul>
-                                </div>
+                                </div> */}
                                 <input type="text" value={snippetTags} onChange={(e) => setSnippetTags(e.target.value)} className="form-control" id="snippetTags" aria-describedby="snippet tags" />
                             </div>
                         </div>

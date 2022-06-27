@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import { AuthToken } from "../app/useStore";
 
 export default function SnippetMangaerPanel() {
 
@@ -18,6 +18,8 @@ export default function SnippetMangaerPanel() {
     const [snippetDemo, setSnippetDemo] = useState('');
 
     const [languages, setLanguages] = useState([]);
+
+    const token = AuthToken()
 
     useEffect(() => {
         axios.get("https://snippetsauce.herokuapp.com/api/languages")
@@ -47,7 +49,7 @@ export default function SnippetMangaerPanel() {
             snippet_demo_url: snippetDemo
         }
 
-        axios.post('https://snippetsauce.herokuapp.com/api/create_snippet', data)
+        axios.post('https://snippetsauce.herokuapp.com/api/create_snippet', data, { "headers": { "x-admin-token": `${token}` } })
             .then((response) => alert(response.data.status ? "Snippet added Sucessfully!" : "Some Error Occure"))
             .catch(err => alert(err.message))
 

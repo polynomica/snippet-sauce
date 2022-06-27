@@ -16,7 +16,8 @@ export default function LoginScreen() {
         axios.post('https://snippetsauce.herokuapp.com/api/admin_login', { git_username: `${userName}`, password: `${password}` })
             .then((response) => {
                 if (response.data.logged_in) {
-                    dispatch(setActiveUser({ username: response.data.admin_username, loggedIn: true, role: response.data.role }));
+                    console.log(response.data)
+                    dispatch(setActiveUser({ username: response.data.admin_username, loggedIn: true, role: response.data.role, token: response.data.admin_token, }));
                     history.push({ pathname: '/ssadmin' })
                 } else alert("Wrong password or username!")
             })

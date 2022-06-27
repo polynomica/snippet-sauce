@@ -11,27 +11,33 @@ export default function HomeScreen(props) {
     const history = useHistory();
     const [errorLog, setErrorLog] = useState(null);
     const [snippetData, setSnippetData] = useState([]);
-    const [isLoading, setLoading] = useState(true)
+    const [isLoading, setLoading] = useState(false)
 
     useEffect(() => {
         getSnippets();
 
     }, [history.location.search]);
 
+<<<<<<< Updated upstream
     const getSnippets = () => {
 
+=======
+    const getSnippets = async () => {
+        setLoading(true)
+>>>>>>> Stashed changes
         if (props.mode === "filterScreen") {
             axios.post("https://snippetsauce.herokuapp.com/api/filter", { language: `${history.location.search.split("?")[1]}` })
                 .then((response) => {
                     if (response.data.status === true) {
+                        console.log(response.data)
                         setSnippetData(response.data.snippet_data); setErrorLog(null); setLoading(false)
-                    } else { setErrorLog(response.data.message); setSnippetData([]) }
+                    } else { setErrorLog(response.data.message); setLoading(false); setSnippetData([]) }
                 })
-                .catch((err) => { setErrorLog(err.message) });
+                .catch((err) => { setErrorLog(err.message); setLoading(false) });
         } else {
             axios.get("https://snippetsauce.herokuapp.com/api/display")
                 .then((response) => { setSnippetData(response.data.snippet_data); setLoading(false); setErrorLog(null) })
-                .catch((err) => { setErrorLog(err.message); setSnippetData([]) });
+                .catch((err) => { setErrorLog(err.message); setSnippetData([]); setLoading(false); });
         }
 
     }

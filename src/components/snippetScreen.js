@@ -11,6 +11,7 @@ import { UserRole } from "../app/useStore.js";
 import ErrorScreen from "./errorScreen";
 import LoadingScreen from './loadingScreen'
 import Clipboard from 'react-clipboard.js';
+import { AuthToken } from "../app/useStore.js";
 
 export default function SnippetDetails() {
 
@@ -20,7 +21,7 @@ export default function SnippetDetails() {
     const [similarSnippets, setSimilarSnippets] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
     const role = UserRole()
-
+    const token = AuthToken()
 
 
     useEffect(() => {
@@ -70,16 +71,21 @@ export default function SnippetDetails() {
 
 
     const deleteSnippet = (sauce) => {
+        console.log(token)
+        console.log(role)
         if (window.confirm("Are you sure you want to delete this snippet!. This cant be undone !")) {
             const confirmation = prompt("Please enter the snippet sauce to confirm. " + sauce)
             if (confirmation === sauce) {
-                axios.post(`https://snippetsauce.herokuapp.com/api/delete_snippet/${sauce}`)
+                axios.post(`https://snippetsauce.herokuapp.com/api/delete_snippet/${sauce}`,
+                    {},
+                    { "headers": { "x-admin-token": `${token}` } })
                     .then((response) => {
+                        console.log(response)
                         if (response.data.status) {
                             alert(response.data.message);
                             history.push({ pathname: '/' })
                         }
-                        else alert("Some error occured!")
+                        else { alert(response.data.message); console.log(response.data) }
                     })
             } else alert("Confirmation failed!")
         }
