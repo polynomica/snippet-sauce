@@ -55,7 +55,7 @@ export default function FilterScreen() {
                         <h2>Filter</h2>
                         <div className={`flex ${styles.tagHolder}`}>
                             <span className={styles.bodyTagline}>{filterName}</span>
-                            {langData && <p>{langData.desc}</p>}
+                            {langData && <p>{langData.description}</p>}
                         </div>
                     </div>
                     {langData &&

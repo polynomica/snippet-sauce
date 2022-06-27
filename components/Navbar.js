@@ -16,6 +16,7 @@ export default function Navbar() {
     useEffect(() => {
         axios.get("https://snippetsauce.herokuapp.com/api/languages")
             .then((response) => { languageSetter(response.data.languages) })
+            .catch(err => { })
     }, [])
 
     const router = useRouter()
@@ -24,6 +25,7 @@ export default function Navbar() {
         let temp = [];
         array.forEach(element => temp.push({ name: `${element.charAt(0).toUpperCase() + element.slice(1)}` }))
         setLanguages(temp)
+        console.log(temp)
     }
 
     const currentPath = router.pathname;
@@ -45,18 +47,19 @@ export default function Navbar() {
                         Search
                     </a>
                 </Link>
+                {languages.length !== 0 &&
+                    <span className={` ${navStyles.navLinks}  ${navStyles.langPicker} ${currentPath == "/filter" && navStyles.navLinksActive} ${navStyles.navOptions}`}>Filter
+                        <div className={`flex ${navStyles.languageHolder}`}>
 
-                <span className={` ${navStyles.navLinks}  ${navStyles.langPicker} ${currentPath == "/filter" && navStyles.navLinksActive} ${navStyles.navOptions}`}>Filter
-                    <div className={`flex ${navStyles.languageHolder}`}>
-                        {languages &&
-                            languages.map((item, index) => (
+                            {languages.map((item, index) => (
                                 <Link key={index} href={{ pathname: '/filter', query: { name: item.name } }}>
                                     <a className={`${navStyles.langHolderLinks}`} >{item.name}</a>
                                 </Link>
-                            ))
-                        }
-                    </div>
-                </span>
+                            ))}
+
+                        </div>
+                    </span>
+                }
 
                 <Link href={{ pathname: '/about' }}>
                     <a className={` ${navStyles.navLinks} ${currentPath == "/about" && navStyles.navLinksActive} ${navStyles.navOptions}`}>About</a>
