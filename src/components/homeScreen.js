@@ -18,7 +18,6 @@ export default function HomeScreen(props) {
 
     }, [history.location.search]);
 
-
     const getSnippets = async () => {
         setLoading(true)
         if (props.mode === "filterScreen") {
