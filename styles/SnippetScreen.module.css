@@ -66,9 +66,10 @@
   width: 100%;
   font-size: 0.9rem;
   font-weight: 500;
-  margin: 2px;
-  padding: 8px;
+
+  padding: 10px;
   transition: ease 0.3s;
+  border-bottom: 1px lightgray solid;
 
 }
 
@@ -82,10 +83,11 @@
 }
 
 .suggestedLink:hover {
-  font-weight: bold;
-  color: white;
-  background: red;
-  transition: ease 0.3s;
+  /* font-weight: bold; */
+  color: red;
+
+  /* background: rgb(0, 0, 0); */
+  /* transition: ease 0.2s; */
 }
 
 .snippetScreen {

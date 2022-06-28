@@ -9,7 +9,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router'
 import { deployConfig } from "../components/deployConfig";
 import copySvg from '../public/copySvg.svg'
-import Button from '../components/Button'
+import { isMobile } from "react-device-detect";
 
 export default function SnippetPage() {
 
@@ -41,8 +41,13 @@ export default function SnippetPage() {
             .then((response) => {
                 if (response.data.status) {
                     setSnippetBody(response.data.snippet_data);
-                    getSimilarSnippets(response.data.snippet_data.snippet_language);
-                    console.log(response.data.snippet_data)
+                    if (isMobile == false) {
+                        getSimilarSnippets(response.data.snippet_data.snippet_language);
+                    } else {
+                        console.log(isMobile)
+                    }
+                    console.log(isMobile)
+                    //console.log(response.data.snippet_data)
                     setIsLoading(false);
                 } else setIsLoading(false)
             }).catch(error => { setSnippetBody(null); setIsLoading(false); })
@@ -51,11 +56,11 @@ export default function SnippetPage() {
 
     const getSimilarSnippets = async (lang) => {
         setIsLoading(true)
-        await axios.post("https://snippetsauce.herokuapp.com/api/filter", { language: lang })
+        await axios.get(`https://snippetsauce.herokuapp.com/api/similar/${lang}`)
             .then((response) => {
                 if (response.data.status) {
-                    setSimilarSnippets(response.data.snippet_data);
 
+                    setSimilarSnippets(response.data.snippet_data);
                 }
                 else setSimilarSnippets(null)
                 setIsLoading(false)
@@ -79,28 +84,28 @@ export default function SnippetPage() {
                         <Head>
                             <title>{snippetBody ? snippetBody.snippet_title : "No Snippet Found"} | Snippet Sauce</title>
                         </Head>
+                        {isMobile == false &&
+                            <div className={`flex ${styles.suggestedTab}`}>
+                                <h3 className={styles.suggestedTitle}>Similar Snippets</h3>
+                                <div className={`flex`}>
+                                    {similarSnippets.filter(snippet => snippet.snippet_id !== sauce).length !== 0 ?
+                                        similarSnippets.filter(snippet => snippet.snippet_id !== sauce).map((data, index) =>
 
-                        <div className={`flex ${styles.suggestedTab}`}>
-                            <h3 className={styles.suggestedTitle}>Similar Snippets</h3>
-                            <div className={`flex`}>
-                                {similarSnippets.filter(snippet => snippet.snippet_id !== sauce).length !== 0 ?
-                                    similarSnippets.filter(snippet => snippet.snippet_id !== sauce).map((data, index) =>
+                                        (
+                                            <Link key={index} href={{ pathname: '/snippet', query: { sauce: data.snippet_id } }}>
+                                                <a className={styles.suggestedLink}>{data.snippet_title}</a>
+                                            </Link>
+                                        ))
+                                        :
+                                        <>
+                                            <span className={styles.noSuggestedLink}>No similar snippets right now </span>
+                                            <span className={styles.noSuggestedLink}>We will add more soon...</span>
+                                        </>
 
-                                    (
-                                        <Link key={index} href={{ pathname: '/snippet', query: { sauce: data.snippet_id } }}>
-                                            <a className={styles.suggestedLink}>{data.snippet_title}</a>
-                                        </Link>
-                                    ))
-                                    :
-                                    <>
-                                        <span className={styles.noSuggestedLink}>No similar snippets right now </span>
-                                        <span className={styles.noSuggestedLink}>We will add more soon...</span>
-                                    </>
-
-                                }
+                                    }
+                                </div>
                             </div>
-
-                        </div>
+                        }
 
                         <div className={styles.snippetScreen}>
                             <div className={`flex ${styles.snippetHeader}`}>

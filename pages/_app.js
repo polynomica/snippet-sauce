@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import ssLogo from '../public/sslogo.webp'
 import Link from 'next/link'
 import SeoHandler from '../components/seoHandler'
+import { isMobile } from "react-device-detect";
 
 function MyApp({ Component, pageProps }) {
 
@@ -16,7 +17,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <Layout>
       <SeoHandler />
-      <Navbar />
+      {isMobile == false && <Navbar />}
+
       <Component {...pageProps} />
       <footer>
         <div>

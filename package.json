@@ -13,6 +13,7 @@
     "next-transpile-modules": "^9.0.0",
     "react": "17.0.2",
     "react-clipboard.js": "^2.0.16",
+    "react-device-detect": "^2.2.2",
     "react-dom": "17.0.2",
     "react-plain-datalist-input": "^2.2.0",
     "react-syntax-highlighter": "^15.4.5"
