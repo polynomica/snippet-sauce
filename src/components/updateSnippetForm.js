@@ -1,134 +1,139 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import '../../src/components/updateForm.scss'
-import { useHistory } from "react-router-dom";
 import { AuthToken } from "../app/useStore";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
+import axios from 'axios';
+
+
 
 export default function UpdateSnippetForm(props) {
 
-    const [snippetTitle, setSnippetTitle] = useState(props.title);
-    const [snippetLang, setSnippetLang] = useState(props.language);
-    const [snippetTags, setSnippetTags] = useState(props.tags);
-    const [snippetDescription, setSnippetDescription] = useState(props.description);
-    const [snippetCode, setSnippetCode] = useState(props.code);
-    const [snippetSeo, setSnippetSeo] = useState(props.seo);
-    const [snippetBlog, setSnippetBlog] = useState(props.blog);
-    const [snippetDemo, setSnippetDemo] = useState(props.demo);
-    const [snippetAuthor, setSnippetAuthor] = useState(props.author);
+    const [isUpdating, setIsUpdating] = useState(false)
+    const [resultFound, setResultFound] = useState(false)
+    const [isSearching, setIsSearching] = useState(false)
+    const [snippetTitle, setSnippetTitle] = useState('');
+    const [snippetTags, setSnippetTags] = useState('');
+    const [snippetDescription, setSnippetDescription] = useState('');
+    const [snippetCode, setSnippetCode] = useState('');
+    const [snippetSeo, setSnippetSeo] = useState('');
+    const [snippetAuthor, setSnippetAuthor] = useState('');
+    const [snippetBlog, setSnippetBlog] = useState('');
+    const [snippetDemo, setSnippetDemo] = useState('');
+    const [snippetSauce, setSnippetSauce] = useState('');
 
-    const history = useHistory();
     const token = AuthToken()
 
-    const [languages, setLanguages] = useState([]);
 
-    useEffect(() => {
-        axios.get("https://snippetsauce.herokuapp.com/api/languages")
-            .then((response) => { languageSetter(response.data.languages) })
-    }, [])
-
-
-    const languageSetter = (array) => {
-        let temp = [];
-        array.forEach(element => temp.push({ name: element }))
-        setLanguages(temp)
-    }
-
-    const updateSnippet = () => {
-
+    const updateSnippet = async () => {
         const data = {
             snippet_title: snippetTitle,
             snippet_description: snippetDescription,
             snippet_code: snippetCode,
             snippet_seo: snippetSeo.split(","),
             snippet_tag: snippetTags.split(","),
-            snippet_blog: snippetBlog,
-            snippet_demo_url: snippetDemo,
+            snippet_blog: snippetBlog == null ? "" : snippetBlog,
+            snippet_demo_url: snippetDemo == null ? "" : snippetDemo,
             snippet_author: snippetAuthor,
         }
 
-        axios.post(`https://snippetsauce.herokuapp.com/api/update_snippet/${props.snippetId}`, data,
+        console.log("works")
 
-            { "headers": { "x-admin-token": `${token}` } })
-            .then((response) => {
-                alert(response.data.status ? "Snippet updated Sucessfully!" : "Some Error Occure");
-                history.push({ pathname: '/' })
-                window.location.reload()
+        if (data.snippet_title.trim() !== "" && data.snippet_description.trim() !== ""
+            && data.snippet_author.trim() !== "" && data.snippet_code.trim() !== "" &&
+            data.snippet_seo.length !== 0 && data.snippet_tag.length !== 0
+        ) {
+
+            setIsUpdating(true)
+            await axios.post(`https://snippetsauce.herokuapp.com/api/update_snippet/${snippetSauce}`, data,
+
+                { "headers": { "x-admin-token": `${token}` } })
+                .then((response) => {
+                    setIsUpdating(false)
+                    alert(response.data.status ? "Snippet updated Sucessfully!" : "Some Error Occure");
+                })
+                .catch(err => { alert(err.message); setIsUpdating(false) })
+        } else {
+            alert("Please fill all the needed fields !")
+        }
+
+
+    }
+
+
+    const handleSearch = async (event) => {
+        event.preventDefault()
+        const FData = new FormData(event.currentTarget);
+        setIsSearching(true)
+        await axios.get(`https://snippetsauce.herokuapp.com/api/search/${FData.get('snippetSauce')}`)
+            .then(response => {
+                if (response.data.status) {
+                    setSnippetTitle(response.data.snippet_data.snippet_title)
+                    setSnippetDescription(response.data.snippet_data.snippet_description)
+                    setSnippetCode(response.data.snippet_data.snippet_code)
+                    setSnippetSeo(`${response.data.snippet_data.snippet_seo}`)
+                    setSnippetTags(`${response.data.snippet_data.snippet_tag}`)
+                    setSnippetAuthor(response.data.snippet_data.snippet_author)
+                    setSnippetBlog(response.data.snippet_data.snippet_blog)
+                    setSnippetDemo(response.data.snippet_data.snippet_demo_url)
+                    setSnippetSauce(response.data.snippet_data.snippet_id)
+                    setResultFound(true)
+
+                } else {
+                    alert("Invalid Sauce ! No snippet Found")
+                    setResultFound(false)
+                }
+                setIsSearching(false)
             })
-            .catch(err => alert(err.message))
+            .catch(err => { console.log(err); setIsSearching(false) })
 
     }
 
 
     return (
-        <div className="modal fade updateForm" id="updateModal" tabIndex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-            <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="updateModalLabel">Update Snippet</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div className="modal-body"></div>
-                    <div className="base-flex snippet-section">
 
-                        <div className="mb-3">
-                            <label htmlFor="snippetTitle" className="form-label">Snippet Title</label>
-                            <input type="text" value={snippetTitle} onChange={(e) => setSnippetTitle(e.target.value)} className="form-control" id="snippetTitle" aria-describedby="snippetTitle" />
-                        </div>
+        <Grid container spacing={3}>
+            <Grid item xs={12} sm={6}>
 
-                        <div className="mb-3">
-                            <label htmlFor="lang" className="form-label">Tags</label>
-                            <br />
-                            <div className="base-flex tag-div">
-                                {/* <div className="dropdown">
-                                    <button className="btn small btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {snippetLang === null ? 'Choose Lanaguage' : snippetLang}
-                                    </button>
-                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        {languages.map((item, index) => <li key={index}><button onClick={(e) => setSnippetLang(item.name)} className="dropdown-item" >{item.name}</button></li>)}
-                                    </ul>
-                                </div> */}
-                                <input type="text" value={snippetTags} onChange={(e) => setSnippetTags(e.target.value)} className="form-control" id="snippetTags" aria-describedby="snippet tags" />
-                            </div>
-                        </div>
+                {resultFound ?
+                    <>
 
-                        <div className="mb-3">
-                            <label className="form-label" htmlFor="floatingTextarea">Description</label>
-                            <textarea value={snippetDescription} onChange={(e) => setSnippetDescription(e.target.value)} className="form-control" id="floatingTextarea"></textarea>
-                        </div>
-                        <div className="mb-3">
-                            <label className="form-label" htmlFor="floatingTextarea">Code</label>
-                            <textarea value={snippetCode} onChange={(e) => setSnippetCode(e.target.value)} className="form-control" placeholder="print(hello)" id="floatingTextarea"></textarea>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="snippetSeo" className="form-label">Snippet Seo </label>
-                            <input value={snippetSeo} type="text" onChange={(e) => setSnippetSeo(e.target.value)} className="form-control" id="snippetSeo" aria-describedby="snippet seo" />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="authorname" className="form-label">Author Username</label>
-                            <input value={snippetAuthor} onChange={(e) => setSnippetAuthor(e.target.value)} type="text" className="form-control" id="authorname" aria-describedby="snippet author" />
-                        </div>
+                        <TextField value={snippetTitle} onChange={(e) => setSnippetTitle(e.target.value)} sx={{ mb: 3 }} id="snippetTitle" name="snippetTitle" label="Snippet Title" fullWidth variant="standard" />
+                        <TextField value={`${snippetTags}`} onChange={(e) => setSnippetTags(e.target.value)} required sx={{ mb: 3 }} id="snippetTags" name="snippetTags" label="Snippet Tags (comma seprated)" fullWidth variant="standard" />
 
-                        <div className="base-flex link-div">
-                            <div className="mb-3">
-                                <label htmlFor="snippetBlog" className="form-label">Snippet Blog </label>
-                                <input value={snippetBlog} type="text" onChange={(e) => setSnippetBlog(e.target.value)} className="form-control" id="snippetBlog" aria-describedby="snippet blog link" />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="snippetBlog" className="form-label">Snippet Demo </label>
-                                <input value={snippetDemo} type="text" onChange={(e) => setSnippetDemo(e.target.value)} className="form-control" id="snippetDemo" aria-describedby="snippet demo link" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" onClick={updateSnippet}>Update</button>
-                    </div>
-                </div>
+                        <TextField value={snippetDescription} onChange={(e) => setSnippetDescription(e.target.value)} sx={{ mb: 3 }} id="snippetDescription" name="snippetDescription" multiline
+                            rows={6}
+                            placeholder={"This snippet is.."} label="Snippet Description" fullWidth variant="standard" />
 
-            </div>
-        </div>
+                        <TextField value={snippetCode} onChange={(e) => setSnippetCode(e.target.value)} required sx={{ mb: 3 }} id="snippetCode" name="snippetCode" label="Snippet Code" rows={6} placeholder="print('damn bro')" multiline fullWidth variant="standard" />
+
+                        <TextField value={`${snippetSeo}`} onChange={(e) => setSnippetSeo(e.target.value)} required sx={{ mb: 3 }} id="snippetSEOTags" name="snippetSEOTags" label="Snippet SEO Tags (comma seprated)" fullWidth variant="standard" />
+
+                        <TextField value={snippetAuthor} onChange={(e) => setSnippetAuthor(e.target.value)} required sx={{ mb: 3 }} id="snippetAuthor" name="snippetAuthor" label="Snippet Author" fullWidth variant="standard" />
+
+                        <TextField value={snippetBlog} onChange={(e) => setSnippetBlog(e.target.value)} sx={{ mb: 3 }} id="snippetBlog" name="snippetBlog" label="Snippet Blog" fullWidth variant="standard" />
+
+                        <TextField value={snippetDemo} onChange={(e) => setSnippetDemo(e.target.value)} sx={{ mb: 3 }} id="snippetDemo" name="snippetDemo" label="Snippet Demo" fullWidth variant="standard" />
+
+                        <Button fullWidth color="success" disabled={isUpdating} onClick={() => updateSnippet()} variant="contained" sx={{ mt: 3, mb: 3 }}>
+                            {!isUpdating ? "Update" : <CircularProgress color="success" size={25} />}
+                        </Button>
+
+                    </>
+                    :
+                    <Box id="searchForm" component="form" onSubmit={handleSearch} noValidate sx={{ mt: 1 }}>
+
+                        <TextField sx={{ mb: 2 }} required id="snippetSauce" name="snippetSauce" label="Enter Sauce to search snippet" fullWidth variant="standard" />
+
+                        <Button disabled={isSearching} type="submit" fullWidth variant="outlined" sx={{ mt: 3, mb: 2 }}>
+                            {!isSearching ? "Search" : <CircularProgress size={25} />}
+                        </Button>
+                    </Box>
+                }
+            </Grid>
+        </Grid>
 
     )
 }

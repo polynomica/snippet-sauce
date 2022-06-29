@@ -1,11 +1,11 @@
-import './App.scss';
-import HomeScreen from '../src/components/homeScreen'
-import SnippetDetails from './components/snippetScreen';
+
+import './App.css';
+import DashHome from './pages/dashboard/dashHome';
+import LoginPage from './pages/login';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import LoginScreen from './components/loginScreen';
-import ErrorScreen from './components/errorScreen';
-import AdminPanel from './components/adminPanel';
 import { LoggedIn } from '../src/app/useStore'
+
+
 
 function App() {
   const loggedIn = LoggedIn()
@@ -14,12 +14,8 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/" exact component={() => <HomeScreen mode="home" />} />
-          <Route path="/filter" exact component={() => <HomeScreen mode="filterScreen" />} />
-          <Route path="/snippet" exact component={() => <SnippetDetails />} />
-          <Route path="/login" exact component={() => <LoginScreen />} />
-          <Route path="/ssadmin" exact component={() => loggedIn ? <AdminPanel /> : <LoginScreen />} />
-          <Route path="*"> <ErrorScreen mode={"other"} /></Route>
+          <Route path="/login" exact component={() => loggedIn ? <DashHome /> : <LoginPage />} />
+          <Route path="/" exact component={() => loggedIn ? <DashHome /> : <LoginPage />} />
         </Switch>
       </Router>
 
@@ -28,4 +24,3 @@ function App() {
 }
 
 export default App;
-
