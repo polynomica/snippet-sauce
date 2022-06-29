@@ -43,11 +43,8 @@ export default function SnippetPage() {
                     setSnippetBody(response.data.snippet_data);
                     if (isMobile == false) {
                         getSimilarSnippets(response.data.snippet_data.snippet_language);
-                    } else {
-                        console.log(isMobile)
                     }
-                    console.log(isMobile)
-                    //console.log(response.data.snippet_data)
+
                     setIsLoading(false);
                 } else setIsLoading(false)
             }).catch(error => { setSnippetBody(null); setIsLoading(false); })

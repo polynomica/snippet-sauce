@@ -10,7 +10,7 @@ import { isMobile } from "react-device-detect";
 function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
-    console.log("No !")
+    console.log("Get a Job Bro !")
 
   }, [])
 
