@@ -6,6 +6,7 @@ import Head from 'next/head'
 import axios from 'axios'
 import logo from '../public/logo.svg'
 import { deployConfig } from '../components/deployConfig.js'
+import LoadingWrapper from '../components/loadingScreen'
 
 export default function HomeScreen() {
 
@@ -76,9 +77,7 @@ export default function HomeScreen() {
         </div>
       </div>
       :
-      <div className={`screen`}>
-        <h3>Loading ....</h3>
-      </div>
+      <LoadingWrapper />
 
   )
 }

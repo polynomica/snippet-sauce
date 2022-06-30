@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import { deployConfig } from "../components/deployConfig";
 import copySvg from '../public/copySvg.svg'
 import { isMobile } from "react-device-detect";
+import LoadingWrapper from "../components/loadingScreen";
 
 export default function SnippetPage() {
 
@@ -216,8 +217,6 @@ export default function SnippetPage() {
                 }
             </>
             :
-            <div className={`screen`}>
-                <h3>Loading ....</h3>
-            </div>
+            <LoadingWrapper />
     )
 }

@@ -5,6 +5,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import axios from "axios";
 import Link from 'next/link'
+import LoadingWrapper from "../components/loadingScreen";
 
 
 export default function FilterScreen() {
@@ -36,7 +37,7 @@ export default function FilterScreen() {
             .then((response) => {
                 if (response.data.status === true) {
                     setLangData(response.data.lang_data)
-
+                    console.log(response.data.lang_data)
                     setSnippetData(response.data.snippet_data); setErrorLog(null); setLoading(false)
                 } else { setLangData(null); setLoading(false); setErrorLog(response.data.message); setSnippetData(null) }
             })
@@ -88,9 +89,7 @@ export default function FilterScreen() {
                 </div>
             </div>
             :
-            <div className={`screen`}>
-                <h3>Loading ....</h3>
-            </div>
+            <LoadingWrapper />
 
     )
 }
