@@ -25,7 +25,6 @@ export default function Navbar() {
         let temp = [];
         array.forEach(element => temp.push({ name: `${element.charAt(0).toUpperCase() + element.slice(1)}` }))
         setLanguages(temp)
-        console.log(temp)
     }
 
     const currentPath = router.pathname;

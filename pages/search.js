@@ -14,7 +14,12 @@ export default function Search() {
     const [mode, setMode] = useState('sauce');
 
     const searchSnippet = () => {
-        router.push({ pathname: '/snippet', query: { sauce: inputSauce } })
+        if (inputSauce.trim() !== "") {
+            router.push({ pathname: '/snippet', query: { sauce: inputSauce } })
+        } else {
+            alert("Please enter a Sauce !")
+        }
+
     }
 
     const modeHandler = () => {

@@ -6,6 +6,7 @@ import Head from 'next/head'
 import axios from 'axios'
 import logo from '../public/logo.svg'
 import { deployConfig } from '../components/deployConfig.js'
+import LoadingWrapper from '../components/loadingScreen'
 
 export default function HomeScreen() {
 
@@ -21,7 +22,7 @@ export default function HomeScreen() {
 
   const getSnippets = async () => {
     await axios.get("https://snippetsauce.herokuapp.com/api/display")
-      .then((response) => { console.log(response.data); setSnippetData(response.data.snippet_data); setLoading(false); setErrorLog(null) })
+      .then((response) => { setSnippetData(response.data.snippet_data); setLoading(false); setErrorLog(null) })
       .catch((err) => { setErrorLog(err.message); setSnippetData(null) });
   }
 
@@ -76,9 +77,7 @@ export default function HomeScreen() {
         </div>
       </div>
       :
-      <div className={`screen`}>
-        <h3>Loading ....</h3>
-      </div>
+      <LoadingWrapper />
 
   )
 }
