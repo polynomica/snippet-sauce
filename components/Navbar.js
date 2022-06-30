@@ -7,16 +7,20 @@ import { useRouter } from 'next/router'
 import axios from "axios";
 import { deployConfig } from '../components/deployConfig'
 import Button from './Button'
-
+import { isMobile } from "react-device-detect";
 
 export default function Navbar() {
 
     const [languages, setLanguages] = useState([]);
 
     useEffect(() => {
-        axios.get("https://snippetsauce.herokuapp.com/api/languages")
-            .then((response) => { languageSetter(response.data.languages) })
-            .catch(err => { })
+
+        if (isMobile == false) {
+            axios.get("https://snippetsauce.herokuapp.com/api/languages")
+                .then((response) => { languageSetter(response.data.languages) })
+                .catch(err => { console.log(err) })
+        }
+
     }, [])
 
     const router = useRouter()
@@ -46,7 +50,8 @@ export default function Navbar() {
                         Search
                     </a>
                 </Link>
-                {languages.length !== 0 &&
+                {
+                    languages.length !== 0 &&
                     <span className={` ${navStyles.navLinks}  ${navStyles.langPicker} ${currentPath == "/filter" && navStyles.navLinksActive} ${navStyles.navOptions}`}>Filter
                         <div className={`flex ${navStyles.languageHolder}`}>
 
@@ -58,6 +63,7 @@ export default function Navbar() {
 
                         </div>
                     </span>
+
                 }
 
                 <Link href={{ pathname: '/about' }}>

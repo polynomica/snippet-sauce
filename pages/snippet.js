@@ -207,9 +207,6 @@ export default function SnippetPage() {
                             </div>
                         </div>
 
-
-
-
                     </div>
                     : <div className={`screen ${styles.errorHolder}`}>
                         <span>Invalid sauce ! No Snippet found. </span>
