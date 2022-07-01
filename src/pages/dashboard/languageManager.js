@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import AddLangForm from '../../components/addLangForm.js';
+import AddLangForm from '../../components/AddLangForm.js';
 import UpdateLangForm from '../../components/updateLangForm.js';
 
 function TabPanel(props) {
