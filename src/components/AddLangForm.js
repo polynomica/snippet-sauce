@@ -22,12 +22,13 @@ export default function AddLangForm() {
 
 
         const data = {
-            "language_name": FData.get('languagename'),
+            "language_name": FData.get('languagename').replace(/\s/g, '').toLowerCase(),
             "short_form": FData.get('shortform'),
             "thumbnail": FData.get('langThumb'),
             "lang_desc": FData.get('langDesc'),
             "lang_logo": FData.get('langLogo')
         }
+
 
         if (data.language_name.trim() !== "" && data.short_form.trim() !== "" &&
             data.thumbnail.trim() !== "" && data.lang_desc.trim() !== "" &&
