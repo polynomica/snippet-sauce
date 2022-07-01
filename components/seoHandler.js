@@ -23,6 +23,9 @@ export default function SeoHandler() {
             <meta property="twitter:description"
                 content="Snippet Sauce is a one stop for all your snippet needs. It's got all the latest boiler plate codes, no matter the programming language, just make sure to remember the SAUCE to your favorite snippets." />
             <meta property="twitter:image" content="snippetsauce.netlify.app/assets/ssPoster.png" />
+
+
+
         </Head>
     )
 }
