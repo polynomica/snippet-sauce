@@ -11,6 +11,7 @@ import { deployConfig } from "../components/deployConfig";
 import copySvg from '../public/copySvg.svg'
 import { isMobile } from "react-device-detect";
 import LoadingWrapper from "../components/loadingScreen";
+import ssPoster from '../public/ssPoster.png'
 
 export default function SnippetPage() {
 
@@ -92,10 +93,10 @@ export default function SnippetPage() {
                     <meta property="twitter:description" content={snippetBody.snippet_description} />
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content="snippetsauce.tech/" />
-                    <meta property="og:image" content={snippetBody.snippet_thumbnail} />
+                    <meta property="og:image" content={ssPoster.src} />
                     <meta property="twitter:card" content="summary_large_image" />
                     <meta property="twitter:url" content="snippetsauce.tech" />
-                    <meta property="twitter:image" content={snippetBody.snippet_thumbnail} />
+                    <meta property="twitter:image" content={ssPoster.src} />
                 </Head>
             )
         } else {
