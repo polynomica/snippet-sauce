@@ -7,6 +7,7 @@ import axios from 'axios'
 import logo from '../public/logo.svg'
 import { deployConfig } from '../components/deployConfig.js'
 import LoadingWrapper from '../components/loadingScreen'
+import ssPoster from '../public/ssPoster.png'
 
 export default function HomeScreen() {
 
@@ -27,11 +28,36 @@ export default function HomeScreen() {
   }
 
 
+  const seoBody = {
+    windowTitle: 'Snippet Sauce | Home',
+    metaTitle: 'Snippet Sauce | An one stop snippet store for all your needs.',
+    metaDescription: "Snippet Sauce is a one stop for all your snippet needs. It's got all the latest boiler plate codes, no matter the programming language, just make sure to remember the SAUCE to your favorite snippets",
+    keyword: 'snippets,codes,developer'
+  }
+
   return (
     !isLoading ?
       <div className={`screen flex ${styles.homeScreen}`}>
         <Head>
-          <title>Snippet Sauce | Home</title>
+          <title>{seoBody.windowTitle}</title>
+
+          <meta name="title" content={seoBody.metaTitle} />
+          <meta name="description" content={seoBody.metaDescription} />
+          <meta name="keywords" content={seoBody.keyword} />
+
+          <meta property="og:title" content={seoBody.metaTitle} />
+          <meta property="og:description" content={seoBody.metaDescription} />
+
+          <meta property="twitter:title" content={seoBody.metaTitle} />
+          <meta property="twitter:description" content={seoBody.metaDescription} />
+
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="snippetsauce.tech/" />
+          <meta property="og:image" content={ssPoster.src} />
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta property="twitter:url" content="snippetsauce.tech" />
+          <meta property="twitter:image" content={ssPoster.src} />
+
         </Head>
 
 

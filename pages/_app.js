@@ -40,8 +40,8 @@ function MyApp({ Component, pageProps }) {
       <Layout>
 
 
-
-        <SeoHandler />
+        {/* 
+        <SeoHandler /> */}
         <Navbar />
 
         <Component {...pageProps} />

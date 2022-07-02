@@ -5,11 +5,35 @@ import BMC from '../public/bmc-button.svg'
 import Head from 'next/head'
 
 export default function AboutScreen() {
-    return (
-        <div className={`screen flex ${styles.aboutPage}`}>
+
+    const seoHandle = () => {
+
+        return (
             <Head>
                 <title>About | Snippet Sauce</title>
+
+                <meta name="title" content="About | Snippet Sauce" />
+                <meta name="description" content={"Snippet sauce is a one-stop snippet collection platform. We provide a huge collection of fully tested and working code snippets, so you don&apos;t have to worry about try and error. You can also contribute to Snippet sauce by submitting your snippets or raising some issues.Our mission is to provide the best working code snippets with ease. From HTML to Bhai Lang we got you covered."} />
+
+                <meta property="og:title" content="About | Snippet Sauce" />
+                <meta property="og:description" content={"Snippet sauce is a one-stop snippet collection platform. We provide a huge collection of fully tested and working code snippets, so you don&apos;t have to worry about try and error. You can also contribute to Snippet sauce by submitting your snippets or raising some issues.Our mission is to provide the best working code snippets with ease. From HTML to Bhai Lang we got you covered."} />
+
+                <meta property="twitter:title" content="About | Snippet Sauce" />
+                <meta property="twitter:description" content={"Snippet sauce is a one-stop snippet collection platform. We provide a huge collection of fully tested and working code snippets, so you don&apos;t have to worry about try and error. You can also contribute to Snippet sauce by submitting your snippets or raising some issues.Our mission is to provide the best working code snippets with ease. From HTML to Bhai Lang we got you covered."} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="snippetsauce.tech/" />
+                <meta property="og:image" content="/_next/static/media/logo.1e817900.svg" />
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta property="twitter:url" content="snippetsauce.tech" />
+                <meta property="twitter:image" content="/_next/static/media/logo.1e817900.svg" />
             </Head>
+        )
+
+    }
+
+    return (
+        <div className={`screen flex ${styles.aboutPage}`}>
+            {seoHandle()}
 
 
             <div className={styles.aboutScreen}>

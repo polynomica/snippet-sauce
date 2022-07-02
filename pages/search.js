@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router'
 import Button from "../components/Button"
 import DataListInput from "react-plain-datalist-input";
+import SeoHandler from "../components/seoHandler";
 
 export default function Search() {
 
@@ -62,9 +63,7 @@ export default function Search() {
 
     return (
         <div className={`screen`}>
-            <Head>
-                <title>Search | Snippet Sauce</title>
-            </Head>
+            <SeoHandler title={'Search Snipppet | Snippet Sauce'} />
             <div className={`flex ${styles.searchDiv}`}>
                 <h2>Search Snippet</h2>
 

@@ -75,14 +75,45 @@ export default function SnippetPage() {
 
 
 
+    const seoHandle = () => {
+        if (snippetBody !== null) {
+            return (
+                <Head>
+                    <title>{snippetBody.snippet_title}</title>
+
+                    <meta name="title" content={snippetBody.snippet_title} />
+                    <meta name="description" content={snippetBody.snippet_description} />
+                    <meta name="keywords" content={snippetBody.snippet_seo} />
+
+                    <meta property="og:title" content={snippetBody.snippet_title} />
+                    <meta property="og:description" content={snippetBody.snippet_description} />
+
+                    <meta property="twitter:title" content={snippetBody.snippet_title} />
+                    <meta property="twitter:description" content={snippetBody.snippet_description} />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="snippetsauce.tech/" />
+                    <meta property="og:image" content={snippetBody.snippet_thumbnail} />
+                    <meta property="twitter:card" content="summary_large_image" />
+                    <meta property="twitter:url" content="snippetsauce.tech" />
+                    <meta property="twitter:image" content={snippetBody.snippet_thumbnail} />
+                </Head>
+            )
+        } else {
+            <Head>
+                <title>No Snippet Found !</title>
+            </Head>
+        }
+    }
+
+
+
     return (
         !isLoading ?
             <>
+                {seoHandle()}
                 {snippetBody ?
                     <div className={`screen flex ${styles.snippetPage}`}>
-                        <Head>
-                            <title>{snippetBody ? snippetBody.snippet_title : "No Snippet Found"} | Snippet Sauce</title>
-                        </Head>
+
                         {isMobile == false &&
                             <div className={`flex ${styles.suggestedTab}`}>
                                 <h3 className={styles.suggestedTitle}>Similar Snippets</h3>
