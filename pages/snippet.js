@@ -52,6 +52,7 @@ export default function SnippetPage() {
 
     }
 
+
     const getSimilarSnippets = async (lang) => {
         setIsLoading(true)
         await axios.get(`https://snippetsauce.herokuapp.com/api/similar/${lang}`)
@@ -74,14 +75,45 @@ export default function SnippetPage() {
 
 
 
+    const seoHandle = () => {
+        if (snippetBody !== null) {
+            return (
+                <Head>
+                    <title>{snippetBody.snippet_title}</title>
+
+                    <meta name="title" content={snippetBody.snippet_title} />
+                    <meta name="description" content={snippetBody.snippet_description} />
+                    <meta name="keywords" content={snippetBody.snippet_seo} />
+
+                    <meta property="og:title" content={snippetBody.snippet_title} />
+                    <meta property="og:description" content={snippetBody.snippet_description} />
+
+                    <meta property="twitter:title" content={snippetBody.snippet_title} />
+                    <meta property="twitter:description" content={snippetBody.snippet_description} />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="snippetsauce.tech/" />
+                    <meta property="og:image" content={snippetBody.snippet_thumbnail} />
+                    <meta property="twitter:card" content="summary_large_image" />
+                    <meta property="twitter:url" content="snippetsauce.tech" />
+                    <meta property="twitter:image" content={snippetBody.snippet_thumbnail} />
+                </Head>
+            )
+        } else {
+            <Head>
+                <title>No Snippet Found !</title>
+            </Head>
+        }
+    }
+
+
+
     return (
         !isLoading ?
             <>
+                {seoHandle()}
                 {snippetBody ?
                     <div className={`screen flex ${styles.snippetPage}`}>
-                        <Head>
-                            <title>{snippetBody ? snippetBody.snippet_title : "No Snippet Found"} | Snippet Sauce</title>
-                        </Head>
+
                         {isMobile == false &&
                             <div className={`flex ${styles.suggestedTab}`}>
                                 <h3 className={styles.suggestedTitle}>Similar Snippets</h3>
@@ -115,7 +147,7 @@ export default function SnippetPage() {
                                             <Clipboard onClick={() => alert("Sauce Copied sucessfully!")} className={styles.copyButton} data-clipboard-text={`${snippetBody.snippet_id}`}>
                                                 <img src={copySvg.src} />
                                             </Clipboard>
-                                            <Clipboard onClick={() => alert("URL Copied sucessfully!")} className={styles.copyButton} data-clipboard-text={`https://snippetsauce.netlify.app${shareUrl}`}>
+                                            <Clipboard onClick={() => alert("URL Copied sucessfully!")} className={styles.copyButton} data-clipboard-text={`https://snippetsauce.tech${shareUrl}`}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="30" height="30" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M3 12c0 1.654 1.346 3 3 3c.794 0 1.512-.315 2.049-.82l5.991 3.424c-.018.13-.04.26-.04.396c0 1.654 1.346 3 3 3s3-1.346 3-3s-1.346-3-3-3c-.794 0-1.512.315-2.049.82L8.96 12.397c.018-.131.04-.261.04-.397s-.022-.266-.04-.397l5.991-3.423c.537.505 1.255.82 2.049.82c1.654 0 3-1.346 3-3s-1.346-3-3-3s-3 1.346-3 3c0 .136.022.266.04.397L8.049 9.82A2.982 2.982 0 0 0 6 9c-1.654 0-3 1.346-3 3z" fill="red" /></svg>
                                             </Clipboard>
                                         </div>

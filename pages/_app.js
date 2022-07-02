@@ -40,8 +40,8 @@ function MyApp({ Component, pageProps }) {
       <Layout>
 
 
-
-        <SeoHandler />
+        {/* 
+        <SeoHandler /> */}
         <Navbar />
 
         <Component {...pageProps} />
@@ -55,13 +55,13 @@ function MyApp({ Component, pageProps }) {
 
             <div className='footer-nav'>
               <Link href={{ pathname: '/' }}>
-                <a href='https://snippetsauce.netlify.app/' >Home</a>
+                <a href='https://snippetsauce.tech/' >Home</a>
               </Link>
               <Link href={{ pathname: '/search' }}>
-                <a href='https://snippetsauce.netlify.app/search' >Search</a>
+                <a href='https://snippetsauce.tech/search' >Search</a>
               </Link>
               <Link href={{ pathname: '/about' }}>
-                <a href='https://snippetsauce.netlify.app/about' >About</a>
+                <a href='https://snippetsauce.tech/about' >About</a>
               </Link>
             </div>
 
