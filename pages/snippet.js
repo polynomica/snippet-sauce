@@ -93,10 +93,10 @@ export default function SnippetPage() {
                     <meta property="twitter:description" content={snippetBody.snippet_description} />
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content="snippetsauce.tech/" />
-                    <meta property="og:image" content={ssPoster.src} />
+                    <meta property="og:image" content={snippetBody.snippet_thumbnail} />
                     <meta property="twitter:card" content="summary_large_image" />
                     <meta property="twitter:url" content="snippetsauce.tech" />
-                    <meta property="twitter:image" content={ssPoster.src} />
+                    <meta property="twitter:image" content={snippetBody.snippet_thumbnail} />
                 </Head>
             )
         } else {
