@@ -35,9 +35,10 @@ export default function FilterScreen() {
 
         await axios.post("https://snippetsauce.herokuapp.com/api/filter", { language: `${filterName.toLowerCase()}` })
             .then((response) => {
-                if (response.data.status === true) {
+                console.log(response.data)
+                if (response.data.status == true) {
+                 
                     setLangData(response.data.lang_data)
-
                     setSnippetData(response.data.snippet_data); setErrorLog(null); setLoading(false)
                 } else { setLangData(null); setLoading(false); setErrorLog(response.data.message); setSnippetData(null) }
             })
@@ -81,20 +82,38 @@ export default function FilterScreen() {
                 <div className={`screen ${styles.homeScreen}`}>
 
 
-                    <div className={`flex ${styles.homeHeader}`}>
+
+                    {
+                        langData !==null ?
+
+                        <div className={`flex ${styles.homeHeader}`}>
                         <div className={`flex ${styles.homeBody}`}>
                             <h2>Filter</h2>
                             <div className={`flex ${styles.tagHolder}`}>
                                 <span className={styles.bodyTagline}>{filterName}</span>
-                                {langData && <p>{langData.description}</p>}
+                              <p>{langData.description}</p>
                             </div>
                         </div>
-                        {langData &&
+                
                             <img alt={`${filterName} logo`} className={styles.svgDecoration} src={langData.logo} />
-                        }
+                        
 
 
                     </div>
+                        :
+
+                        <div className={`flex ${styles.homeHeader}`}>
+                        <div className={`flex ${styles.homeBody}`}>
+                            <h2>Filter</h2>
+                            <div className={`flex ${styles.tagHolder}`}>
+                                <span className={styles.bodyTagline}>{filterName}</span>
+                               <p>Invalid Filter Name !</p>
+                            </div>
+                        </div>
+                
+                    </div>
+
+                    }
 
                     <div className={`contentArea`}>
                         {snippetData
