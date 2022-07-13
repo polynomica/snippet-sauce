@@ -11,7 +11,7 @@ import { deployConfig } from "../components/deployConfig";
 import copySvg from '../public/copySvg.svg'
 import { isMobile } from "react-device-detect";
 import LoadingWrapper from "../components/loadingScreen";
-import ssPoster from '../public/ssPoster.png'
+import Button from '../components/Button.js'
 
 export default function SnippetPage() {
 
@@ -42,6 +42,7 @@ export default function SnippetPage() {
         await axios.get(`https://snippetsauce.herokuapp.com/api/search/${sauce}`)
             .then((response) => {
                 if (response.data.status) {
+                 
                     setSnippetBody(response.data.snippet_data);
                     if (isMobile == false) {
                         getSimilarSnippets(response.data.snippet_data.snippet_language);
@@ -176,10 +177,10 @@ export default function SnippetPage() {
 
                             <div className={styles.snippetData}>
                                 <p>{snippetBody.snippet_description}</p>
-                                {/* {
-                                    snippetBody.snippet_demo_url &&
-                                    <Button title={'Demo'} type='link' href={snippetBody.snippet_demo_url} />
-                                } */}
+                                {
+                                    snippetBody.snippet_blog!=="." &&
+                                    <Button title={'View Blog'} type='link' href={snippetBody.snippet_blog} />
+                                }
 
                                 <br />
                                 <br />
