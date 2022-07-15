@@ -108,7 +108,7 @@ a {
   min-height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -181,4 +181,10 @@ footer>div {
 .loadingScreen {
   display: flex;
   flex-direction: column;
+}
+
+.modeChanger{
+  cursor: pointer;
+  color: red;
+  text-decoration: underline;
 }
