@@ -66,7 +66,7 @@ export default function HomeScreen() {
             <h2>Home</h2>
             <div className={`flex ${styles.tagHolder}`}>
               <span className={styles.bodyTagline}>Discover the latest snippet for your latest project</span>
-              <span>Snippet Sauce is the leading destination to find pre made working Code Snippets from all the languages and frameworks.</span>
+              <h3>Snippet Sauce is the leading destination to find pre made working Code Snippets from all the languages and frameworks.</h3>
             </div>
             <br />
             {
