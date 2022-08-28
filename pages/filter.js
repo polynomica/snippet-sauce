@@ -80,39 +80,30 @@ export default function FilterScreen() {
             <>
                 {seoHandle()}
                 <div className={`screen ${styles.homeScreen}`}>
-
-
-
                     {
                         langData !==null ?
 
                         <div className={`flex ${styles.homeHeader}`}>
-                        <div className={`flex ${styles.homeBody}`}>
-                            <h2>Filter</h2>
-                            <div className={`flex ${styles.tagHolder}`}>
-                                <span className={styles.bodyTagline}>{filterName}</span>
-                              <p>{langData.description}</p>
+                            <div className={`flex ${styles.homeBody}`}>
+                                <h2>Filter</h2>
+                                <div className={`flex ${styles.tagHolder}`}>
+                                    <span className={styles.bodyTagline}>{filterName}</span>
+                                <p>{langData.description}</p>
+                                </div>
                             </div>
-                        </div>
-                
                             <img alt={`${filterName} logo`} className={styles.svgDecoration} src={langData.logo} />
-                        
-
-
-                    </div>
-                        :
-
-                        <div className={`flex ${styles.homeHeader}`}>
-                        <div className={`flex ${styles.homeBody}`}>
-                            <h2>Filter</h2>
-                            <div className={`flex ${styles.tagHolder}`}>
-                                <span className={styles.bodyTagline}>{filterName}</span>
-                               <p>Invalid Filter Name !</p>
-                            </div>
                         </div>
+                        :
+                        <div className={`flex ${styles.homeHeader}`}>
+                            <div className={`flex ${styles.homeBody}`}>
+                                <h2>Filter</h2>
+                                <div className={`flex ${styles.tagHolder}`}>
+                                    <span className={styles.bodyTagline}>{filterName}</span>
+                                <p>Invalid Filter Name !</p>
+                                </div>
+                            </div>
                 
-                    </div>
-
+                        </div>
                     }
 
                     <div className={`contentArea`}>
