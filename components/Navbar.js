@@ -16,7 +16,7 @@ export default function Navbar() {
     useEffect(() => {
 
         if (isMobile == false) {
-            axios.get("https://snippetsauce.herokuapp.com/api/languages")
+            axios.get("https://snippetsauce-hetarth02.koyeb.app/api/languages")
                 .then((response) => { languageSetter(response.data.languages) })
                 .catch(err => { console.log(err) })
         }
