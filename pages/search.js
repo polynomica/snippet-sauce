@@ -27,7 +27,7 @@ export default function Search() {
                 setIsLoading(true)
 
                
-                await axios.get(`https://snippetsauce.herokuapp.com/api/title/${searchString}`)
+                await axios.get(`https://snippetsauce-hetarth02.koyeb.app/api/title/${searchString}`)
                 .then(response=>{
                     console.log(response.data)
                     setIsLoading(false)

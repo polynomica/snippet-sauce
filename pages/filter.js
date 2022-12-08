@@ -33,7 +33,7 @@ export default function FilterScreen() {
     const getLangSnippets = async () => {
         setLoading(true)
 
-        await axios.post("https://snippetsauce.herokuapp.com/api/filter", { language: `${filterName.toLowerCase()}` })
+        await axios.post("https://snippetsauce-hetarth02.koyeb.app/api/filter", { language: `${filterName.toLowerCase()}` })
             .then((response) => {
                 console.log(response.data)
                 if (response.data.status == true) {

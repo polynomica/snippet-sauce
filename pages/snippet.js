@@ -39,7 +39,7 @@ export default function SnippetPage() {
 
     const getSnippetDetail = async () => {
         setIsLoading(true)
-        await axios.get(`https://snippetsauce.herokuapp.com/api/search/${sauce}`)
+        await axios.get(`https://snippetsauce-hetarth02.koyeb.app/api/search/${sauce}`)
             .then((response) => {
                 if (response.data.status) {
                  
@@ -57,7 +57,7 @@ export default function SnippetPage() {
 
     const getSimilarSnippets = async (lang) => {
         setIsLoading(true)
-        await axios.get(`https://snippetsauce.herokuapp.com/api/similar/${lang}`)
+        await axios.get(`https://snippetsauce-hetarth02.koyeb.app/api/similar/${lang}`)
             .then((response) => {
                 if (response.data.status) {
 
